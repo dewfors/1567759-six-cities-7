@@ -1,6 +1,6 @@
 import React from 'react';
 
-function PageSignIn() {
+function PageLogin() {
   return (
     <div className="page page--gray page--login">
       <header className="header">
@@ -55,4 +55,4 @@ function PageSignIn() {
   );
 }
 
-export default PageSignIn;
+export default PageLogin;
