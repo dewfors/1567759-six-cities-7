@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PlaceCard from '../place-card/place-card';
+import placeCardProp from "../place-card/place-card.prop";
 
 const places = new Array(5).fill('place');
 
 function PageMain(props) {
-  const {placesToStay} = props;
+  const {placesToStay, offers} = props;
 
   return (
     <div className="page page--gray page--main">
@@ -95,7 +96,7 @@ function PageMain(props) {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {places.map((name, i) => <PlaceCard key={name + String(i)} />)}
+                {offers.map((offer, i) => <PlaceCard key={offer.id} offer={offer}/>)}
               </div>
             </section>
             <div className="cities__right-section">
@@ -110,6 +111,9 @@ function PageMain(props) {
 
 PageMain.propTypes = {
   placesToStay: PropTypes.number.isRequired,
+  offers: PropTypes.arrayOf(
+    PropTypes.oneOfType([placeCardProp]).isRequired,
+  ).isRequired,
 };
 
 export default PageMain;

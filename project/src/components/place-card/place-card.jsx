@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import placeCardProp from './place-card.prop.js'
 
-function PlaceCard() {
-
+function PlaceCard(props) {
+  const {offer} = props;
   return (
     <article className="cities__place-card place-card" >
       <div className="place-card__mark">
@@ -39,5 +41,10 @@ function PlaceCard() {
     </article>
   );
 }
+
+PlaceCard.propTypes = {
+  offer: PropTypes.oneOfType([placeCardProp]).isRequired,
+}
+
 
 export default PlaceCard;
