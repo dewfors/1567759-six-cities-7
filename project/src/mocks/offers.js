@@ -236,7 +236,7 @@ const getAdaptedToClientOffer = (offer) => {
     title: offer.title,
     isFavorite: offer.is_favorite,
     isPremium: offer.is_premium,
-    rating: offer.rating,
+    rating: Math.round(offer.rating),
     type: offer.type,
     bedrooms: offer.bedrooms,
     maxAdults: offer.max_adults,

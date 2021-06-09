@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PlaceCard from '../place-card/place-card';
+import ListOffers from '../list-offers/list-offers';
 import placeCardProp from "../place-card/place-card.prop";
-
-const places = new Array(5).fill('place');
 
 function PageMain(props) {
   const {placesToStay, offers} = props;
@@ -95,9 +94,13 @@ function PageMain(props) {
                   <li className="places__option" tabIndex="0">Top rated first</li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                {offers.map((offer, i) => <PlaceCard key={offer.id} offer={offer}/>)}
-              </div>
+
+              <ListOffers offers={offers}/>
+
+
+              {/*<div className="cities__places-list places__list tabs__content">*/}
+              {/*  {offers.map((offer, i) => <PlaceCard key={offer.id} offer={offer}/>)}*/}
+              {/*</div>*/}
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"> </section>

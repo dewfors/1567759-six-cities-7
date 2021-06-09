@@ -1,7 +1,6 @@
 import React from 'react';
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
 import {AppRoute} from '../../const';
-
 import PageMain from '../page-main/page-main';
 import PageFavorites from '../page-favorites/page-favorites';
 import PageNotFound from '../page-not-found/page-not-found';
