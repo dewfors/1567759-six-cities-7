@@ -1,9 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import placeCardProp from './place-card.prop.js'
-import {MAX_PERSENT, MAX_STARS} from "../../const";
+import placeCardProp from './place-card.prop.js';
+import {getStarsWidth} from '../../utils/utils';
 
-const getStarsWidth = (rating) => rating*MAX_PERSENT/MAX_STARS;
+function Premium(props) {
+  if (props.isPremium) {
+    return (
+      <div className="place-card__mark">
+        <span>Premium</span>
+      </div>
+    );
+  }
+  return '';
+}
 
 function PlaceCard(props) {
   const {offer} = props;
@@ -12,12 +21,12 @@ function PlaceCard(props) {
 
   return (
     <article className="cities__place-card place-card" >
-
-      {isPremium ? <div className="place-card__mark">
-          <span>Premium</span>
-        </div>
-        : ''
-      }
+      <Premium isPremium={isPremium} />
+      {/*{isPremium*/}
+      {/*  ? <div className="place-card__mark">*/}
+      {/*      <span>Premium</span>*/}
+      {/*    </div>*/}
+      {/*  : ''}*/}
 
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href={'/'}>
@@ -55,7 +64,11 @@ function PlaceCard(props) {
 
 PlaceCard.propTypes = {
   offer: PropTypes.oneOfType([placeCardProp]).isRequired,
-}
+};
+
+Premium.propTypes = {
+  isPremium: PropTypes.bool.isRequired,
+};
 
 
 export default PlaceCard;

@@ -229,7 +229,7 @@ const offersJSON = `[
 ]`;
 
 const getAdaptedToClientOffer = (offer) => {
-  return {
+  const adaptedOffer ={
     city: offer.city,
     previewImage: offer.preview_image,
     images: offer.images,
@@ -251,12 +251,13 @@ const getAdaptedToClientOffer = (offer) => {
     description: offer.description,
     location: offer.location,
     id: offer.id,
-  }
-}
+  };
+  return adaptedOffer;
+};
 
 const getAdaptedToClientOffers = () => {
   const offers = JSON.parse(offersJSON);
   return offers.map((offer) => getAdaptedToClientOffer(offer));
-}
+};
 
 export {getAdaptedToClientOffers};

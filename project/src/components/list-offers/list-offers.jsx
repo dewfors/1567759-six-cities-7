@@ -1,8 +1,7 @@
 import React from 'react';
-import PlaceCard from "../place-card/place-card";
-import PropTypes from "prop-types";
-import placeCardProp from "../place-card/place-card.prop";
-import PageMain from "../page-main/page-main";
+import PlaceCard from '../place-card/place-card';
+import PropTypes from 'prop-types';
+import placeCardProp from '../place-card/place-card.prop';
 
 function ListOffers(props) {
   const {offers} = props;
@@ -10,7 +9,7 @@ function ListOffers(props) {
     <div className="cities__places-list places__list tabs__content">
       {offers.map((offer, i) => <PlaceCard key={offer.id} offer={offer}/>)}
     </div>
-  )
+  );
 }
 
 ListOffers.propTypes = {

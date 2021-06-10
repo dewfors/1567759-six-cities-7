@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PlaceCard from '../place-card/place-card';
 import ListOffers from '../list-offers/list-offers';
-import placeCardProp from "../place-card/place-card.prop";
+import placeCardProp from '../place-card/place-card.prop';
 
 function PageMain(props) {
   const {placesToStay, offers} = props;
@@ -84,7 +83,7 @@ function PageMain(props) {
                 <span className="places__sorting-type" tabIndex="0">
                   Popular
                   <svg className="places__sorting-arrow" width="7" height="4">
-                    <use xlinkHref="#icon-arrow-select"></use>
+                    <use xlinkHref="#icon-arrow-select"> </use>
                   </svg>
                 </span>
                 <ul className="places__options places__options--custom places__options--opened">
@@ -97,10 +96,6 @@ function PageMain(props) {
 
               <ListOffers offers={offers}/>
 
-
-              {/*<div className="cities__places-list places__list tabs__content">*/}
-              {/*  {offers.map((offer, i) => <PlaceCard key={offer.id} offer={offer}/>)}*/}
-              {/*</div>*/}
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"> </section>
