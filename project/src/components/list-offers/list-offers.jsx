@@ -1,9 +1,11 @@
+// import {useState} from 'react';
 import React from 'react';
 import PlaceCard from '../place-card/place-card';
 import PropTypes from 'prop-types';
 import placeCardProp from '../place-card/place-card.prop';
 
 function ListOffers(props) {
+  // const [activeOffer, setActiveOffer] = useState(0);
   const {offers} = props;
   return (
     <div className="cities__places-list places__list tabs__content">
