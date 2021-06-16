@@ -1,4 +1,4 @@
-const offersJSON = `[
+export const offersJSON = `[
   {
     "city": {
       "name": "Hamburg",
@@ -227,37 +227,3 @@ const offersJSON = `[
     "id": 4
   }
 ]`;
-
-const getAdaptedToClientOffer = (offer) => {
-  const adaptedOffer ={
-    city: offer.city,
-    previewImage: offer.preview_image,
-    images: offer.images,
-    title: offer.title,
-    isFavorite: offer.is_favorite,
-    isPremium: offer.is_premium,
-    rating: Math.round(offer.rating),
-    type: offer.type,
-    bedrooms: offer.bedrooms,
-    maxAdults: offer.max_adults,
-    price: offer.price,
-    goods: offer.goods,
-    host: {
-      id: offer.host.id,
-      name: offer.host.name,
-      isPro: offer.host.is_pro,
-      avatarUrl: offer.host.avatar_url,
-    },
-    description: offer.description,
-    location: offer.location,
-    id: offer.id,
-  };
-  return adaptedOffer;
-};
-
-const getAdaptedToClientOffers = () => {
-  const offers = JSON.parse(offersJSON);
-  return offers.map((offer) => getAdaptedToClientOffer(offer));
-};
-
-export {getAdaptedToClientOffers};

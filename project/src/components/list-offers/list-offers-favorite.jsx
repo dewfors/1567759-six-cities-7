@@ -4,17 +4,8 @@ import PropTypes from 'prop-types';
 import placeCardProp from '../place-card/place-card.prop';
 
 const getListOffers = (offers) => {
-  const listCities = new Set();
-  const listCityOffers = [];
-
-  offers.forEach((item) => listCities.add(item.city.name));
-
-  listCities.forEach((city) => {
-    const listOffers = offers.filter((item) => item.city.name === city);
-    listCityOffers.push({cityName: city, listOffers});
-  });
-
-  return listCityOffers;
+  const cities = new Set(offers.map((card) => card.city.name));
+  return [...cities].map((city) => ({cityName: city, listOffers: offers.filter((item) => item.city.name === city)}));
 };
 
 function ListItem(props) {
@@ -37,25 +28,16 @@ function ListItem(props) {
   );
 }
 
-const getList = (offers) => {
-  const listCityOffers = getListOffers(offers);
-
-  return (
-    <ul className="favorites__list">
-      {listCityOffers.map((cityListOffers) => <ListItem key={cityListOffers.cityName} cityListOffers={cityListOffers} />)}
-    </ul>
-  );
-};
-
 function ListOffersFavorite(props) {
   const {offers} = props;
+  const listCityOffers = getListOffers(offers);
 
   return (
     <section className="favorites">
       <h1 className="favorites__title">Saved listing</h1>
-
-      {getList(offers)}
-
+      <ul className="favorites__list">
+        {listCityOffers.map((cityListOffers) => <ListItem key={cityListOffers.cityName} cityListOffers={cityListOffers} />)}
+      </ul>
     </section>
   );
 }

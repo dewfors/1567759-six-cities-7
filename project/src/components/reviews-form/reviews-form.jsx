@@ -1,109 +1,66 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-// import {getStarsList} from '../../utils/utils';
+import {getStarsList} from '../../utils/utils';
+import {formReviewKeyType} from '../../utils/const';
+
+function Stars(props) {
+  const {starsList, onChangeData} = props;
+
+  return (
+    starsList.map((item) => (
+      <React.Fragment key={item.id}>
+        <input  className="form__rating-input visually-hidden" name="rating" value={`${item.id}`} id={`${item.id}-stars`} type="radio"
+          onChange={() => onChangeData(formReviewKeyType.STARS, item.id)}
+        />
+        <label htmlFor={`${item.id}-stars`} className="reviews__rating-label form__rating-label" title="perfect">
+          <svg className="form__star-image" width="37" height="33">
+            <use xlinkHref="#icon-star"> </use>
+          </svg>
+        </label>
+      </React.Fragment>
+    ))
+  );
+}
 
 function ReviewsForm(props) {
   const {onReview} = props;
-  // const starsList = getStarsList();
+  const starsList = getStarsList();
+  const [userData, setUserData] = useState({ review: '', stars: 0 });
 
-  const [userStars, setUserStars] = useState(0);
-  const [userReview, setUserReview] = useState('');
+  const onFormSubmit = (evt) => {
+    evt.preventDefault();
+    onReview(userData);
+  };
+
+  const onChangeData = (key, value) => {
+    switch (key) {
+      case formReviewKeyType.REVIEW:
+        setUserData({...userData, review: value});
+        break;
+      case formReviewKeyType.STARS:
+        setUserData({...userData, stars: value});
+        break;
+      default:
+        return null;
+    }
+  };
 
   return (
     <form
       className="reviews__form form"
       action="#"
       method="post"
-      onSubmit={(evt) => {
-        evt.preventDefault();
-        onReview(userStars, userReview);
-      }}
+      onSubmit={(evt) => onFormSubmit(evt)}
     >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
-
-        {/*{starsList.map((item) =>{*/}
-        {/*  const key = `${item.id}-stars`;*/}
-        {/*  const keyLabel = `${item.id}-stars-label`;*/}
-        {/*  return (*/}
-        {/*    <>*/}
-        {/*      <input key={key} className="form__rating-input visually-hidden" name="rating" value={`${item.id}`} id={`${item.id}-stars`} type="radio"*/}
-        {/*        onChange={() => {*/}
-        {/*          setUserStars(item.id);*/}
-        {/*        }}*/}
-        {/*      />*/}
-        {/*      <label key={keyLabel} htmlFor={`${item.id}-stars`} className="reviews__rating-label form__rating-label" title="perfect">*/}
-        {/*        <svg className="form__star-image" width="37" height="33">*/}
-        {/*          <use xlinkHref="#icon-star"> </use>*/}
-        {/*        </svg>*/}
-        {/*      </label>*/}
-        {/*    </>*/}
-        {/*  );*/}
-        {/*})}*/}
-
-        <input className="form__rating-input visually-hidden" name="rating" value="5" id="5-stars" type="radio"
-          onChange={() => {
-            setUserStars(5);
-          }}
-        />
-        <label htmlFor="5-stars" className="reviews__rating-label form__rating-label" title="perfect">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"> </use>
-          </svg>
-        </label>
-
-        <input className="form__rating-input visually-hidden" name="rating" value="4" id="4-stars" type="radio"
-          onChange={() => {
-            setUserStars(4);
-          }}
-        />
-        <label htmlFor="4-stars" className="reviews__rating-label form__rating-label" title="good">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"> </use>
-          </svg>
-        </label>
-
-        <input className="form__rating-input visually-hidden" name="rating" value="3" id="3-stars" type="radio"
-          onChange={() => {
-            setUserStars(3);
-          }}
-        />
-        <label htmlFor="3-stars" className="reviews__rating-label form__rating-label" title="not bad">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"> </use>
-          </svg>
-        </label>
-
-        <input className="form__rating-input visually-hidden" name="rating" value="2" id="2-stars" type="radio"
-          onChange={() => {
-            setUserStars(2);
-          }}
-        />
-        <label htmlFor="2-stars" className="reviews__rating-label form__rating-label" title="badly">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"> </use>
-          </svg>
-        </label>
-
-        <input className="form__rating-input visually-hidden" name="rating" value="1" id="1-star" type="radio"
-          onChange={() => {
-            setUserStars(1);
-          }}
-        />
-        <label htmlFor="1-star" className="reviews__rating-label form__rating-label" title="terribly">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"> </use>
-          </svg>
-        </label>
+        <Stars starsList={starsList} onChangeData={onChangeData} />
       </div>
       <textarea className="reviews__textarea form__textarea"
         id="review"
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
-        onChange={({target}) => {
-          const value = target.value;
-          setUserReview(value);
-        }}
+        onChange={({target}) => onChangeData(formReviewKeyType.REVIEW, target.value)}
       >
       </textarea>
       <div className="reviews__button-wrapper">
@@ -115,7 +72,6 @@ function ReviewsForm(props) {
       </div>
     </form>
   );
-
 }
 
 ReviewsForm.propTypes = {

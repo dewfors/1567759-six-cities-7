@@ -13,6 +13,7 @@ const placesToStay = 515;
 
 function App(props) {
   const {offers} = props;
+
   return (
     <BrowserRouter>
       <Switch>
@@ -21,22 +22,15 @@ function App(props) {
           <PageMain placesToStay = {placesToStay} offers={offers}/>
         </Route>
         <Route exact path = {AppRoute.FAVORITES} render={(() => <PageFavorites offers={offers} />)} />
-        {/*<Route exact path = {AppRoute.FAVORITES}>*/}
-        {/*  <PageFavorites offers={offers} />*/}
-        {/*</Route>*/}
         <Route exact path = {AppRoute.LOGIN}>
           <PageLogin />
         </Route>
         <Route exact path = {AppRoute.OFFER} component={PageOffer} />
-        {/*<Route exact path = {AppRoute.OFFER}>*/}
-        {/*  <PageOffer />*/}
-        {/*</Route>*/}
         <Route>
           <PageNotFound />
         </Route>
       </Switch>
     </BrowserRouter>
-
 
   );
 }

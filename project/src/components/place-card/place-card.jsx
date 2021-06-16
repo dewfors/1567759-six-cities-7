@@ -12,7 +12,7 @@ function Premium(props) {
       </div>
     );
   }
-  return '';
+  return null;
 }
 
 function PlaceCard(props) {
