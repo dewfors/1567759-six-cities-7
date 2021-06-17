@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PlaceCard from '../place-card/place-card';
-
-const places = new Array(5).fill('place');
+import ListOffers from '../list-offers/list-offers';
+import placeCardProp from '../place-card/place-card.prop';
 
 function PageMain(props) {
-  const {placesToStay} = props;
+  const {placesToStay, offers} = props;
 
   return (
     <div className="page page--gray page--main">
@@ -84,7 +83,7 @@ function PageMain(props) {
                 <span className="places__sorting-type" tabIndex="0">
                   Popular
                   <svg className="places__sorting-arrow" width="7" height="4">
-                    <use xlinkHref="#icon-arrow-select"></use>
+                    <use xlinkHref="#icon-arrow-select"> </use>
                   </svg>
                 </span>
                 <ul className="places__options places__options--custom places__options--opened">
@@ -94,9 +93,9 @@ function PageMain(props) {
                   <li className="places__option" tabIndex="0">Top rated first</li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                {places.map((name, i) => <PlaceCard key={name + String(i)} />)}
-              </div>
+
+              <ListOffers offers={offers}/>
+
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"> </section>
@@ -110,6 +109,9 @@ function PageMain(props) {
 
 PageMain.propTypes = {
   placesToStay: PropTypes.number.isRequired,
+  offers: PropTypes.arrayOf(
+    PropTypes.oneOfType([placeCardProp]).isRequired,
+  ).isRequired,
 };
 
 export default PageMain;
