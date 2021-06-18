@@ -12,14 +12,14 @@ import placeCardProp from '../place-card/place-card.prop.js';
 const placesToStay = 515;
 
 function App(props) {
-  const {offers} = props;
+  const {offers, city} = props;
 
   return (
     <BrowserRouter>
       <Switch>
 
         <Route exact path = {AppRoute.ROOT}>
-          <PageMain placesToStay = {placesToStay} offers={offers}/>
+          <PageMain placesToStay = {placesToStay} offers={offers} city={city}/>
         </Route>
         <Route exact path = {AppRoute.FAVORITES} render={(() => <PageFavorites offers={offers} />)} />
         <Route exact path = {AppRoute.LOGIN}>
@@ -39,6 +39,12 @@ App.propTypes = {
   offers: PropTypes.arrayOf(
     PropTypes.oneOfType([placeCardProp]).isRequired,
   ).isRequired,
+  city: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    lat: PropTypes.number.isRequired,
+    lng: PropTypes.number.isRequired,
+    zoom: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 export default App;

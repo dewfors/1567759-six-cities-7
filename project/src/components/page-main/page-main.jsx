@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ListOffers from '../list-offers/list-offers';
+import Map from '../map/map';
 import placeCardProp from '../place-card/place-card.prop';
 
+
 function PageMain(props) {
-  const {placesToStay, offers} = props;
+  const {placesToStay, offers, city} = props;
 
   return (
     <div className="page page--gray page--main">
@@ -98,7 +100,9 @@ function PageMain(props) {
 
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"> </section>
+              <section className="cities__map map">
+                <Map city={city} offers={offers} />
+              </section>
             </div>
           </div>
         </div>
@@ -112,6 +116,12 @@ PageMain.propTypes = {
   offers: PropTypes.arrayOf(
     PropTypes.oneOfType([placeCardProp]).isRequired,
   ).isRequired,
+  city: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    lat: PropTypes.number.isRequired,
+    lng: PropTypes.number.isRequired,
+    zoom: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 export default PageMain;
