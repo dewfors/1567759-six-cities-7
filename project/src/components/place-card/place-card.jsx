@@ -20,6 +20,8 @@ function PlaceCard(props) {
   const {price, isPremium, title, type, rating, previewImage} = offer;
   const starsWidth = getStarsWidth(rating);
 
+  console.log(offer);
+
   return (
     <article className="cities__place-card place-card" >
       <Premium isPremium={isPremium} />

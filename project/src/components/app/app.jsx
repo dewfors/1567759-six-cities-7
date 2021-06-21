@@ -12,7 +12,7 @@ import placeCardProp from '../place-card/place-card.prop.js';
 const placesToStay = 515;
 
 function App(props) {
-  const {offers, city} = props;
+  const {offers, comments, city} = props;
 
   return (
     <BrowserRouter>
@@ -25,6 +25,7 @@ function App(props) {
         <Route exact path = {AppRoute.LOGIN}>
           <PageLogin />
         </Route>
+        <Route exact path = {AppRoute.OFFER} render={(() => <PageOffer comments={comments} />)} />
         <Route exact path = {AppRoute.OFFER} component={PageOffer} />
         <Route>
           <PageNotFound />
