@@ -25,7 +25,7 @@ function App(props) {
         <Route exact path = {AppRoute.LOGIN}>
           <PageLogin />
         </Route>
-        <Route exact path = {AppRoute.OFFER} render={(() => <PageOffer comments={comments} />)} />
+        <Route exact path = {AppRoute.OFFER} render={(() => <PageOffer offers={offers} city={city} comments={comments} />)} />
         <Route exact path = {AppRoute.OFFER} component={PageOffer} />
         <Route>
           <PageNotFound />
