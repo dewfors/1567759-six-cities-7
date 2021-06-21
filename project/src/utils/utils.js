@@ -25,3 +25,35 @@ export const getAdaptedToClientComments = () => {
   const comments = JSON.parse(commentsJSON);
   return comments.map((comment) => getAdaptedToClientObject(comment));
 };
+
+export const getReviewsSorted = (comments) => {
+  const reviews = comments.map((item) => {
+    return {
+      ...item,
+      date: new Date(item.date),
+    }
+  })
+
+  reviews.sort((obj1, obj2) => obj2.date - obj1.date)
+  reviews.slice(0,10)
+
+  return reviews;
+}
+
+export const getDateFormat = (date) => {
+
+  let dd = date.getDate();
+  if (dd < 10) dd = '0' + dd;
+
+  let mm = date.getMonth()+1;
+  if (mm < 10) mm = '0' + mm;
+
+  const yyyy = date.getFullYear();
+
+  const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+  return {
+    dateTime: `${yyyy}-${mm}-${dd}`,
+    dateMonth: `${monthNames[date.getMonth()]} ${yyyy}`,
+  }
+}

@@ -1,16 +1,21 @@
 import React from 'react';
 import ReviewsForm from '../reviews-form/reviews-form';
 import ReviewsItem from './reviews-item';
+import {getReviewsSorted} from '../../utils/utils';
 
 function Reviews(props) {
   const {comments} = props;
   const reviewsCount = comments.length;
 
+  const reviews = getReviewsSorted(comments);
+  console.log(reviews);
+
+
   return (
     <section className="property__reviews reviews">
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviewsCount}</span></h2>
       <ul className="reviews__list">
-        {comments.map((review, i) => <ReviewsItem key={review.id} review={review}/>)}
+        {reviews.map((review, i) => <ReviewsItem key={review.id} review={review}/>)}
         {/*<li className="reviews__item">*/}
         {/*  <div className="reviews__user user">*/}
         {/*    <div className="reviews__avatar-wrapper user__avatar-wrapper">*/}

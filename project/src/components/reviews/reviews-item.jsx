@@ -1,12 +1,14 @@
 import React from 'react';
-import {getStarsWidth} from '../../utils/utils';
-
+import {getDateFormat, getStarsWidth} from '../../utils/utils';
 
 function ReviewsItem(props) {
 
   const {review} = props;
-  const {comment, rating} = review;
+  const {comment, rating, user, date} = review;
+  const {name: username} = user;
   const starsWidth = getStarsWidth(rating);
+
+  const dateFormated = getDateFormat(date);
 
   return (
     <li className="reviews__item">
@@ -14,7 +16,7 @@ function ReviewsItem(props) {
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
           <img className="reviews__avatar user__avatar" src="img/avatar-max.jpg" width="54" height="54" alt="Reviews avatar" />
         </div>
-        <span className="reviews__user-name">Max</span>
+        <span className="reviews__user-name">{username}</span>
       </div>
       <div className="reviews__info">
         <div className="reviews__rating rating">
@@ -24,7 +26,7 @@ function ReviewsItem(props) {
           </div>
         </div>
         <p className="reviews__text">{comment}</p>
-        <time className="reviews__time" dateTime="2019-04-24">April 2019</time>
+        <time className="reviews__time" dateTime={`${dateFormated.dateTime}`}>{dateFormated.dateMonth}</time>
       </div>
     </li>
   );
