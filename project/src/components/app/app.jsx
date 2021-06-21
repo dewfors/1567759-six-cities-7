@@ -8,6 +8,7 @@ import PageOffer from '../page-offer/page-offer';
 import PageLogin from '../page-login/page-login';
 import PropTypes from 'prop-types';
 import placeCardProp from '../place-card/place-card.prop.js';
+import reviewProp from '../reviews/review.prop';
 
 const placesToStay = 515;
 
@@ -46,6 +47,9 @@ App.propTypes = {
     lng: PropTypes.number.isRequired,
     zoom: PropTypes.number.isRequired,
   }).isRequired,
+  comments: PropTypes.arrayOf(
+    PropTypes.oneOfType([reviewProp]).isRequired,
+  ).isRequired,
 };
 
 export default App;

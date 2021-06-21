@@ -7,8 +7,6 @@ import {CITY} from './mocks/city';
 const offers = getAdaptedToClientOffers();
 const comments = getAdaptedToClientComments();
 
-console.log(comments);
-
 ReactDOM.render(
   <React.StrictMode>
     <App offers={offers} comments={comments} city={CITY}/>

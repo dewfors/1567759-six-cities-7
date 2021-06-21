@@ -27,33 +27,32 @@ export const getAdaptedToClientComments = () => {
 };
 
 export const getReviewsSorted = (comments) => {
-  const reviews = comments.map((item) => {
-    return {
-      ...item,
-      date: new Date(item.date),
-    }
-  })
+  const reviews = comments.map((item) => ({...item, date: new Date(item.date)}));
 
-  reviews.sort((obj1, obj2) => obj2.date - obj1.date)
-  reviews.slice(0,10)
+  reviews.sort((obj1, obj2) => obj2.date - obj1.date);
+  reviews.slice(0,10);
 
   return reviews;
-}
+};
 
 export const getDateFormat = (date) => {
 
   let dd = date.getDate();
-  if (dd < 10) dd = '0' + dd;
+  if (dd < 10) {
+    dd = `0${dd}`;
+  }
 
   let mm = date.getMonth()+1;
-  if (mm < 10) mm = '0' + mm;
+  if (mm < 10) {
+    mm = `0${mm}`;
+  }
 
   const yyyy = date.getFullYear();
 
-  const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
   return {
     dateTime: `${yyyy}-${mm}-${dd}`,
     dateMonth: `${monthNames[date.getMonth()]} ${yyyy}`,
-  }
-}
+  };
+};

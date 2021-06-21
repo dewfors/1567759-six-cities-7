@@ -1,5 +1,7 @@
 import React from 'react';
 import {getDateFormat, getStarsWidth} from '../../utils/utils';
+import PropTypes from 'prop-types';
+import reviewProp from './review.prop';
 
 function ReviewsItem(props) {
 
@@ -31,5 +33,10 @@ function ReviewsItem(props) {
     </li>
   );
 }
+
+ReviewsItem.propTypes = {
+  review: PropTypes.oneOfType([reviewProp]).isRequired,
+};
+
 
 export default ReviewsItem;
