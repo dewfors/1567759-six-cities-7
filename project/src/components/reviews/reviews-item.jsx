@@ -1,6 +1,6 @@
 import React from 'react';
-import {getDateFormat, getStarsWidth} from '../../utils/utils';
 import PropTypes from 'prop-types';
+import {getDateFormat, getStarsWidth} from '../../utils/utils';
 import reviewProp from './review.prop';
 
 function ReviewsItem(props) {

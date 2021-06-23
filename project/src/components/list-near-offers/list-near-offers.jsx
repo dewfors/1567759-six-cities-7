@@ -1,6 +1,6 @@
 import React from 'react';
-import PlaceCard from '../place-card/place-card';
 import PropTypes from 'prop-types';
+import PlaceCard from '../place-card/place-card';
 import placeCardProp from '../place-card/place-card.prop';
 
 function ListNearOffers(props) {

@@ -1,8 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Reviews from '../reviews/reviews';
 import Map from '../map/map';
 import ListNearOffers from '../list-near-offers/list-near-offers';
-import PropTypes from 'prop-types';
 import placeCardProp from '../place-card/place-card.prop';
 import reviewProp from '../reviews/review.prop';
 
