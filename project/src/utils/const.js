@@ -12,3 +12,8 @@ export const AppRoute = {
   FAVORITES: '/favorites',
   OFFER: '/offer/:id',
 };
+
+export const Settings = {
+  CITYES: ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'],
+  DEFAULT_CITY: 'Paris',
+};

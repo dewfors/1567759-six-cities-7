@@ -1,7 +1,8 @@
 import {ActionType} from './action';
+import {Settings} from '../utils/const';
 
 const initialState = {
-  city: '',
+  city: Settings.DEFAULT_CITY,
   cityOffers: [],
 }
 
