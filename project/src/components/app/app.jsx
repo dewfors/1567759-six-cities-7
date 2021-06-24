@@ -13,12 +13,12 @@ import reviewProp from '../reviews/review.prop';
 const placesToStay = 515;
 
 function App(props) {
-  const {offers, comments, city} = props;
+  const {offers, comments, city, cityList} = props;
 
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path = {AppRoute.ROOT} render={((routerProps) => <PageHome {...routerProps} placesToStay = {placesToStay} offers={offers} city={city} />)} />
+        <Route exact path = {AppRoute.ROOT} render={((routerProps) => <PageHome {...routerProps} placesToStay = {placesToStay} offers={offers} city={city} cityList={cityList} />)} />
         <Route exact path = {AppRoute.FAVORITES} render={((routerProps) => <PageFavorites {...routerProps} offers={offers} />)} />
         <Route exact path = {AppRoute.LOGIN} component={PageLogin} />
         <Route exact path = {AppRoute.OFFER} render={((routerProps) => <PageOffer {...routerProps} offers={offers} city={city} comments={comments} />)} />

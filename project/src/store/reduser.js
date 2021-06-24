@@ -13,7 +13,11 @@ const reduser = (state = initialState, action) => {
         ...state,
         city: action.payload,
       }
-    case ActionType.FILL_OFFERS_BY_CITY:
+    case ActionType.LOAD_OFFERS_BY_CITY:
+      return {
+        ...state,
+        cityOffers: action.payload,
+      }
     default:
       return state;
   }
