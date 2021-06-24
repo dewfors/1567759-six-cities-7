@@ -18,10 +18,10 @@ function App(props) {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path = {AppRoute.ROOT} render={(() => <PageMain placesToStay = {placesToStay} offers={offers} city={city} />)} />
-        <Route exact path = {AppRoute.FAVORITES} render={(() => <PageFavorites offers={offers} />)} />
+        <Route exact path = {AppRoute.ROOT} render={((routerProps) => <PageMain {...routerProps} placesToStay = {placesToStay} offers={offers} city={city} />)} />
+        <Route exact path = {AppRoute.FAVORITES} render={((routerProps) => <PageFavorites {...routerProps} offers={offers} />)} />
         <Route exact path = {AppRoute.LOGIN} component={PageLogin} />
-        <Route exact path = {AppRoute.OFFER} render={((offerProps) => <PageOffer {...offerProps} offers={offers} city={city} comments={comments} />)} />
+        <Route exact path = {AppRoute.OFFER} render={((routerProps) => <PageOffer {...routerProps} offers={offers} city={city} comments={comments} />)} />
         <Route component={PageNotFound} />
       </Switch>
     </BrowserRouter>
