@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../page-main/header';
+import Header from '../page-home/header';
 // import PropTypes from 'prop-types';
 
 function Page(props) {
