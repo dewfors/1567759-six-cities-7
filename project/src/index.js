@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
+import {composeWithDevTools} from 'redux-devtools-extension';
 import App from './components/app/app';
 import {getAdaptedToClientComments, getAdaptedToClientOffers} from './utils/utils';
 import {CITY} from './mocks/city';
@@ -10,7 +11,10 @@ import {reduser} from './store/reduser';
 const offers = getAdaptedToClientOffers();
 const comments = getAdaptedToClientComments();
 
-const store = createStore(reduser);
+const store = createStore(
+  reduser,
+  composeWithDevTools(),
+);
 
 ReactDOM.render(
   <React.StrictMode>
