@@ -1,10 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function CityList(props) {
 
   const {cityList, currentCity, onChangeCity} = props;
-
-  // console.log(currentCity);
 
   return (
     <div className="tabs">
@@ -28,8 +27,21 @@ function CityList(props) {
         </ul>
       </section>
     </div>
-  )
-
+  );
 }
+
+CityList.propTypes = {
+  cityList: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      coords: PropTypes.arrayOf(
+        PropTypes.number.isRequired,
+      ).isRequired,
+      zoom: PropTypes.number.isRequired,
+    }).isRequired,
+  ).isRequired,
+  currentCity: PropTypes.string.isRequired,
+  onChangeCity: PropTypes.func.isRequired,
+};
 
 export default CityList;

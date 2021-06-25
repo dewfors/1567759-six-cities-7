@@ -10,6 +10,9 @@ import {reduser} from './store/reduser';
 import {Settings} from './utils/const';
 
 const offers = getAdaptedToClientOffers();
+
+// console.log(offers);
+
 const comments = getAdaptedToClientComments();
 
 const store = createStore(
@@ -21,7 +24,6 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <App offers={offers} comments={comments} city={CITY} cityList={Settings.CITYES}/>
-      {/*<App cityList={Settings.CITYES}/>*/}
     </Provider>
   </React.StrictMode>,
   document.getElementById('root'));

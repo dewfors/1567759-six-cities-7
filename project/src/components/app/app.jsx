@@ -10,7 +10,6 @@ import PageLogin from '../page-login/page-login';
 import placeCardProp from '../place-card/place-card.prop.js';
 import reviewProp from '../reviews/review.prop';
 
-const placesToStay = 515;
 
 function App(props) {
   const {offers, comments, city, cityList} = props;
@@ -18,7 +17,7 @@ function App(props) {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path = {AppRoute.ROOT} render={((routerProps) => <PageHome {...routerProps} placesToStay = {placesToStay} offers={offers} city={city} cityList={cityList} />)} />
+        <Route exact path = {AppRoute.ROOT} render={((routerProps) => <PageHome {...routerProps} offers={offers} cityList={cityList} />)} />
         <Route exact path = {AppRoute.FAVORITES} render={((routerProps) => <PageFavorites {...routerProps} offers={offers} />)} />
         <Route exact path = {AppRoute.LOGIN} component={PageLogin} />
         <Route exact path = {AppRoute.OFFER} render={((routerProps) => <PageOffer {...routerProps} offers={offers} city={city} comments={comments} />)} />
@@ -42,6 +41,16 @@ App.propTypes = {
   comments: PropTypes.arrayOf(
     PropTypes.oneOfType([reviewProp]).isRequired,
   ).isRequired,
+  cityList: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      coords: PropTypes.arrayOf(
+        PropTypes.number.isRequired,
+      ).isRequired,
+      zoom: PropTypes.number.isRequired,
+    }).isRequired,
+  ).isRequired,
+
 };
 
 export default App;

@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../page-home/header';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 function Page(props) {
   return (
@@ -11,10 +11,9 @@ function Page(props) {
   );
 }
 
-// Page.propTypes = {
-//   className: PropTypes.string,
-//   isUserLoggedIn: PropTypes.bool,
-//   children: PropTypes.node.isRequired,
-// };
+Page.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired,
+};
 
 export default Page;

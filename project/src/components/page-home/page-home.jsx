@@ -10,30 +10,36 @@ import {ActionCreator} from '../../store/action';
 
 
 function PageHome(props) {
-  const {placesToStay, offers, city, cityList, currentCity, onChangeCity} = props;
+  const {offers, cityList, currentCity, onChangeCity} = props;
+  const offersList = offers.filter((offer) => (offer.city.name === currentCity));
+  const placesToStay = offersList.length;
 
   return (
     <Page className="page--gray page--main" {...props}>
       <Main className="page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <CityList onChangeCity={onChangeCity} cityList={cityList} currentCity={currentCity} />
-        <HomeContent placesToStay={placesToStay} offers={offers} city={city}/>
+        <HomeContent placesToStay={placesToStay} offers={offersList} currentCity={currentCity}/>
       </Main>
     </Page>
   );
 }
 
 PageHome.propTypes = {
-  placesToStay: PropTypes.number.isRequired,
   offers: PropTypes.arrayOf(
     PropTypes.oneOfType([placeCardProp]).isRequired,
   ).isRequired,
-  city: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    lat: PropTypes.number.isRequired,
-    lng: PropTypes.number.isRequired,
-    zoom: PropTypes.number.isRequired,
-  }).isRequired,
+  cityList: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      coords: PropTypes.arrayOf(
+        PropTypes.number.isRequired,
+      ).isRequired,
+      zoom: PropTypes.number.isRequired,
+    }).isRequired,
+  ).isRequired,
+  currentCity: PropTypes.string.isRequired,
+  onChangeCity: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
