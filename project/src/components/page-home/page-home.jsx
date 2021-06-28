@@ -30,13 +30,7 @@ PageHome.propTypes = {
     PropTypes.oneOfType([placeCardProp]).isRequired,
   ).isRequired,
   cityList: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      coords: PropTypes.arrayOf(
-        PropTypes.number.isRequired,
-      ).isRequired,
-      zoom: PropTypes.number.isRequired,
-    }).isRequired,
+    PropTypes.string.isRequired,
   ).isRequired,
   currentCity: PropTypes.string.isRequired,
   onChangeCity: PropTypes.func.isRequired,

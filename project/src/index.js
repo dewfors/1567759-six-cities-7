@@ -11,7 +11,6 @@ import {Settings} from './utils/const';
 
 const offers = getAdaptedToClientOffers();
 
-// console.log(offers);
 
 const comments = getAdaptedToClientComments();
 

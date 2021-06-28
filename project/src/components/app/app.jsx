@@ -42,13 +42,7 @@ App.propTypes = {
     PropTypes.oneOfType([reviewProp]).isRequired,
   ).isRequired,
   cityList: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      coords: PropTypes.arrayOf(
-        PropTypes.number.isRequired,
-      ).isRequired,
-      zoom: PropTypes.number.isRequired,
-    }).isRequired,
+    PropTypes.string.isRequired,
   ).isRequired,
 
 };
