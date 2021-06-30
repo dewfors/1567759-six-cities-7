@@ -16,12 +16,16 @@ function Premium(props) {
 }
 
 function PlaceCard(props) {
-  const {offer} = props;
+  const {offer, handleActiveOfferCard} = props;
   const {price, isPremium, title, type, rating, previewImage} = offer;
   const starsWidth = getStarsWidth(rating);
 
   return (
-    <article className="cities__place-card place-card" >
+    <article
+      className="cities__place-card place-card"
+      onMouseEnter={() => handleActiveOfferCard(offer)}
+      onMouseLeave={() => handleActiveOfferCard({id: 0})}
+    >
       <Premium isPremium={isPremium} />
 
       <div className="cities__image-wrapper place-card__image-wrapper">
@@ -59,6 +63,7 @@ function PlaceCard(props) {
 
 PlaceCard.propTypes = {
   offer: PropTypes.oneOfType([placeCardProp]).isRequired,
+  handleActiveOfferCard: PropTypes.func.isRequired,
 };
 
 Premium.propTypes = {
