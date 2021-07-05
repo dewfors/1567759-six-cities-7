@@ -37,7 +37,7 @@ PageHome.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  currentCity: state.city,
+  currentCity: state.currentCity,
 });
 
 const mapDispatchToProps = (dispatch) => ({

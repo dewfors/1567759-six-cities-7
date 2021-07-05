@@ -56,3 +56,14 @@ export const getDateFormat = (date) => {
     dateMonth: `${monthNames[date.getMonth()]} ${yyyy}`,
   };
 };
+
+export const sortByKey = (arr, key, direction) => {
+  switch (direction) {
+    case 'ask':
+      return arr.sort((a, b) => a[key] - b[key]);
+    case 'desc':
+      return arr.sort((a, b) => b[key] - a[key]);
+    default:
+      return arr;
+  }
+};
