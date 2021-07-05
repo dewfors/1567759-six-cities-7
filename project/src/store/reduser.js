@@ -1,14 +1,16 @@
 import {ActionType} from './action';
-import {Settings, SortFunctions} from '../utils/const';
-import {getAdaptedToClientOffers} from '../utils/utils';
+import {Settings, SortingTypes} from '../utils/const';
+import {getAdaptedToClientOffers, sortByKey} from '../utils/utils';
 
 const offers = getAdaptedToClientOffers();
 
 const SORT_TYPE_DEFAULT = 'Popular';
 
-const getCurrentOffers = (currentOffers, city, sortType) => currentOffers
-  .filter((item) => item.city.name === city)
-  .sort(SortFunctions[sortType]);
+const getCurrentOffers = (currentOffers, city, sortType) => {
+  const offersList = currentOffers.filter((item) => item.city.name === city);
+  const currentSort = Object.values(SortingTypes).find((item) => item.sortType === sortType);
+  return sortByKey(offersList, currentSort.sortKey, currentSort.sortDirection);
+}
 
 const initialState = {
   offers: offers,

@@ -26,9 +26,9 @@ export const Settings = {
   ],
 };
 
-export const SortFunctions = {
-  'Popular': (arr) => arr,
-  'Price: low to high': (a, b) => a.price - b.price,
-  'Price: high to low': (a, b) => b.price - a.price,
-  'Top rated first': (a, b) => b.rating - a.rating,
-};
+export const SortingTypes = {
+  POPULAR: {sortType: 'Popular', sortKey: null, sortDirection: null},
+  PRICE_LOW_TO_HIGH: {sortType: 'Price: low to high', sortKey: 'price', sortDirection: 'ask'},
+  PRICE_HIGH_TO_LOW: {sortType: 'Price: high to low', sortKey: 'price', sortDirection: 'desc'},
+  TOP_RATED_FIRST: {sortType: 'Top rated first', sortKey: 'rating', sortDirection: 'desc'},
+}

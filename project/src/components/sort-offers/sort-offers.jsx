@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../store/action';
-import {SortFunctions} from '../../utils/const';
+import {SortingTypes} from '../../utils/const';
 
 function SortOffers(props) {
 
@@ -11,7 +11,7 @@ function SortOffers(props) {
   const [isVisibleSortMenu, setVisibleSortMenu] = useState(false);
 
   const sortMenuClass = `places__options places__options--custom ${isVisibleSortMenu ? 'places__options--opened' : ''}`;
-  const sortTypes = Object.keys(SortFunctions);
+  const sortTypes = Object.keys(SortingTypes).map((item) => SortingTypes[item].sortType);
 
   const handleOnClickVisibleSortMenu = () => {
     setVisibleSortMenu((state) => !state);
@@ -47,6 +47,7 @@ function SortOffers(props) {
             {item}
           </li>
         ))}
+
       </ul>
     </form>
   );
