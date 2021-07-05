@@ -31,4 +31,4 @@ export const SortingTypes = {
   PRICE_LOW_TO_HIGH: {sortType: 'Price: low to high', sortKey: 'price', sortDirection: 'ask'},
   PRICE_HIGH_TO_LOW: {sortType: 'Price: high to low', sortKey: 'price', sortDirection: 'desc'},
   TOP_RATED_FIRST: {sortType: 'Top rated first', sortKey: 'rating', sortDirection: 'desc'},
-}
+};

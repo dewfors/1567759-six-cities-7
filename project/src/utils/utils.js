@@ -66,4 +66,4 @@ export const sortByKey = (arr, key, direction) => {
     default:
       return arr;
   }
-}
+};
