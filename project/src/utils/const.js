@@ -13,6 +13,12 @@ export const AppRoute = {
   OFFER: '/offer/:id',
 };
 
+export const AuthorizationStatus = {
+  AUTH: 'AUTH',
+  NO_AUTH: 'NO_AUTH',
+  UNKNOWN: 'UNKNOWN',
+};
+
 export const Settings = {
   CITYES: ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'],
   DEFAULT_CITY: 'Paris',

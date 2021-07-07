@@ -1,5 +1,5 @@
 import {ActionType} from './action';
-import {Settings} from '../utils/const';
+import {AuthorizationStatus, Settings} from '../utils/const';
 import {getAdaptedToClientOffers} from '../utils/utils';
 
 const offers = getAdaptedToClientOffers();
@@ -10,6 +10,7 @@ const initialState = {
   offers: offers,
   currentCity: Settings.DEFAULT_CITY,
   currentSortType: SORT_TYPE_DEFAULT,
+  AuthorizationStatus: AuthorizationStatus.UNKNOWN,
 };
 
 const reduser = (state = initialState, action) => {
@@ -29,6 +30,16 @@ const reduser = (state = initialState, action) => {
       return {
         ...state,
         currentSortType: action.payload,
+      };
+    case ActionType.REQUIRED_AUTHORIZATION:
+      return {
+        ...state,
+        AuthorizationStatus: action.payload,
+      };
+    case ActionType.LOGOUT:
+      return {
+        ...state,
+        AuthorizationStatus: AuthorizationStatus.NO_AUTH,
       };
     default:
       return state;
