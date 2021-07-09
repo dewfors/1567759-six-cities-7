@@ -22,6 +22,9 @@ export const ActionCreator = {
     type: ActionType.LOAD_OFFERS_SUCCESS,
     payload: offers,
   }),
+  loadOffersError: () => ({
+    type: ActionType.LOAD_OFFERS_ERROR,
+  }),
   changeSortType: (sortType) => ({
     type: ActionType.SET_SORT_TYPE,
     payload: sortType,

@@ -13,5 +13,5 @@ export const fetchHotels = () => (dispatch, store, api) => {
       // console.log(offers);
       dispatch(ActionCreator.loadOffersSuccess(offers));
     })
-    // .catch(() => { dispatch(ActionCreator.fetchOffersError()); });
+    .catch(() => { dispatch(ActionCreator.loadOffersError()); });
 };

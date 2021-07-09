@@ -37,6 +37,11 @@ const reduser = (state = initialState, action) => {
         offers: action.payload,
         loadOffersStatus: { ...state.loadOffersStatus, isLoading: false, isLoadSuccess: true },
       };
+    case ActionType.LOAD_OFFERS_ERROR:
+      return {
+        ...state,
+        loadOffersStatus: { ...state.loadOffersStatus, isLoading: false, isLoadSuccess: false },
+      };
     case ActionType.SET_SORT_TYPE:
       return {
         ...state,
