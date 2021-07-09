@@ -1,7 +1,10 @@
 export const ActionType = {
   SET_CITY: 'main/changeCity',
-  SET_OFFERS: 'main/loadOffersByCity',
   SET_SORT_TYPE: 'main/changeSortType',
+
+  LOAD_OFFERS_REQUEST: 'offers/loadRequest',
+  LOAD_OFFERS_SUCCESS: 'offers/loadSuccess',
+  LOAD_OFFERS_ERROR: 'offers/loadError',
 
   REQUIRED_AUTHORIZATION: 'requiredAuthorization',
   LOGOUT: 'logout',
@@ -12,15 +15,18 @@ export const ActionCreator = {
     type: ActionType.SET_CITY,
     payload: city,
   }),
-  loadOffers: (offers) => ({
-    type: ActionType.LOAD_OFFERS,
+  loadOffersRequest: () => ({
+    type: ActionType.LOAD_OFFERS_REQUEST,
+  }),
+  loadOffersSuccess: (offers) => ({
+    type: ActionType.LOAD_OFFERS_SUCCESS,
     payload: offers,
   }),
   changeSortType: (sortType) => ({
     type: ActionType.SET_SORT_TYPE,
     payload: sortType,
   }),
-  requiredAuthorization: (status) => ({
+  requireAuthorization: (status) => ({
     type: ActionType.REQUIRED_AUTHORIZATION,
     payload: status,
   }),

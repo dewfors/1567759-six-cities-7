@@ -7,9 +7,14 @@ const offers = getAdaptedToClientOffers();
 const SORT_TYPE_DEFAULT = 'Popular';
 
 const initialState = {
-  offers: offers,
+  offers: [],
   currentCity: Settings.DEFAULT_CITY,
   currentSortType: SORT_TYPE_DEFAULT,
+  loadOffersStatus: {
+    isLoadError: false,
+    isLoading: false,
+    isLoadSuccess: false,
+  },
   AuthorizationStatus: AuthorizationStatus.UNKNOWN,
 };
 
@@ -21,10 +26,16 @@ const reduser = (state = initialState, action) => {
         ...state,
         currentCity: action.payload,
       };
-    case ActionType.SET_OFFERS:
+    case ActionType.LOAD_OFFERS_REQUEST:
+      return {
+        ...state,
+        loadOffersStatus: { ...state.loadOffersStatus, isLoading: true },
+      };
+    case ActionType.LOAD_OFFERS_SUCCESS:
       return {
         ...state,
         offers: action.payload,
+        loadOffersStatus: { ...state.loadOffersStatus, isLoading: false, isLoadSuccess: true },
       };
     case ActionType.SET_SORT_TYPE:
       return {

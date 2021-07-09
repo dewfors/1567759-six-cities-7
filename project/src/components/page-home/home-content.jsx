@@ -1,18 +1,32 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import ListOffers from '../list-offers/list-offers';
 import Map from '../map/map';
 import placeCardProp from '../place-card/place-card.prop';
 import SortOffers from '../sort-offers/sort-offers';
+import LoadingScreen from '../loading-screen/loading-screen';
+import ListOffersEmpty from '../list-offers/list-offers-empty';
+
 
 function HomeContent(props) {
-  const {placesToStay, offers, currentCity} = props;
+  const {placesToStay, offers, currentCity, isLoading, isError} = props;
 
   const [activeOfferCardId, setActiveOfferCardId] = useState(0);
 
   const handleActiveOfferCard = (offerCard) => {
     setActiveOfferCardId(offerCard.id);
   };
+
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
+
+  // const isError = true;
+  if (isError) {
+    return <ListOffersEmpty currentCity={currentCity} isError={isError}/>;
+  }
+
 
   return (
     <div className="cities">
@@ -44,4 +58,14 @@ HomeContent.propTypes = {
   currentCity: PropTypes.string.isRequired,
 };
 
-export default HomeContent;
+const mapStateToProps = (state) => {
+  const isLoading = state.loadOffersStatus.isLoading;
+  const isError = state.loadOffersStatus.isLoadError;
+  return {isLoading}
+};
+
+
+
+export {HomeContent};
+
+export default connect(mapStateToProps)(HomeContent);

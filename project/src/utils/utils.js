@@ -6,7 +6,7 @@ export const getStarsWidth = (rating) => rating * MAX_PERSENT / MAX_STARS;
 
 export const getStarsList = () => new Array(MAX_STARS).fill('').map((item, i) => ({id: i + 1})).reverse();
 
-const getAdaptedToClientObject = (offer) => Object
+export const getAdaptedToClientObject = (offer) => Object
   .entries(offer)
   .reduce((acc, [key, val]) => {
     const modifiedKey = key.replace(/_([a-z])/g, (g) => g[1].toUpperCase());
