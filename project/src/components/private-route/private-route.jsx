@@ -22,7 +22,6 @@ function PrivateRoute({exact, path, render, authorizationStatus}) {
 PrivateRoute.propTypes = {
   path: PropTypes.string.isRequired,
   exact: PropTypes.bool.isRequired,
-  // eslint-disable-next-line react/require-default-props
   authorizationStatus: PropTypes.string.isRequired,
   render: PropTypes.func.isRequired,
 };
