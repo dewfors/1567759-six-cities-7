@@ -16,6 +16,7 @@ const initialState = {
     isLoadSuccess: false,
   },
   AuthorizationStatus: AuthorizationStatus.UNKNOWN,
+  userInfo: {},
 };
 
 const reduser = (state = initialState, action) => {
@@ -26,6 +27,15 @@ const reduser = (state = initialState, action) => {
         ...state,
         currentCity: action.payload,
       };
+
+
+    case ActionType.SET_SORT_TYPE:
+      return {
+        ...state,
+        currentSortType: action.payload,
+      };
+
+
     case ActionType.LOAD_OFFERS_REQUEST:
       return {
         ...state,
@@ -42,16 +52,15 @@ const reduser = (state = initialState, action) => {
         ...state,
         loadOffersStatus: { ...state.loadOffersStatus, isLoading: false, isLoadSuccess: false },
       };
-    case ActionType.SET_SORT_TYPE:
-      return {
-        ...state,
-        currentSortType: action.payload,
-      };
+
+
     case ActionType.REQUIRED_AUTHORIZATION:
       return {
         ...state,
         AuthorizationStatus: action.payload,
       };
+
+
     case ActionType.LOGOUT:
       return {
         ...state,

@@ -35,8 +35,8 @@ const mapStateToProps = (state) => {
 
   const filterdOffers = allOffers.filter((item) => item.city.name === currentCity);
 
-  console.log(currentCity);
-  console.log(filterdOffers);
+  // console.log(currentCity);
+  // console.log(filterdOffers);
 
   const currentSort = Object.values(SortingTypes).find((item) => item.sortType === currentSortType);
   const offers = sortByKey(filterdOffers, currentSort.sortKey, currentSort.sortDirection);

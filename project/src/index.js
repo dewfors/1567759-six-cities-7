@@ -11,15 +11,11 @@ import {CITY} from './mocks/city';
 import {reduser} from './store/reduser';
 import {AuthorizationStatus, Settings} from './utils/const';
 import {ActionCreator} from './store/action';
-import {fetchHotels} from './store/api-actions';
+import {checkAuth, fetchHotels} from './store/api-actions';
 
 const api = createAPI(
   () => {store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH))}
 );
-
-
-// const offers = getAdaptedToClientOffers();
-
 
 const comments = getAdaptedToClientComments();
 
@@ -30,7 +26,7 @@ const store = createStore(
   ),
 );
 
-// store.dispatch(checkAuth());
+store.dispatch(checkAuth());
 store.dispatch(fetchHotels());
 
 ReactDOM.render(
