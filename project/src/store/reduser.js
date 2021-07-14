@@ -15,8 +15,20 @@ const initialState = {
     isLoading: false,
     isLoadSuccess: false,
   },
-  AuthorizationStatus: AuthorizationStatus.UNKNOWN,
+  authorizationStatus: AuthorizationStatus.UNKNOWN,
   userInfo: {},
+  loginStatus: {
+    isError: false,
+    isLoading: false,
+    isSuccess: false,
+  },
+
+  logoutStatus: {
+    isError: false,
+    isLoading: false,
+    isSuccess: false,
+  },
+
 };
 
 const reduser = (state = initialState, action) => {
@@ -57,14 +69,52 @@ const reduser = (state = initialState, action) => {
     case ActionType.REQUIRED_AUTHORIZATION:
       return {
         ...state,
-        AuthorizationStatus: action.payload,
+        authorizationStatus: action.payload,
+      };
+
+
+    case ActionType.SET_USER_INFO:
+      return {
+        ...state,
+        userInfo: action.payload,
+      };
+    case ActionType.LOGIN_REQUEST:
+      return {
+        ...state,
+        loginStatus: { ...state.loginStatus, isLoading: true },
+      };
+    case ActionType.LOGIN_SUCCESS:
+      return {
+        ...state,
+        loginStatus: { ...state.loginStatus, isLoading: false, isSuccess: true },
+      };
+    case ActionType.LOGIN_ERROR:
+      return {
+        ...state,
+        loginStatus: { ...state.loginStatus, isLoading: false, isError: true },
+      };
+
+    case ActionType.LOGOUT_REQUEST:
+      return {
+        ...state,
+        logoutStatus: { ...state.loginStatus, isLoading: true },
+      };
+    case ActionType.LOGOUT_SUCCESS:
+      return {
+        ...state,
+        logoutStatus: { ...state.loginStatus, isLoading: false, isSuccess: true },
+      };
+    case ActionType.LOGOUT_ERROR:
+      return {
+        ...state,
+        logoutStatus: { ...state.loginStatus, isLoading: false, isError: true },
       };
 
 
     case ActionType.LOGOUT:
       return {
         ...state,
-        AuthorizationStatus: AuthorizationStatus.NO_AUTH,
+        authorizationStatus: AuthorizationStatus.NO_AUTH,
       };
     default:
       return state;

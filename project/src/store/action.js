@@ -17,6 +17,10 @@ export const ActionType = {
 
   REQUIRED_AUTHORIZATION: 'requiredAuthorization',
   LOGOUT: 'logout',
+
+  REDIRECT_TO_BACK: 'route/redirectBack',
+  REDIRECT_TO_URL: 'route/redirectUrl',
+
 };
 
 export const ActionCreator = {
@@ -42,6 +46,33 @@ export const ActionCreator = {
     type: ActionType.LOAD_OFFERS_ERROR,
   }),
 
+
+
+  loginRequest: () => ({
+    type: ActionType.LOGIN_REQUEST,
+  }),
+  loginSuccess: () => ({
+    type: ActionType.LOGIN_SUCCESS,
+  }),
+  loginError: () => ({
+    type: ActionType.LOGIN_ERROR,
+  }),
+
+
+  logoutRequest: () => ({
+    type: ActionType.LOGOUT_REQUEST,
+  }),
+
+  logoutSuccess: () => ({
+    type: ActionType.LOGOUT_SUCCESS,
+  }),
+
+  logoutError: () => ({
+    type: ActionType.LOGOUT_ERROR,
+  }),
+
+
+
   setAuthUserData: (userInfo) => ({
     type: ActionType.SET_USER_INFO,
     payload: userInfo,
@@ -56,4 +87,13 @@ export const ActionCreator = {
   logout: () => ({
     type: ActionType.LOGOUT,
   }),
+
+  redirectToBack: () => ({
+    type: ActionType.REDIRECT_TO_BACK,
+  }),
+  redirectToUrl: (url) => ({
+    type: ActionType.REDIRECT_TO_URL,
+    payload: url,
+  }),
+
 };

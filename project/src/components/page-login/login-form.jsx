@@ -1,15 +1,18 @@
 import React, {useRef} from 'react';
+import {connect} from 'react-redux';
+import {fetchLogin} from "../../store/api-actions";
 
-export function LoginForm({onFormSubmit}) {
+function LoginForm(props) {
+
+  const {loginStatus, sendLoginData} = props;
 
   const loginRef = useRef();
   const passwordRef = useRef();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-
-    onFormSubmit({
-      login: loginRef.current.value,
+    sendLoginData({
+      email: loginRef.current.value,
       password: passwordRef.current.value,
     });
   };
@@ -53,4 +56,16 @@ export function LoginForm({onFormSubmit}) {
 
 }
 
-export default LoginForm;
+const mapStateToProps = (state) => ({
+  loginStatus: state.loginStatus,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  sendLoginData(value) {
+    dispatch(fetchLogin(value));
+  },
+});
+
+export {LoginForm};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

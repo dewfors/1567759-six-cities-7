@@ -9,7 +9,7 @@ import PageOffer from '../page-offer/page-offer';
 import PageLogin from '../page-login/page-login';
 import placeCardProp from '../place-card/place-card.prop.js';
 import reviewProp from '../reviews/review.prop';
-import {PrivateRoute} from "../private-route/private-route";
+import PrivateRoute from "../private-route/private-route";
 
 
 function App(props) {

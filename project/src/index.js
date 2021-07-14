@@ -12,6 +12,7 @@ import {reduser} from './store/reduser';
 import {AuthorizationStatus, Settings} from './utils/const';
 import {ActionCreator} from './store/action';
 import {checkAuth, fetchHotels} from './store/api-actions';
+import Redirect from './store/redirect';
 
 const api = createAPI(
   () => {store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH))}
@@ -23,6 +24,7 @@ const store = createStore(
   reduser,
   composeWithDevTools(
     applyMiddleware(thunk.withExtraArgument(api)),
+    applyMiddleware(Redirect),
   ),
 );
 

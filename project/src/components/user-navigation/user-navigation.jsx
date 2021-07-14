@@ -14,7 +14,7 @@ function UserNavigation(props) {
 
   const handleLogoutClick = (evt) => {
     evt.preventDefault();
-    
+
   };
 
   return (

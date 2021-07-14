@@ -16,13 +16,26 @@ export const fetchHotels = () => (dispatch, store, api) => {
 export const checkAuth = () => (dispatch, store, api) => {
   api.get(AppRoute.LOGIN)
     .then(({ data }) => {
-      console.log(data);
       dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
       dispatch(ActionCreator.setAuthUserData(data));
     })
     .catch(() => {
-      console.log();
       dispatch(ActionCreator.setAuthUserData({}));
+    });
+};
+
+export const fetchLogin = (fetchLoginData) => (dispatch, store, api) => {
+  dispatch(ActionCreator.loginRequest());
+  api.post(AppRoute.LOGIN, fetchLoginData)
+    .then(({data}) => {
+      localStorage.setItem('token', data.token);
+      dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+      dispatch(ActionCreator.setAuthUserData(data));
+      dispatch(ActionCreator.loginSuccess());
+      dispatch(ActionCreator.redirectToBack());
+    })
+    .catch((e) => {
+      console.log(e);
     });
 };
 
