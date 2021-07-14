@@ -22,7 +22,6 @@ function HomeContent(props) {
     return <LoadingScreen />;
   }
 
-  // const isError = true;
   if (isError) {
     return <ListOffersEmpty currentCity={currentCity} isError={isError}/>;
   }
@@ -42,7 +41,6 @@ function HomeContent(props) {
         <div className="cities__right-section">
           <section className="cities__map map">
             <Map city={currentCity} offers={offers} activeOfferCardId={activeOfferCardId}/>
-            {/*<Map city={currentCity} offers={offers}/>*/}
           </section>
         </div>
       </div>
@@ -56,14 +54,15 @@ HomeContent.propTypes = {
     PropTypes.oneOfType([placeCardProp]).isRequired,
   ).isRequired,
   currentCity: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  isError: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => {
   const isLoading = state.loadOffersStatus.isLoading;
   const isError = state.loadOffersStatus.isLoadError;
-  return {isLoading}
+  return {isLoading, isError};
 };
-
 
 
 export {HomeContent};

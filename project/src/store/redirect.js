@@ -1,9 +1,9 @@
-import {createBrowserHistory} from "history";
+import {createBrowserHistory} from 'history';
 import {ActionType} from './action';
 
 const browserHistory = createBrowserHistory();
 
-export default () => (next) => (action) => {
+const Redirect = () => (next) => (action) => {
   // console.log(action);
   if (action.type === ActionType.REDIRECT_TO_ROUTE) {
     browserHistory.push(action.payload);
@@ -14,3 +14,5 @@ export default () => (next) => (action) => {
   }
   return next(action);
 };
+
+export default Redirect;

@@ -1,8 +1,5 @@
 import {ActionType} from './action';
 import {AuthorizationStatus, Settings} from '../utils/const';
-import {getAdaptedToClientOffers} from '../utils/utils';
-
-const offers = getAdaptedToClientOffers();
 
 const SORT_TYPE_DEFAULT = 'Popular';
 

@@ -4,12 +4,9 @@ import {Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router';
 import {AppRoute, AuthorizationStatus} from '../../utils/const';
-import {fetchLogin} from "../../store/api-actions";
 
 function PrivateRoute({exact, path, render, authorizationStatus}) {
-// function PrivateRoute({exact, path, render, authorizationSt}) {
 
-  console.log(authorizationStatus);
   // const authorizationStatus = AuthorizationStatus.AUTH;
 
   return (
@@ -28,7 +25,7 @@ function PrivateRoute({exact, path, render, authorizationStatus}) {
 PrivateRoute.propTypes = {
   path: PropTypes.string.isRequired,
   exact: PropTypes.bool.isRequired,
-  // authorizationStatus: PropTypes.string,
+  authorizationStatus: PropTypes.string,
   render: PropTypes.func.isRequired,
 };
 

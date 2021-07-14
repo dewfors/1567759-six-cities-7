@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {AppRoute} from '../../utils/const';
@@ -7,19 +8,17 @@ import PageFavorites from '../page-favorites/page-favorites';
 import PageNotFound from '../page-not-found/page-not-found';
 import PageOffer from '../page-offer/page-offer';
 import PageLogin from '../page-login/page-login';
-import placeCardProp from '../place-card/place-card.prop.js';
+import PrivateRoute from '../private-route/private-route';
+import placeCardProp from '../place-card/place-card.prop';
 import reviewProp from '../reviews/review.prop';
-import PrivateRoute from "../private-route/private-route";
 
 
 function App(props) {
-  // const {offers, comments, city, cityList} = props;
-  const {comments, city, cityList} = props;
+  const {comments, city, cityList, offers} = props;
 
   return (
     <BrowserRouter>
       <Switch>
-        {/*<Route exact path = {AppRoute.ROOT} render={((routerProps) => <PageHome {...routerProps} offers={offers} cityList={cityList} />)} />*/}
         <Route exact path = {AppRoute.ROOT} render={((routerProps) => <PageHome {...routerProps} cityList={cityList} />)} />
         <PrivateRoute exact path = {AppRoute.FAVORITES} render={((routerProps) => <PageFavorites {...routerProps} offers={offers} />)} />
         <Route exact path = {AppRoute.LOGIN} component={PageLogin} />
@@ -32,9 +31,9 @@ function App(props) {
 }
 
 App.propTypes = {
-  // offers: PropTypes.arrayOf(
-  //   PropTypes.oneOfType([placeCardProp]).isRequired,
-  // ).isRequired,
+  offers: PropTypes.arrayOf(
+    PropTypes.oneOfType([placeCardProp]).isRequired,
+  ).isRequired,
   city: PropTypes.shape({
     title: PropTypes.string.isRequired,
     lat: PropTypes.number.isRequired,
@@ -50,4 +49,9 @@ App.propTypes = {
 
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  offers: state.offers,
+});
+
+export {App};
+export default connect(mapStateToProps)(App);

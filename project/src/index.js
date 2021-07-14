@@ -6,7 +6,7 @@ import {createAPI} from './services/api';
 import {Provider} from 'react-redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import App from './components/app/app';
-import {getAdaptedToClientComments, getAdaptedToClientOffers} from './utils/utils';
+import {getAdaptedToClientComments} from './utils/utils';
 import {CITY} from './mocks/city';
 import {reduser} from './store/reduser';
 import {AuthorizationStatus, Settings} from './utils/const';
@@ -14,9 +14,9 @@ import {ActionCreator} from './store/action';
 import {checkAuth, fetchHotels} from './store/api-actions';
 import Redirect from './store/redirect';
 
-const api = createAPI(
-  () => {store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH))}
-);
+const api = createAPI(() => {
+  store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
+});
 
 const comments = getAdaptedToClientComments();
 

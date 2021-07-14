@@ -1,10 +1,11 @@
 import React, {useRef} from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {fetchLogin} from "../../store/api-actions";
+import {fetchLogin} from '../../store/api-actions';
 
 function LoginForm(props) {
 
-  const {loginStatus, sendLoginData} = props;
+  const {sendLoginData} = props;
 
   const loginRef = useRef();
   const passwordRef = useRef();
@@ -52,9 +53,12 @@ function LoginForm(props) {
         <button className="login__submit form__submit button" type="submit">Sign in</button>
       </form>
     </section>
-  )
-
+  );
 }
+
+LoginForm.propTypes = {
+  sendLoginData: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   loginStatus: state.loginStatus,

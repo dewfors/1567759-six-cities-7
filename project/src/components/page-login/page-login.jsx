@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from "../page-home/header";
-import LoginForm from "./login-form";
+import Header from '../page-home/header';
+import LoginForm from './login-form';
 
 function PageLogin() {
   return (

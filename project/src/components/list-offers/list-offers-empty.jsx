@@ -1,5 +1,5 @@
-import React from "react";
-
+import React from 'react';
+import PropTypes from 'prop-types';
 
 function ListOffersEmpty(props) {
   const {isError, currentCity} = props;
@@ -28,5 +28,10 @@ function ListOffersEmpty(props) {
     </div>
   );
 }
+
+ListOffersEmpty.propTypes = {
+  currentCity: PropTypes.string.isRequired,
+  isError: PropTypes.bool.isRequired,
+};
 
 export default ListOffersEmpty;

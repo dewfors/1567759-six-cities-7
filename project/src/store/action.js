@@ -47,7 +47,6 @@ export const ActionCreator = {
   }),
 
 
-
   loginRequest: () => ({
     type: ActionType.LOGIN_REQUEST,
   }),
@@ -70,7 +69,6 @@ export const ActionCreator = {
   logoutError: () => ({
     type: ActionType.LOGOUT_ERROR,
   }),
-
 
 
   setAuthUserData: (userInfo) => ({

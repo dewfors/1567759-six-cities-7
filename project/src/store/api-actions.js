@@ -1,6 +1,6 @@
-import {ActionCreator} from "./action";
-import {AppRoute, AuthorizationStatus} from "../utils/const";
-import {getAdaptedToClientObject} from "../utils/utils";
+import {ActionCreator} from './action';
+import {AppRoute, AuthorizationStatus} from '../utils/const';
+import {getAdaptedToClientObject} from '../utils/utils';
 
 
 export const fetchHotels = () => (dispatch, store, api) => {
@@ -35,7 +35,6 @@ export const fetchLogin = (fetchLoginData) => (dispatch, store, api) => {
       dispatch(ActionCreator.redirectToBack());
     })
     .catch((e) => {
-      console.log(e);
+      dispatch(ActionCreator.loginError());
     });
 };
-

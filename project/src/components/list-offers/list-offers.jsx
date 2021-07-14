@@ -10,6 +10,11 @@ import LoadingScreen from '../loading-screen/loading-screen';
 function ListOffers(props) {
   const {offers, isLoading, handleActiveOfferCard} = props;
 
+  if (isLoading) {
+    return (
+      <LoadingScreen />
+    );
+  }
 
   return (
     <div className="cities__places-list places__list tabs__content">
@@ -23,9 +28,9 @@ ListOffers.propTypes = {
     PropTypes.oneOfType([placeCardProp]).isRequired,
   ).isRequired,
   handleActiveOfferCard: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
-// const mapStateToProps = ({offers: allOffers, currentCity, currentSortType}) => {
 const mapStateToProps = (state) => {
 
   const allOffers = state.offers;
@@ -34,9 +39,6 @@ const mapStateToProps = (state) => {
   const isLoading = state.loadOffersStatus.isLoading;
 
   const filterdOffers = allOffers.filter((item) => item.city.name === currentCity);
-
-  // console.log(currentCity);
-  // console.log(filterdOffers);
 
   const currentSort = Object.values(SortingTypes).find((item) => item.sortType === currentSortType);
   const offers = sortByKey(filterdOffers, currentSort.sortKey, currentSort.sortDirection);
