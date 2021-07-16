@@ -7,8 +7,6 @@ import {AppRoute, AuthorizationStatus} from '../../utils/const';
 
 function PrivateRoute({exact, path, render, authorizationStatus}) {
 
-  // const authorizationStatus = AuthorizationStatus.AUTH;
-
   return (
     <Route
       exact={exact}

@@ -3,19 +3,23 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {AppRoute, AuthorizationStatus} from '../../utils/const';
 import {Link} from 'react-router-dom';
+import {fetchLogout} from '../../store/api-actions';
 
 function UserNavigation(props) {
 
-  const {authorizationStatus, userInfo} = props;
+  const {authorizationStatus, logout, userInfo} = props;
 
   const isAuth = authorizationStatus === AuthorizationStatus.AUTH;
-  // const userNameClass = isAuth
-  //   ? 'header__user-name user__name'
-  //   : 'header__login';
+  const userNameClass = isAuth
+    ? 'header__user-name user__name'
+    : 'header__login';
+  const avatarStyle = isAuth ? {
+    backgroundImage: `url(${userInfo?.avatar_url})`,
+  } : {};
 
   const handleLogoutClick = (evt) => {
     evt.preventDefault();
-
+    logout();
   };
 
   return (
@@ -27,10 +31,10 @@ function UserNavigation(props) {
             className="header__nav-link header__nav-link--profile"
             href="/#"
           >
-            <div className="header__avatar-wrapper user__avatar-wrapper">
+            <div className="header__avatar-wrapper user__avatar-wrapper" style={avatarStyle}>
             </div>
             <span
-              className="header__user-name user__name"
+              className={userNameClass}
             >
               {`${isAuth ? `${userInfo.email}` : 'Sign in'}`}
             </span>
@@ -39,9 +43,14 @@ function UserNavigation(props) {
 
         {isAuth && (
           <li className="header__nav-item">
-            <a className="header__nav-link" href="/#" onClick={handleLogoutClick}>
+            <Link
+              to={isAuth ? AppRoute.FAVORITES : AppRoute.LOGIN}
+              className="header__nav-link"
+              href="/#"
+              onClick={handleLogoutClick}
+            >
               <span className="header__signout">Sign out</span>
-            </a>
+            </Link>
           </li>
         )}
       </ul>
@@ -67,8 +76,15 @@ const mapStateToProps = (state) => ({
   userInfo: state.userInfo,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  logout() {
+    dispatch(fetchLogout());
+  },
+});
+
+
 
 export {UserNavigation};
 
-export default connect(mapStateToProps)(UserNavigation);
+export default connect(mapStateToProps, mapDispatchToProps)(UserNavigation);
 

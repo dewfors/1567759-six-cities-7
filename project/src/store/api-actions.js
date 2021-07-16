@@ -38,3 +38,14 @@ export const fetchLogin = (fetchLoginData) => (dispatch, store, api) => {
       dispatch(ActionCreator.loginError());
     });
 };
+
+export const fetchLogout = () => (dispatch, _store, api) => {
+  dispatch(ActionCreator.logoutRequest());
+  api.delete(AppRoute.LOGOUT)
+    .then(() => {
+      dispatch(ActionCreator.logoutSuccess());
+      dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
+    })
+    .then(() => { dispatch(ActionCreator.redirectToUrl(AppRoute.ROOT)); })
+    .catch(() => dispatch(ActionCreator.logoutError()));
+};
