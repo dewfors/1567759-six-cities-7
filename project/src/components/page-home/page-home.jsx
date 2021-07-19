@@ -14,9 +14,12 @@ function PageHome(props) {
   const offersList = offers.filter((offer) => (offer.city.name === currentCity));
   const placesToStay = offersList.length;
 
+  const isOffersEmpty = offersList.length === 0;
+  const pageMainIndexEmptyClassName = isOffersEmpty ? 'page__main--index-empty' : '';
+
   return (
     <Page className="page--gray page--main" {...props}>
-      <Main className="page__main--index">
+      <Main className={`page__main--index ${pageMainIndexEmptyClassName}`}>
         <h1 className="visually-hidden">Cities</h1>
         <CityList onChangeCity={onChangeCity} cityList={cityList} currentCity={currentCity} />
         <HomeContent placesToStay={placesToStay} offers={offersList} currentCity={currentCity}/>
@@ -38,6 +41,7 @@ PageHome.propTypes = {
 
 const mapStateToProps = (state) => ({
   currentCity: state.currentCity,
+  offers: state.offers,
 });
 
 const mapDispatchToProps = (dispatch) => ({

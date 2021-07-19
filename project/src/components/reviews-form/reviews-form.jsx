@@ -1,7 +1,12 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import {getStarsList} from '../../utils/utils';
-import {formReviewKeyType} from '../../utils/const';
+import {AuthorizationStatus, formReviewKeyType} from '../../utils/const';
+import {sendNewReview} from '../../store/api-actions';
+
+
+const MIN_LENGTH_COMMENT = 50;
 
 function Stars(props) {
   const {starsList, onChangeData} = props;
@@ -23,22 +28,29 @@ function Stars(props) {
 }
 
 function ReviewsForm(props) {
-  const {onReview} = props;
+  const {id, authorizationStatus, sendReview} = props;
   const starsList = getStarsList();
-  const [userData, setUserData] = useState({ review: '', stars: 0 });
+  const [userData, setUserData] = useState({ comment: '', rating: 0 });
+  const isValid = userData.rating && userData.comment.length > MIN_LENGTH_COMMENT;
+
+
+  if (authorizationStatus !== AuthorizationStatus.AUTH) {
+    return null;
+  }
 
   const onFormSubmit = (evt) => {
     evt.preventDefault();
-    onReview(userData);
+    sendReview(id, userData);
+    setUserData({ comment: '', rating: 0 });
   };
 
   const onChangeData = (key, value) => {
     switch (key) {
       case formReviewKeyType.REVIEW:
-        setUserData({...userData, review: value});
+        setUserData({...userData, comment: value});
         break;
       case formReviewKeyType.STARS:
-        setUserData({...userData, stars: value});
+        setUserData({...userData, rating: value});
         break;
       default:
         return null;
@@ -48,19 +60,21 @@ function ReviewsForm(props) {
   return (
     <form
       className="reviews__form form"
-      action="#"
+      action="/#"
       method="post"
       onSubmit={(evt) => onFormSubmit(evt)}
     >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
-        <Stars starsList={starsList} onChangeData={onChangeData} />
+        <Stars starsList={starsList} onChangeData={onChangeData} currentValue={userData.rating} />
       </div>
-      <textarea className="reviews__textarea form__textarea"
+      <textarea
+        onChange={({target}) => onChangeData(formReviewKeyType.REVIEW, target.value)}
+        className="reviews__textarea form__textarea"
         id="review"
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
-        onChange={({target}) => onChangeData(formReviewKeyType.REVIEW, target.value)}
+        value={userData.comment}
       >
       </textarea>
       <div className="reviews__button-wrapper">
@@ -68,14 +82,29 @@ function ReviewsForm(props) {
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay
           with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled="">Submit</button>
+        <button className="reviews__submit form__submit button" type="submit" disabled={!isValid}>Submit</button>
       </div>
     </form>
   );
 }
 
 ReviewsForm.propTypes = {
-  onReview: PropTypes.func.isRequired,
+  sendReview: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
 };
 
-export default ReviewsForm;
+
+const mapStateToProps = (state) => ({
+  authorizationStatus: state.authorizationStatus,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  sendReview(id, review) {
+    dispatch(sendNewReview(id, review));
+  },
+});
+
+
+export {ReviewsForm};
+export default connect(mapStateToProps, mapDispatchToProps)(ReviewsForm);

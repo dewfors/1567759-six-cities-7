@@ -7,10 +7,21 @@ export const formReviewKeyType = {
 };
 
 export const AppRoute = {
-  LOGIN: '/login',
   ROOT: '/',
   FAVORITES: '/favorites',
   OFFER: '/offer/:id',
+  HOTELS: '/hotels',
+  LOGIN: '/login',
+  LOGOUT: '/logout',
+  NEARBY: '/nearby',
+  COMMENTS: '/comments',
+  NOT_FOUND: '/404',
+};
+
+export const AuthorizationStatus = {
+  AUTH: 'AUTH',
+  NO_AUTH: 'NO_AUTH',
+  UNKNOWN: 'UNKNOWN',
 };
 
 export const Settings = {

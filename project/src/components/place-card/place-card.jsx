@@ -63,7 +63,7 @@ function PlaceCard(props) {
 
 PlaceCard.propTypes = {
   offer: PropTypes.oneOfType([placeCardProp]).isRequired,
-  handleActiveOfferCard: PropTypes.func.isRequired,
+  handleActiveOfferCard: PropTypes.func,
 };
 
 Premium.propTypes = {

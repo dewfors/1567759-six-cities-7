@@ -1,12 +1,20 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import ReviewsForm from '../reviews-form/reviews-form';
 import ReviewsItem from './reviews-item';
 import {getReviewsSorted} from '../../utils/utils';
 import reviewProp from './review.prop';
+import {fetchReviews} from '../../store/api-actions';
 
 function Reviews(props) {
-  const {comments} = props;
+  const {id, comments, getReviews} = props;
+
+  useEffect(() => {
+    getReviews(id);
+  }, [id, getReviews]);
+
+
   const reviewsCount = comments.length;
 
   const reviews = getReviewsSorted(comments);
@@ -17,16 +25,28 @@ function Reviews(props) {
       <ul className="reviews__list">
         {reviews.map((review, i) => <ReviewsItem key={review.id} review={review}/>)}
       </ul>
-      <ReviewsForm onReview={() => {}}/>
+      <ReviewsForm id={id} />
     </section>
   );
 }
 
 Reviews.propTypes = {
+  id: PropTypes.string.isRequired,
   comments: PropTypes.arrayOf(
     PropTypes.oneOfType([reviewProp]).isRequired,
   ).isRequired,
+  getReviews: PropTypes.func.isRequired,
 };
 
+const mapStateToProps = (state) => ({
+  comments: state.reviews,
+});
 
-export default Reviews;
+const mapDispatchToProps = (dispatch) => ({
+  getReviews(id) {
+    dispatch(fetchReviews(id));
+  },
+});
+
+export {Reviews};
+export default connect(mapStateToProps, mapDispatchToProps)(Reviews);
