@@ -5,7 +5,7 @@ import {getAdaptedToClientObject} from '../utils/utils';
 
 export const fetchHotels = () => (dispatch, store, api) => {
   dispatch(ActionCreator.loadOffersRequest());
-  api.get(AppRoute.HOSTELS)
+  api.get(AppRoute.HOTELS)
     .then(({ data }) => {
       const offers = data.map(getAdaptedToClientObject);
       dispatch(ActionCreator.loadOffersSuccess(offers));
@@ -49,3 +49,29 @@ export const fetchLogout = () => (dispatch, _store, api) => {
     .then(() => { dispatch(ActionCreator.redirectToUrl(AppRoute.ROOT)); })
     .catch(() => dispatch(ActionCreator.logoutError()));
 };
+
+export const fetchOfferDetails = (id) => (dispatch, _store, api) => {
+  dispatch(ActionCreator.loadOfferRequest());
+  api.get(`${AppRoute.HOTELS}/${id}`)
+    .then(({ data }) => {
+      const offer = getAdaptedToClientObject(data);
+      dispatch(ActionCreator.loadOfferSuccess(offer));
+    })
+    .catch(() => {
+      dispatch(ActionCreator.loadOfferError());
+      // dispatch(ActionCreator.redirectToUrl(AppRoute.NOT_FOUND))
+      dispatch(ActionCreator.redirectToUrl(AppRoute.ROOT))
+    });
+};
+
+
+export const fetchNearbyOffers = (id) => (dispatch, _store, api) => {
+  dispatch(ActionCreator.loadOfferNearbyRequest());
+  api.get(`${AppRoute.HOTELS}/${id}${AppRoute.NEARBY}`)
+    .then(({ data }) => {
+      const offers = data.map(getAdaptedToClientObject);
+      dispatch(ActionCreator.loadOfferNearbySuccess(offers));
+    })
+    .catch(() => ActionCreator.loadOfferNearbyError());
+};
+

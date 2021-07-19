@@ -10,11 +10,12 @@ export const AppRoute = {
   ROOT: '/',
   FAVORITES: '/favorites',
   OFFER: '/offer/:id',
-  HOSTELS: '/hotels',
+  HOTELS: '/hotels',
   LOGIN: '/login',
   LOGOUT: '/logout',
   NEARBY: '/nearby',
   COMMENTS: '/comments',
+  NOT_FOUND: '/404',
 };
 
 export const AuthorizationStatus = {

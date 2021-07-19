@@ -12,6 +12,14 @@ const initialState = {
     isLoading: false,
     isLoadSuccess: false,
   },
+
+  offer: {},
+  loadOfferStatus: {
+    isLoadError: false,
+    isLoading: false,
+    isLoadSuccess: false,
+  },
+
   authorizationStatus: AuthorizationStatus.UNKNOWN,
   userInfo: {},
   loginStatus: {
@@ -21,6 +29,13 @@ const initialState = {
   },
 
   logoutStatus: {
+    isError: false,
+    isLoading: false,
+    isSuccess: false,
+  },
+
+  offersNearby: {
+    data: [],
     isError: false,
     isLoading: false,
     isSuccess: false,
@@ -60,6 +75,41 @@ const reduser = (state = initialState, action) => {
       return {
         ...state,
         loadOffersStatus: { ...state.loadOffersStatus, isLoading: false, isLoadSuccess: false },
+      };
+
+
+    case ActionType.LOAD_OFFER_REQUEST:
+      return {
+        ...state,
+        loadOfferStatus: { ...state.loadOfferStatus, isLoading: true },
+      };
+    case ActionType.LOAD_OFFER_SUCCESS:
+      return {
+        ...state,
+        offer: action.payload,
+        loadOfferStatus: { ...state.loadOfferStatus, isLoading: false, isLoadSuccess: true },
+      };
+    case ActionType.LOAD_OFFER_ERROR:
+      return {
+        ...state,
+        loadOfferStatus: { ...state.loadOfferStatus, isLoading: false, isLoadSuccess: false },
+      };
+
+
+    case ActionType.LOAD_OFFER_NEARBY_REQUEST:
+      return {
+        ...state,
+        offersNearby: { ...state.offersNearby, isLoading: true },
+      };
+    case ActionType.LOAD_OFFER_NEARBY_SUCCESS:
+      return {
+        ...state,
+        offersNearby: { ...state.offersNearby, data: action.payload, isLoading: false, isSuccess: true },
+      };
+    case ActionType.LOAD_OFFER_NEARBY_ERROR:
+      return {
+        ...state,
+        offersNearby: { ...state.offersNearby, data: [], isLoading: false, isSuccess: false, isError: true },
       };
 
 

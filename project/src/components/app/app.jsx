@@ -21,13 +21,15 @@ function App(props) {
       <Switch>
         <Route exact path = {AppRoute.ROOT} render={((routerProps) => <PageHome {...routerProps} cityList={cityList} />)} />
         <PrivateRoute exact path = {AppRoute.FAVORITES} render={((routerProps) => <PageFavorites {...routerProps} offers={offers} />)} />
-        {/*<Route exact path = {AppRoute.LOGIN} component={PageLogin} />*/}
         <Route exact path={AppRoute.LOGIN}>
           {authorizationStatus === AuthorizationStatus.AUTH
             ? <Redirect to={AppRoute.ROOT} />
             : <PageLogin />}
         </Route>
         <Route exact path = {AppRoute.OFFER} render={((routerProps) => <PageOffer {...routerProps} offers={offers} city={city} comments={comments} />)} />
+
+        {/*<Route exact path = {AppRoute.NOT_FOUND} render={((routerProps) => <PageNotFound {...routerProps} />)} />*/}
+
         <Route component={PageNotFound} />
       </Switch>
     </BrowserRouter>

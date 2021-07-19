@@ -4,11 +4,9 @@ import {ActionType} from './action';
 const browserHistory = createBrowserHistory();
 
 const Redirect = () => (next) => (action) => {
-  // console.log(action);
-  if (action.type === ActionType.REDIRECT_TO_ROUTE) {
+  if (action.type === ActionType.REDIRECT_TO_URL) {
     browserHistory.push(action.payload);
   }
-  // debugger;
   if (action.type === ActionType.REDIRECT_TO_BACK) {
     browserHistory.goBack();
   }

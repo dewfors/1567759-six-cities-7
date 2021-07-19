@@ -6,6 +6,14 @@ export const ActionType = {
   LOAD_OFFERS_SUCCESS: 'offers/loadSuccess',
   LOAD_OFFERS_ERROR: 'offers/loadError',
 
+  LOAD_OFFER_REQUEST: 'offer/loadRequest',
+  LOAD_OFFER_SUCCESS: 'offer/loadSuccess',
+  LOAD_OFFER_ERROR: 'offer/loadError',
+
+  LOAD_OFFER_NEARBY_REQUEST: 'offer-nearby/request',
+  LOAD_OFFER_NEARBY_SUCCESS: 'offer-nearby/success',
+  LOAD_OFFER_NEARBY_ERROR: 'offer-nearby/error',
+
   LOGIN_REQUEST: 'login/request',
   LOGIN_SUCCESS: 'login/success',
   LOGIN_ERROR: 'login/error',
@@ -44,6 +52,30 @@ export const ActionCreator = {
   }),
   loadOffersError: () => ({
     type: ActionType.LOAD_OFFERS_ERROR,
+  }),
+
+
+  loadOfferRequest: () => ({
+    type: ActionType.LOAD_OFFER_REQUEST,
+  }),
+  loadOfferSuccess: (offer) => ({
+    type: ActionType.LOAD_OFFER_SUCCESS,
+    payload: offer,
+  }),
+  loadOfferError: () => ({
+    type: ActionType.LOAD_OFFER_ERROR,
+  }),
+
+
+  loadOfferNearbyRequest: () => ({
+    type: ActionType.LOAD_OFFER_NEARBY_REQUEST,
+  }),
+  loadOfferNearbySuccess: (offers) => ({
+    type: ActionType.LOAD_OFFER_NEARBY_SUCCESS,
+    payload: offers,
+  }),
+  loadOfferNearbyError: () => ({
+    type: ActionType.LOAD_OFFER_NEARBY_ERROR,
   }),
 
 
