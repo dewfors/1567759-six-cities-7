@@ -115,7 +115,7 @@ function PageOffer(props) {
                 <Host host={host} description={description} />
               )}
 
-              <Reviews comments={comments} />
+              <Reviews id={id} />
             </div>
           </div>
           <section className="property__map map">

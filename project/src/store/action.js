@@ -14,6 +14,17 @@ export const ActionType = {
   LOAD_OFFER_NEARBY_SUCCESS: 'offer-nearby/success',
   LOAD_OFFER_NEARBY_ERROR: 'offer-nearby/error',
 
+
+  LOAD_REVIEWS_REQUEST: 'review/request',
+  LOAD_REVIEWS_ERROR: 'review/error',
+  LOAD_REVIEWS_SUCCESS: 'review/success',
+
+
+  SEND_NEW_REVIEW_REQUEST: 'review/new-review-request',
+  SEND_NEW_REVIEW_ERROR: 'review/new-review-error',
+  SEND_NEW_REVIEW_SUCCESS: 'review/new-review-success',
+
+
   LOGIN_REQUEST: 'login/request',
   LOGIN_SUCCESS: 'login/success',
   LOGIN_ERROR: 'login/error',
@@ -77,6 +88,31 @@ export const ActionCreator = {
   loadOfferNearbyError: () => ({
     type: ActionType.LOAD_OFFER_NEARBY_ERROR,
   }),
+
+
+  loadReviewRequest: () => ({
+    type: ActionType.LOAD_REVIEWS_REQUEST,
+  }),
+  loadReviewSuccess: (reviews) => ({
+    type: ActionType.LOAD_REVIEWS_SUCCESS,
+    payload: reviews,
+  }),
+  loadReviewError: () => ({
+    type: ActionType.LOAD_REVIEWS_ERROR,
+  }),
+
+
+  sendNewReviewRequest: () => ({
+    type: ActionType.SEND_NEW_REVIEW_REQUEST,
+  }),
+  sendNewReviewSuccess: (reviews) => ({
+    type: ActionType.SEND_NEW_REVIEW_SUCCESS,
+    payload: reviews,
+  }),
+  sendNewReviewError: () => ({
+    type: ActionType.SEND_NEW_REVIEW_ERROR,
+  }),
+
 
 
   loginRequest: () => ({

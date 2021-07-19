@@ -41,6 +41,20 @@ const initialState = {
     isSuccess: false,
   },
 
+
+  reviews: [],
+  reviewsStatus: {
+    isLoading: true,
+    isSuccess: false,
+    isError: false,
+  },
+
+  sendNewReviewStatus: {
+    isLoading: false,
+    isSuccess: false,
+    isError: false,
+  },
+
 };
 
 const reduser = (state = initialState, action) => {
@@ -93,6 +107,42 @@ const reduser = (state = initialState, action) => {
       return {
         ...state,
         loadOfferStatus: { ...state.loadOfferStatus, isLoading: false, isLoadSuccess: false },
+      };
+
+
+    case ActionType.LOAD_REVIEWS_REQUEST:
+      return {
+        ...state,
+        reviewsStatus: { ...state.reviewsStatus, isLoading: true },
+      };
+    case ActionType.LOAD_REVIEWS_SUCCESS:
+      return {
+        ...state,
+        reviewsStatus: { ...state.reviewsStatus, isLoading: true },
+        reviews: action.payload,
+      };
+    case ActionType.LOAD_REVIEWS_ERROR:
+      return {
+        ...state,
+        reviewsStatus: { ...state.reviewsStatus, isLoading: false, isError: true },
+      };
+
+
+    case ActionType.SEND_NEW_REVIEW_REQUEST:
+      return {
+        ...state,
+        sendNewReviewStatus: { ...state.sendNewReviewStatus, isLoading: true },
+      };
+    case ActionType.SEND_NEW_REVIEW_SUCCESS:
+      return {
+        ...state,
+        sendNewReviewStatus: { ...state.sendNewReviewStatus, isLoading: false, isSuccess: true },
+        reviews: action.payload,
+      };
+    case ActionType.SEND_NEW_REVIEW_ERROR:
+      return {
+        ...state,
+        sendNewReviewStatus: { ...state.sendNewReviewStatus, isLoading: false, isError: true },
       };
 
 

@@ -75,3 +75,27 @@ export const fetchNearbyOffers = (id) => (dispatch, _store, api) => {
     .catch(() => ActionCreator.loadOfferNearbyError());
 };
 
+export const fetchReviews = (id) => (dispatch, _store, api) => {
+  dispatch(ActionCreator.loadReviewRequest());
+  api.get(`${AppRoute.COMMENTS}/${id}`)
+    .then(({ data }) => {
+      const reviews = data.map(getAdaptedToClientObject);
+      dispatch(ActionCreator.loadReviewSuccess(reviews));
+    })
+    .catch(() => dispatch(ActionCreator.loadReviewError));
+};
+
+export const sendNewReview = (id, newComment) => (dispatch, _store, api) => {
+  dispatch(ActionCreator.sendNewReviewRequest());
+  api.post(`${AppRoute.COMMENTS}/${id}`, newComment)
+    .then(({ data }) => {
+      const reviews = data.map(getAdaptedToClientObject);
+      dispatch(ActionCreator.sendNewReviewSuccess(reviews));
+    })
+    // .catch(() => dispatch(ActionCreator.sendNewReviewError()));
+    .catch((e) => {
+      console.log(e);
+      dispatch(ActionCreator.sendNewReviewError())
+    });
+};
+
