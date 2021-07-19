@@ -57,7 +57,7 @@ Map.propTypes = {
     PropTypes.oneOfType([placeCardProp]).isRequired,
   ).isRequired,
   city: PropTypes.string.isRequired,
-  activeOfferCardId: PropTypes.number.isRequired,
+  activeOfferCardId: PropTypes.number,
 };
 
 export default Map;

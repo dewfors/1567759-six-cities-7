@@ -5,14 +5,14 @@ import ReviewsForm from '../reviews-form/reviews-form';
 import ReviewsItem from './reviews-item';
 import {getReviewsSorted} from '../../utils/utils';
 import reviewProp from './review.prop';
-import {fetchReviews} from "../../store/api-actions";
+import {fetchReviews} from '../../store/api-actions';
 
 function Reviews(props) {
   const {id, comments, getReviews} = props;
 
   useEffect(() => {
     getReviews(id);
-  }, [id]);
+  }, [id, getReviews]);
 
 
   const reviewsCount = comments.length;
@@ -31,9 +31,11 @@ function Reviews(props) {
 }
 
 Reviews.propTypes = {
+  id: PropTypes.string.isRequired,
   comments: PropTypes.arrayOf(
     PropTypes.oneOfType([reviewProp]).isRequired,
   ).isRequired,
+  getReviews: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

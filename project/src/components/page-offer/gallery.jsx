@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Gallery({ images: images }) {
+function Gallery({images}) {
   return (
     <div className="property__gallery">
       {images.map((elem, index) => (

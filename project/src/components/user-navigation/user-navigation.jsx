@@ -14,7 +14,7 @@ function UserNavigation(props) {
     ? 'header__user-name user__name'
     : 'header__login';
   const avatarStyle = isAuth ? {
-    backgroundImage: `url(${userInfo?.avatar_url})`,
+    backgroundImage: `url(${userInfo?.avatarUrl})`,
   } : {};
 
   const handleLogoutClick = (evt) => {
@@ -68,6 +68,7 @@ UserNavigation.propTypes = {
     isPro: PropTypes.bool,
     token: PropTypes.string,
   }),
+  logout: PropTypes.func.isRequired,
 };
 
 
@@ -81,7 +82,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchLogout());
   },
 });
-
 
 
 export {UserNavigation};

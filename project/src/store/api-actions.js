@@ -30,7 +30,8 @@ export const fetchLogin = (fetchLoginData) => (dispatch, store, api) => {
     .then(({data}) => {
       localStorage.setItem('token', data.token);
       dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
-      dispatch(ActionCreator.setAuthUserData(data));
+      const userData = getAdaptedToClientObject(data);
+      dispatch(ActionCreator.setAuthUserData(userData));
       dispatch(ActionCreator.loginSuccess());
       dispatch(ActionCreator.redirectToBack());
     })
@@ -59,8 +60,7 @@ export const fetchOfferDetails = (id) => (dispatch, _store, api) => {
     })
     .catch(() => {
       dispatch(ActionCreator.loadOfferError());
-      // dispatch(ActionCreator.redirectToUrl(AppRoute.NOT_FOUND))
-      dispatch(ActionCreator.redirectToUrl(AppRoute.ROOT))
+      dispatch(ActionCreator.redirectToUrl(AppRoute.NOT_FOUND));
     });
 };
 
@@ -92,10 +92,6 @@ export const sendNewReview = (id, newComment) => (dispatch, _store, api) => {
       const reviews = data.map(getAdaptedToClientObject);
       dispatch(ActionCreator.sendNewReviewSuccess(reviews));
     })
-    // .catch(() => dispatch(ActionCreator.sendNewReviewError()));
-    .catch((e) => {
-      console.log(e);
-      dispatch(ActionCreator.sendNewReviewError())
-    });
+    .catch(() => dispatch(ActionCreator.sendNewReviewError()));
 };
 

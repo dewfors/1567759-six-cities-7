@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {getStarsList} from '../../utils/utils';
 import {AuthorizationStatus, formReviewKeyType} from '../../utils/const';
-import {sendNewReview} from "../../store/api-actions";
+import {sendNewReview} from '../../store/api-actions';
 
 
 const MIN_LENGTH_COMMENT = 50;
@@ -40,9 +40,6 @@ function ReviewsForm(props) {
 
   const onFormSubmit = (evt) => {
     evt.preventDefault();
-
-    console.log(userData);
-
     sendReview(id, userData);
     setUserData({ comment: '', rating: 0 });
   };
@@ -92,13 +89,14 @@ function ReviewsForm(props) {
 }
 
 ReviewsForm.propTypes = {
-  onReview: PropTypes.func.isRequired,
+  sendReview: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
 };
 
 
 const mapStateToProps = (state) => ({
   authorizationStatus: state.authorizationStatus,
-  // postNewReviewStatus: state.postNewReviewStatus,
 });
 
 const mapDispatchToProps = (dispatch) => ({

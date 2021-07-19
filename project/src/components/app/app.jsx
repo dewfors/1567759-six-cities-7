@@ -53,7 +53,7 @@ App.propTypes = {
   cityList: PropTypes.arrayOf(
     PropTypes.string.isRequired,
   ).isRequired,
-
+  authorizationStatus: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({

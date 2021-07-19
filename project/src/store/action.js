@@ -114,7 +114,6 @@ export const ActionCreator = {
   }),
 
 
-
   loginRequest: () => ({
     type: ActionType.LOGIN_REQUEST,
   }),
