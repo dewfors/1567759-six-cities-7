@@ -1,7 +1,4 @@
 import {ActionType} from '../../action';
-import {Settings} from '../../../utils/const';
-
-const SORT_TYPE_DEFAULT = 'Popular';
 
 const initialState = {
   reviews: [],

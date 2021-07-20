@@ -1,7 +1,5 @@
 import {ActionType} from '../../action';
-import {AuthorizationStatus, Settings} from '../../../utils/const';
-
-const SORT_TYPE_DEFAULT = 'Popular';
+import {AuthorizationStatus} from '../../../utils/const';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.UNKNOWN,

@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
-import {offers} from "./reduser-offers/offers";
-import {app} from "./reduser-app/app";
-import {user} from "./reduser-user/user";
-import {reviews} from "./reduser-reviews/reviews";
+import {offers} from './reduser-offers/offers';
+import {app} from './reduser-app/app';
+import {user} from './reduser-user/user';
+import {reviews} from './reduser-reviews/reviews';
 
 
 const NameSpace = {
