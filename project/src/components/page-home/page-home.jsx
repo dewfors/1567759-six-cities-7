@@ -7,6 +7,8 @@ import Main from '../app/main';
 import CityList from './city-list';
 import HomeContent from './home-content';
 import {ActionCreator} from '../../store/action';
+import {getCurrentCity} from "../../store/redusers/reduser-app/selectors-app";
+import {getOffers, getOffersFiltredByCity} from "../../store/redusers/reduser-offers/selectors-offers";
 
 
 function PageHome(props) {
@@ -39,10 +41,12 @@ PageHome.propTypes = {
   onChangeCity: PropTypes.func.isRequired,
 };
 
-// const mapStateToProps = (state) => ({
-const mapStateToProps = ({appSpace, offersSpace}) => ({
-  currentCity: appSpace.currentCity,
-  offers: offersSpace.offers,
+const mapStateToProps = (state) => ({
+// const mapStateToProps = ({appSpace, offersSpace}) => ({
+//   currentCity: appSpace.currentCity,
+//   offers: offersSpace.offers,
+  currentCity: getCurrentCity(state),
+  offers: getOffers(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -12,6 +12,8 @@ import PrivateRoute from '../private-route/private-route';
 import placeCardProp from '../place-card/place-card.prop';
 import reviewProp from '../reviews/review.prop';
 import {fetchLogin} from "../../store/api-actions";
+import {getOffers} from "../../store/redusers/reduser-offers/selectors-offers";
+import {getAuthorizationStatus} from "../../store/redusers/reduser-user/selectors-user";
 
 
 function App(props) {
@@ -59,13 +61,12 @@ App.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
 };
 
-// const mapStateToProps = (state) => ({
-const mapStateToProps = ({offersSpace, userSpace}) => ({
-
-  // offers: state.offers,
-  // authorizationStatus: state.authorizationStatus,
-  offers: offersSpace.offers,
-  authorizationStatus: userSpace.authorizationStatus,
+const mapStateToProps = (state) => ({
+// const mapStateToProps = ({offersSpace, userSpace}) => ({
+  // offers: offersSpace.offers,
+  // authorizationStatus: userSpace.authorizationStatus,
+  offers: getOffers(state),
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 export {App};

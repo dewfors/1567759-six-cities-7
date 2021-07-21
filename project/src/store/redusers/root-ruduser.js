@@ -5,7 +5,7 @@ import {userScope} from './reduser-user/userScope';
 import {reviewsScope} from './reduser-reviews/reviewsScope';
 
 
-const NameSpace = {
+export const NameSpace = {
   OFFERS: 'offersSpace',
   APP: 'appSpace',
   USER: 'userSpace',

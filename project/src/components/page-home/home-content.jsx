@@ -7,6 +7,7 @@ import placeCardProp from '../place-card/place-card.prop';
 import SortOffers from '../sort-offers/sort-offers';
 import LoadingScreen from '../loading-screen/loading-screen';
 import ListOffersEmpty from '../list-offers/list-offers-empty';
+import {getOffersIsError, getOffersIsLoading} from "../../store/redusers/reduser-offers/selectors-offers";
 
 
 function HomeContent(props) {
@@ -58,12 +59,12 @@ HomeContent.propTypes = {
   isError: PropTypes.bool.isRequired,
 };
 
-// const mapStateToProps = (state) => {
-const mapStateToProps = ({offersSpace}) => {
-  // const isLoading = state.loadOffersStatus.isLoading;
-  // const isError = state.loadOffersStatus.isLoadError;
-  const isLoading = offersSpace.loadOffersStatus.isLoading;
-  const isError = offersSpace.loadOffersStatus.isLoadError;
+const mapStateToProps = (state) => {
+// const mapStateToProps = ({offersSpace}) => {
+//   const isLoading = offersSpace.loadOffersStatus.isLoading;
+//   const isError = offersSpace.loadOffersStatus.isLoadError;
+  const isLoading = getOffersIsLoading(state);
+  const isError = getOffersIsError(state);
   return {isLoading, isError};
 };
 
