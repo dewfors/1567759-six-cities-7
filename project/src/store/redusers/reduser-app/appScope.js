@@ -8,7 +8,7 @@ const initialState = {
   currentSortType: SORT_TYPE_DEFAULT,
 };
 
-const app = (state = initialState, action) => {
+const appScope = (state = initialState, action) => {
 
   switch (action.type) {
     case ActionType.SET_CITY:
@@ -26,4 +26,4 @@ const app = (state = initialState, action) => {
   }
 };
 
-export {app};
+export {appScope};

@@ -58,8 +58,9 @@ SortOffers.propTypes = {
   setCurrentSort: PropTypes.func.isRequired,
 };
 
-const stateToProps = (state) => ({
-  currentSort: state.currentSortType,
+// const stateToProps = (state) => ({
+const stateToProps = ({appSpace}) => ({
+  currentSort: appSpace.currentSortType,
 });
 
 const dispatchToProps = (dispatch) => ({

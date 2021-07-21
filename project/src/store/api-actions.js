@@ -17,7 +17,8 @@ export const checkAuth = () => (dispatch, store, api) => {
   api.get(AppRoute.LOGIN)
     .then(({ data }) => {
       dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
-      dispatch(ActionCreator.setAuthUserData(data));
+      const userData = getAdaptedToClientObject(data);
+      dispatch(ActionCreator.setAuthUserData(userData));
     })
     .catch(() => {
       dispatch(ActionCreator.setAuthUserData({}));
@@ -31,6 +32,7 @@ export const fetchLogin = (fetchLoginData) => (dispatch, store, api) => {
       localStorage.setItem('token', data.token);
       dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
       const userData = getAdaptedToClientObject(data);
+      console.log(userData);
       dispatch(ActionCreator.setAuthUserData(userData));
       dispatch(ActionCreator.loginSuccess());
       dispatch(ActionCreator.redirectToBack());

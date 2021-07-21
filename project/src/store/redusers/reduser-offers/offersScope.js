@@ -22,7 +22,7 @@ const initialState = {
 
 };
 
-const offers = (state = initialState, action) => {
+const offersScope = (state = initialState, action) => {
 
   switch (action.type) {
     case ActionType.LOAD_OFFERS_REQUEST:
@@ -84,4 +84,4 @@ const offers = (state = initialState, action) => {
 
 };
 
-export {offers};
+export {offersScope};

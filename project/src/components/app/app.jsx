@@ -11,10 +11,13 @@ import PageLogin from '../page-login/page-login';
 import PrivateRoute from '../private-route/private-route';
 import placeCardProp from '../place-card/place-card.prop';
 import reviewProp from '../reviews/review.prop';
+import {fetchLogin} from "../../store/api-actions";
 
 
 function App(props) {
   const {comments, city, cityList, offers, authorizationStatus} = props;
+
+
 
   return (
     <BrowserRouter>
@@ -56,9 +59,13 @@ App.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  offers: state.offers,
-  authorizationStatus: state.authorizationStatus,
+// const mapStateToProps = (state) => ({
+const mapStateToProps = ({offersSpace, userSpace}) => ({
+
+  // offers: state.offers,
+  // authorizationStatus: state.authorizationStatus,
+  offers: offersSpace.offers,
+  authorizationStatus: userSpace.authorizationStatus,
 });
 
 export {App};

@@ -155,10 +155,11 @@ PageOffer.defaultProps = {
   offerDetails: {},
 };
 
-const mapStateToProps = () => (state) => ({
-  offerDetails: state.offer,
-  isOfferDetailsLoading: state.loadOfferStatus.isLoading,
-  offersNearby: state.offersNearby.data,
+// const mapStateToProps = () => (state) => ({
+const mapStateToProps = () => ({offersSpace}) => ({
+  offerDetails: offersSpace.offer,
+  isOfferDetailsLoading: offersSpace.loadOfferStatus.isLoading,
+  offersNearby: offersSpace.offersNearby.data,
 });
 
 const mapDispatchToProps = (dispatch) => ({

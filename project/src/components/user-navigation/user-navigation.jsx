@@ -9,7 +9,12 @@ function UserNavigation(props) {
 
   const {authorizationStatus, logout, userInfo} = props;
 
+  console.log(authorizationStatus);
+
   const isAuth = authorizationStatus === AuthorizationStatus.AUTH;
+
+  console.log(isAuth);
+
   const userNameClass = isAuth
     ? 'header__user-name user__name'
     : 'header__login';
@@ -72,9 +77,10 @@ UserNavigation.propTypes = {
 };
 
 
-const mapStateToProps = (state) => ({
-  authorizationStatus: state.authorizationStatus,
-  userInfo: state.userInfo,
+// const mapStateToProps = (state) => ({
+const mapStateToProps = ({userSpace}) => ({
+  authorizationStatus: userSpace.authorizationStatus,
+  userInfo: userSpace.userInfo,
 });
 
 const mapDispatchToProps = (dispatch) => ({

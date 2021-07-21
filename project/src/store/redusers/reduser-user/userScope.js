@@ -16,7 +16,7 @@ const initialState = {
   },
 };
 
-const user = (state = initialState, action) => {
+const userScope = (state = initialState, action) => {
 
   switch (action.type) {
     case ActionType.REQUIRED_AUTHORIZATION:
@@ -74,4 +74,4 @@ const user = (state = initialState, action) => {
   }
 };
 
-export {user};
+export {userScope};

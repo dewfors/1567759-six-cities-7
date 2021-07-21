@@ -9,6 +9,7 @@ import App from './components/app/app';
 import {getAdaptedToClientComments} from './utils/utils';
 import {CITY} from './mocks/city';
 import {reduser} from './store/reduser';
+import rootReduser from './store/redusers/root-ruduser';
 import {AuthorizationStatus, Settings} from './utils/const';
 import {ActionCreator} from './store/action';
 import {checkAuth, fetchHotels} from './store/api-actions';
@@ -21,7 +22,8 @@ const api = createAPI(() => {
 const comments = getAdaptedToClientComments();
 
 const store = createStore(
-  reduser,
+  // reduser,
+  rootReduser,
   composeWithDevTools(
     applyMiddleware(thunk.withExtraArgument(api)),
     applyMiddleware(Redirect),

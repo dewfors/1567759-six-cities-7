@@ -16,7 +16,7 @@ const initialState = {
 
 };
 
-const reviews = (state = initialState, action) => {
+const reviewsScope = (state = initialState, action) => {
 
   switch (action.type) {
     case ActionType.LOAD_REVIEWS_REQUEST:
@@ -58,4 +58,4 @@ const reviews = (state = initialState, action) => {
   }
 };
 
-export {reviews};
+export {reviewsScope};

@@ -58,9 +58,12 @@ HomeContent.propTypes = {
   isError: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = (state) => {
-  const isLoading = state.loadOffersStatus.isLoading;
-  const isError = state.loadOffersStatus.isLoadError;
+// const mapStateToProps = (state) => {
+const mapStateToProps = ({offersSpace}) => {
+  // const isLoading = state.loadOffersStatus.isLoading;
+  // const isError = state.loadOffersStatus.isLoadError;
+  const isLoading = offersSpace.loadOffersStatus.isLoading;
+  const isError = offersSpace.loadOffersStatus.isLoadError;
   return {isLoading, isError};
 };
 

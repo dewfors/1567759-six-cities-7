@@ -39,9 +39,10 @@ PageHome.propTypes = {
   onChangeCity: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  currentCity: state.currentCity,
-  offers: state.offers,
+// const mapStateToProps = (state) => ({
+const mapStateToProps = ({appSpace, offersSpace}) => ({
+  currentCity: appSpace.currentCity,
+  offers: offersSpace.offers,
 });
 
 const mapDispatchToProps = (dispatch) => ({
