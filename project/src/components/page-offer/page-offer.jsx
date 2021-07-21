@@ -12,6 +12,7 @@ import LoadingScreen from '../loading-screen/loading-screen';
 import Gallery from './gallery';
 import {getStarsWidth} from '../../utils/utils';
 import Host from './host';
+import {getOfferDetails, getOfferIsLoading, getOfferNearby} from "../../store/redusers/reduser-offers/selectors-offers";
 
 function PageOffer(props) {
   const {offersNearby, offerDetails, getOfferDetails, getOffersNearby, isOfferDetailsLoading} = props;
@@ -155,11 +156,14 @@ PageOffer.defaultProps = {
   offerDetails: {},
 };
 
-// const mapStateToProps = () => (state) => ({
-const mapStateToProps = () => ({offersSpace}) => ({
-  offerDetails: offersSpace.offer,
-  isOfferDetailsLoading: offersSpace.loadOfferStatus.isLoading,
-  offersNearby: offersSpace.offersNearby.data,
+const mapStateToProps = () => (state) => ({
+// const mapStateToProps = () => ({offersSpace}) => ({
+//   offerDetails: offersSpace.offer,
+//   isOfferDetailsLoading: offersSpace.loadOfferStatus.isLoading,
+//   offersNearby: offersSpace.offersNearby.data,
+  offerDetails: getOfferDetails(state),
+  isOfferDetailsLoading: getOfferIsLoading(state),
+  offersNearby: getOfferNearby(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
