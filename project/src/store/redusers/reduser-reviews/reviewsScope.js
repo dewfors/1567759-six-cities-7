@@ -6,7 +6,7 @@ import {
   sendNewReviewRequest,
   sendNewReviewSuccess
 } from '../../action';
-import {createReducer} from "@reduxjs/toolkit";
+import {createReducer} from '@reduxjs/toolkit';
 
 const initialState = {
   reviews: [],
@@ -24,7 +24,7 @@ const initialState = {
 
 };
 
-const reviewsScope = createReducer(initialState, (builder => {
+const reviewsScope = createReducer(initialState, ((builder) => {
   builder
     .addCase(loadReviewRequest, (state, action) => {
       state.reviewsStatus.isLoading = true;
@@ -50,7 +50,7 @@ const reviewsScope = createReducer(initialState, (builder => {
     .addCase(sendNewReviewError, (state, action) => {
       state.sendNewReviewStatus.isLoading = false;
       state.sendNewReviewStatus.isError = true;
-    })
+    });
 }));
 
 export {reviewsScope};

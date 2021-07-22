@@ -27,7 +27,7 @@ const initialState = {
   },
 };
 
-const userScope = createReducer(initialState, (builder => {
+const userScope = createReducer(initialState, ((builder) => {
   builder
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;
@@ -59,7 +59,7 @@ const userScope = createReducer(initialState, (builder => {
     })
     .addCase(logout, (state, action) => {
       state.authorizationStatus = AuthorizationStatus.NO_AUTH;
-    })
+    });
 }));
 
 export {userScope};

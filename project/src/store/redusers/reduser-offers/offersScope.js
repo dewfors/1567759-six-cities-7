@@ -7,7 +7,7 @@ import {
   loadOfferError,
   loadOfferNearbyRequest,
   loadOfferNearbySuccess,
-  loadOfferNearbyError,
+  loadOfferNearbyError
 } from '../../action';
 import {createReducer} from '@reduxjs/toolkit';
 
@@ -33,7 +33,7 @@ const initialState = {
 
 };
 
-const offersScope = createReducer(initialState, (builder => {
+const offersScope = createReducer(initialState, ((builder) => {
   builder
     .addCase(loadOffersRequest, (state) => {
       state.loadOffersStatus.isLoading = true;
@@ -71,7 +71,7 @@ const offersScope = createReducer(initialState, (builder => {
       state.offersNearby.isLoading = false;
       state.offersNearby.isSuccess = false;
       state.offersNearby.isError = true;
-    })
+    });
 }));
 
 

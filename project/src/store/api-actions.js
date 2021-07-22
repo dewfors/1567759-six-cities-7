@@ -49,7 +49,6 @@ export const fetchLogin = (fetchLoginData) => (dispatch, store, api) => {
       localStorage.setItem('token', data.token);
       dispatch(requireAuthorization(AuthorizationStatus.AUTH));
       const userData = getAdaptedToClientObject(data);
-      console.log(userData);
       dispatch(setAuthUserData(userData));
       dispatch(loginSuccess());
       dispatch(redirectToBack());

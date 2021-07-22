@@ -1,6 +1,4 @@
 import {NameSpace} from '../root-ruduser';
-import {createSelector} from 'reselect';
-import {getCurrentCity} from "../reduser-app/selectors-app";
 
 const getOffers = (state) => state[NameSpace.OFFERS].offers;
 const getOffersIsLoading = (state) => state[NameSpace.OFFERS].loadOffersStatus.isLoading;
@@ -16,5 +14,5 @@ export {
   getOffersIsError,
   getOfferDetails,
   getOfferIsLoading,
-  getOfferNearby,
+  getOfferNearby
 };

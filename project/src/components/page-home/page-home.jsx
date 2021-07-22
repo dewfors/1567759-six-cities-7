@@ -7,8 +7,8 @@ import Main from '../app/main';
 import CityList from './city-list';
 import HomeContent from './home-content';
 import {changeCity} from '../../store/action';
-import {getCurrentCity} from "../../store/redusers/reduser-app/selectors-app";
-import {getOffers} from "../../store/redusers/reduser-offers/selectors-offers";
+import {getCurrentCity} from '../../store/redusers/reduser-app/selectors-app';
+import {getOffers} from '../../store/redusers/reduser-offers/selectors-offers';
 
 
 function PageHome(props) {

@@ -9,11 +9,7 @@ function UserNavigation(props) {
 
   const {authorizationStatus, logout, userInfo} = props;
 
-  console.log(authorizationStatus);
-
   const isAuth = authorizationStatus === AuthorizationStatus.AUTH;
-
-  console.log(isAuth);
 
   const userNameClass = isAuth
     ? 'header__user-name user__name'
