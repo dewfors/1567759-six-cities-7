@@ -1,4 +1,12 @@
-import {ActionType} from '../../action';
+import {
+  loadReviewError,
+  loadReviewRequest,
+  loadReviewSuccess,
+  sendNewReviewError,
+  sendNewReviewRequest,
+  sendNewReviewSuccess
+} from '../../action';
+import {createReducer} from "@reduxjs/toolkit";
 
 const initialState = {
   reviews: [],
@@ -16,46 +24,33 @@ const initialState = {
 
 };
 
-const reviewsScope = (state = initialState, action) => {
-
-  switch (action.type) {
-    case ActionType.LOAD_REVIEWS_REQUEST:
-      return {
-        ...state,
-        reviewsStatus: { ...state.reviewsStatus, isLoading: true },
-      };
-    case ActionType.LOAD_REVIEWS_SUCCESS:
-      return {
-        ...state,
-        reviewsStatus: { ...state.reviewsStatus, isLoading: true },
-        reviews: action.payload,
-      };
-    case ActionType.LOAD_REVIEWS_ERROR:
-      return {
-        ...state,
-        reviewsStatus: { ...state.reviewsStatus, isLoading: false, isError: true },
-      };
-
-
-    case ActionType.SEND_NEW_REVIEW_REQUEST:
-      return {
-        ...state,
-        sendNewReviewStatus: { ...state.sendNewReviewStatus, isLoading: true },
-      };
-    case ActionType.SEND_NEW_REVIEW_SUCCESS:
-      return {
-        ...state,
-        sendNewReviewStatus: { ...state.sendNewReviewStatus, isLoading: false, isSuccess: true },
-        reviews: action.payload,
-      };
-    case ActionType.SEND_NEW_REVIEW_ERROR:
-      return {
-        ...state,
-        sendNewReviewStatus: { ...state.sendNewReviewStatus, isLoading: false, isError: true },
-      };
-    default:
-      return state;
-  }
-};
+const reviewsScope = createReducer(initialState, (builder => {
+  builder
+    .addCase(loadReviewRequest, (state, action) => {
+      state.reviewsStatus.isLoading = true;
+    })
+    .addCase(loadReviewSuccess, (state, action) => {
+      state.reviewsStatus.isLoading = false;
+      state.reviewsStatus.isSuccess = true;
+      state.reviews = action.payload;
+    })
+    .addCase(loadReviewError, (state, action) => {
+      state.reviewsStatus.isLoading = false;
+      state.reviewsStatus.isError = true;
+      state.reviews = [];
+    })
+    .addCase(sendNewReviewRequest, (state, action) => {
+      state.sendNewReviewStatus.isLoading = true;
+    })
+    .addCase(sendNewReviewSuccess, (state, action) => {
+      state.sendNewReviewStatus.isLoading = false;
+      state.sendNewReviewStatus.isSuccess = true;
+      state.reviews = action.payload;
+    })
+    .addCase(sendNewReviewError, (state, action) => {
+      state.sendNewReviewStatus.isLoading = false;
+      state.sendNewReviewStatus.isError = true;
+    })
+}));
 
 export {reviewsScope};

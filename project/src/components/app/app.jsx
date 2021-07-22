@@ -11,15 +11,12 @@ import PageLogin from '../page-login/page-login';
 import PrivateRoute from '../private-route/private-route';
 import placeCardProp from '../place-card/place-card.prop';
 import reviewProp from '../reviews/review.prop';
-import {fetchLogin} from "../../store/api-actions";
 import {getOffers} from "../../store/redusers/reduser-offers/selectors-offers";
 import {getAuthorizationStatus} from "../../store/redusers/reduser-user/selectors-user";
 
 
 function App(props) {
   const {comments, city, cityList, offers, authorizationStatus} = props;
-
-
 
   return (
     <BrowserRouter>
@@ -62,9 +59,6 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-// const mapStateToProps = ({offersSpace, userSpace}) => ({
-  // offers: offersSpace.offers,
-  // authorizationStatus: userSpace.authorizationStatus,
   offers: getOffers(state),
   authorizationStatus: getAuthorizationStatus(state),
 });

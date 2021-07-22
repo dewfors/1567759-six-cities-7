@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../store/action';
+import {changeSortType} from '../../store/action';
 import {SortingTypes} from '../../utils/const';
 
 function SortOffers(props) {
@@ -58,14 +58,13 @@ SortOffers.propTypes = {
   setCurrentSort: PropTypes.func.isRequired,
 };
 
-// const stateToProps = (state) => ({
 const stateToProps = ({appSpace}) => ({
   currentSort: appSpace.currentSortType,
 });
 
 const dispatchToProps = (dispatch) => ({
   setCurrentSort(value) {
-    dispatch(ActionCreator.changeSortType(value));
+    dispatch(changeSortType(value));
   },
 });
 

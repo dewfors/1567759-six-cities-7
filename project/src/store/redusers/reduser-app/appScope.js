@@ -1,5 +1,6 @@
-import {ActionType} from '../../action';
+import {changeCity, changeSortType} from '../../action';
 import {Settings} from '../../../utils/const';
+import {createReducer} from "@reduxjs/toolkit";
 
 const SORT_TYPE_DEFAULT = 'Popular';
 
@@ -8,22 +9,15 @@ const initialState = {
   currentSortType: SORT_TYPE_DEFAULT,
 };
 
-const appScope = (state = initialState, action) => {
+const appScope = createReducer(initialState, (builder => {
+  builder
+    .addCase(changeCity, (state, action) => {
+      state.currentCity = action.payload;
+    })
+    .addCase(changeSortType, (state, action) => {
+      state.currentSortType = action.payload;
+    })
 
-  switch (action.type) {
-    case ActionType.SET_CITY:
-      return {
-        ...state,
-        currentCity: action.payload,
-      };
-    case ActionType.SET_SORT_TYPE:
-      return {
-        ...state,
-        currentSortType: action.payload,
-      };
-    default:
-      return state;
-  }
-};
+}));
 
 export {appScope};

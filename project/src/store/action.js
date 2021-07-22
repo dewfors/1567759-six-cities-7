@@ -1,3 +1,5 @@
+import {createAction} from "@reduxjs/toolkit";
+
 export const ActionType = {
   SET_CITY: 'main/changeCity',
   SET_SORT_TYPE: 'main/changeSortType',
@@ -42,123 +44,72 @@ export const ActionType = {
 
 };
 
-export const ActionCreator = {
-  changeCity: (city) => ({
-    type: ActionType.SET_CITY,
-    payload: city,
-  }),
 
-  changeSortType: (sortType) => ({
-    type: ActionType.SET_SORT_TYPE,
-    payload: sortType,
-  }),
+export const changeCity = createAction(ActionType.SET_CITY, (city) => ({
+  payload: city,
+}));
 
 
-  loadOffersRequest: () => ({
-    type: ActionType.LOAD_OFFERS_REQUEST,
-  }),
-  loadOffersSuccess: (offers) => ({
-    type: ActionType.LOAD_OFFERS_SUCCESS,
-    payload: offers,
-  }),
-  loadOffersError: () => ({
-    type: ActionType.LOAD_OFFERS_ERROR,
-  }),
+export const changeSortType = createAction(ActionType.SET_SORT_TYPE, (sortType) => ({
+  payload: sortType,
+}));
 
 
-  loadOfferRequest: () => ({
-    type: ActionType.LOAD_OFFER_REQUEST,
-  }),
-  loadOfferSuccess: (offer) => ({
-    type: ActionType.LOAD_OFFER_SUCCESS,
-    payload: offer,
-  }),
-  loadOfferError: () => ({
-    type: ActionType.LOAD_OFFER_ERROR,
-  }),
+export const loadOffersRequest = createAction(ActionType.LOAD_OFFERS_REQUEST);
+export const loadOffersSuccess = createAction(ActionType.LOAD_OFFERS_SUCCESS, (offers) => ({
+  payload: offers,
+}));
+export const loadOffersError = createAction(ActionType.LOAD_OFFERS_ERROR);
 
 
-  loadOfferNearbyRequest: () => ({
-    type: ActionType.LOAD_OFFER_NEARBY_REQUEST,
-  }),
-  loadOfferNearbySuccess: (offers) => ({
-    type: ActionType.LOAD_OFFER_NEARBY_SUCCESS,
-    payload: offers,
-  }),
-  loadOfferNearbyError: () => ({
-    type: ActionType.LOAD_OFFER_NEARBY_ERROR,
-  }),
+export const loadOfferRequest = createAction(ActionType.LOAD_OFFER_REQUEST);
+export const loadOfferSuccess = createAction(ActionType.LOAD_OFFER_SUCCESS, (offer) => ({
+  payload: offer,
+}));
+export const loadOfferError = createAction(ActionType.LOAD_OFFER_ERROR);
 
 
-  loadReviewRequest: () => ({
-    type: ActionType.LOAD_REVIEWS_REQUEST,
-  }),
-  loadReviewSuccess: (reviews) => ({
-    type: ActionType.LOAD_REVIEWS_SUCCESS,
-    payload: reviews,
-  }),
-  loadReviewError: () => ({
-    type: ActionType.LOAD_REVIEWS_ERROR,
-  }),
+export const loadOfferNearbyRequest = createAction(ActionType.LOAD_OFFER_NEARBY_REQUEST);
+export const loadOfferNearbySuccess = createAction(ActionType.LOAD_OFFER_NEARBY_SUCCESS, (offers) => ({
+  payload: offers,
+}));
+export const loadOfferNearbyError = createAction(ActionType.LOAD_OFFER_NEARBY_ERROR);
 
 
-  sendNewReviewRequest: () => ({
-    type: ActionType.SEND_NEW_REVIEW_REQUEST,
-  }),
-  sendNewReviewSuccess: (reviews) => ({
-    type: ActionType.SEND_NEW_REVIEW_SUCCESS,
-    payload: reviews,
-  }),
-  sendNewReviewError: () => ({
-    type: ActionType.SEND_NEW_REVIEW_ERROR,
-  }),
+export const loadReviewRequest = createAction(ActionType.LOAD_REVIEWS_REQUEST);
+export const loadReviewSuccess = createAction(ActionType.LOAD_REVIEWS_SUCCESS, (reviews) => ({
+  payload: reviews,
+}));
+export const loadReviewError = createAction(ActionType.LOAD_REVIEWS_ERROR);
 
 
-  loginRequest: () => ({
-    type: ActionType.LOGIN_REQUEST,
-  }),
-  loginSuccess: () => ({
-    type: ActionType.LOGIN_SUCCESS,
-  }),
-  loginError: () => ({
-    type: ActionType.LOGIN_ERROR,
-  }),
+export const sendNewReviewRequest = createAction(ActionType.SEND_NEW_REVIEW_REQUEST);
+export const sendNewReviewSuccess = createAction(ActionType.SEND_NEW_REVIEW_SUCCESS, (reviews) => ({
+  payload: reviews,
+}));
+export const sendNewReviewError = createAction(ActionType.SEND_NEW_REVIEW_ERROR);
 
 
-  logoutRequest: () => ({
-    type: ActionType.LOGOUT_REQUEST,
-  }),
-
-  logoutSuccess: () => ({
-    type: ActionType.LOGOUT_SUCCESS,
-  }),
-
-  logoutError: () => ({
-    type: ActionType.LOGOUT_ERROR,
-  }),
+export const loginRequest = createAction(ActionType.LOGIN_REQUEST);
+export const loginSuccess = createAction(ActionType.LOGIN_SUCCESS);
+export const loginError = createAction(ActionType.LOGIN_ERROR);
 
 
-  setAuthUserData: (userInfo) => ({
-    type: ActionType.SET_USER_INFO,
-    payload: userInfo,
-  }),
-
-  requireAuthorization: (status) => ({
-    type: ActionType.REQUIRED_AUTHORIZATION,
-    payload: status,
-  }),
+export const logoutRequest = createAction(ActionType.LOGOUT_REQUEST);
+export const logoutSuccess = createAction(ActionType.LOGOUT_SUCCESS);
+export const logoutError = createAction(ActionType.LOGOUT_ERROR);
+export const logout = createAction(ActionType.LOGOUT);
 
 
-  logout: () => ({
-    type: ActionType.LOGOUT,
-  }),
+export const setAuthUserData = createAction(ActionType.SET_USER_INFO, (userInfo) => ({
+  payload: userInfo,
+}));
+export const requireAuthorization = createAction(ActionType.REQUIRED_AUTHORIZATION, (status) => ({
+  payload: status,
+}));
 
-  redirectToBack: () => ({
-    type: ActionType.REDIRECT_TO_BACK,
-  }),
-  redirectToUrl: (url) => ({
-    type: ActionType.REDIRECT_TO_URL,
-    payload: url,
-  }),
 
-};
+export const redirectToBack = createAction(ActionType.REDIRECT_TO_BACK);
+export const redirectToUrl = createAction(ActionType.REDIRECT_TO_URL, (url) => ({
+  payload: url,
+}));

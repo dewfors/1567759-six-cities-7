@@ -1,5 +1,16 @@
-import {ActionType} from '../../action';
+import {
+  loginError,
+  loginRequest,
+  loginSuccess,
+  logout,
+  logoutError,
+  logoutRequest,
+  logoutSuccess,
+  requireAuthorization,
+  setAuthUserData
+} from '../../action';
 import {AuthorizationStatus} from '../../../utils/const';
+import {createReducer} from '@reduxjs/toolkit';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.UNKNOWN,
@@ -16,62 +27,39 @@ const initialState = {
   },
 };
 
-const userScope = (state = initialState, action) => {
-
-  switch (action.type) {
-    case ActionType.REQUIRED_AUTHORIZATION:
-      return {
-        ...state,
-        authorizationStatus: action.payload,
-      };
-
-
-    case ActionType.SET_USER_INFO:
-      return {
-        ...state,
-        userInfo: action.payload,
-      };
-    case ActionType.LOGIN_REQUEST:
-      return {
-        ...state,
-        loginStatus: { ...state.loginStatus, isLoading: true },
-      };
-    case ActionType.LOGIN_SUCCESS:
-      return {
-        ...state,
-        loginStatus: { ...state.loginStatus, isLoading: false, isSuccess: true },
-      };
-    case ActionType.LOGIN_ERROR:
-      return {
-        ...state,
-        loginStatus: { ...state.loginStatus, isLoading: false, isError: true },
-      };
-
-    case ActionType.LOGOUT_REQUEST:
-      return {
-        ...state,
-        logoutStatus: { ...state.loginStatus, isLoading: true },
-      };
-    case ActionType.LOGOUT_SUCCESS:
-      return {
-        ...state,
-        logoutStatus: { ...state.loginStatus, isLoading: false, isSuccess: true },
-      };
-    case ActionType.LOGOUT_ERROR:
-      return {
-        ...state,
-        logoutStatus: { ...state.loginStatus, isLoading: false, isError: true },
-      };
-
-
-    case ActionType.LOGOUT:
-      return {
-        ...state,
-        authorizationStatus: AuthorizationStatus.NO_AUTH,
-      };
-    default:
-      return state;
-  }
-};
+const userScope = createReducer(initialState, (builder => {
+  builder
+    .addCase(requireAuthorization, (state, action) => {
+      state.authorizationStatus = action.payload;
+    })
+    .addCase(setAuthUserData, (state, action) => {
+      state.userInfo = action.payload;
+    })
+    .addCase(loginRequest, (state, action) => {
+      state.loginStatus.isLoading = true;
+    })
+    .addCase(loginSuccess, (state, action) => {
+      state.loginStatus.isLoading = false;
+      state.loginStatus.isSuccess = true;
+    })
+    .addCase(loginError, (state, action) => {
+      state.loginStatus.isLoading = false;
+      state.loginStatus.isError = true;
+    })
+    .addCase(logoutRequest, (state, action) => {
+      state.logoutStatus.isLoading = true;
+    })
+    .addCase(logoutSuccess, (state, action) => {
+      state.logoutStatus.isLoading = false;
+      state.logoutStatus.isSuccess = true;
+    })
+    .addCase(logoutError, (state, action) => {
+      state.logoutStatus.isLoading = false;
+      state.logoutStatus.isError = true;
+    })
+    .addCase(logout, (state, action) => {
+      state.authorizationStatus = AuthorizationStatus.NO_AUTH;
+    })
+}));
 
 export {userScope};
