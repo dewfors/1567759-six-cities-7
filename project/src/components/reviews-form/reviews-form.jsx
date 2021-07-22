@@ -95,8 +95,9 @@ ReviewsForm.propTypes = {
 };
 
 
-const mapStateToProps = (state) => ({
-  authorizationStatus: state.authorizationStatus,
+// const mapStateToProps = (state) => ({
+const mapStateToProps = ({userSpace}) => ({
+  authorizationStatus: userSpace.authorizationStatus,
 });
 
 const mapDispatchToProps = (dispatch) => ({

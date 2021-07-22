@@ -1,21 +1,21 @@
 import {combineReducers} from 'redux';
-import {offers} from './reduser-offers/offers';
-import {app} from './reduser-app/app';
-import {user} from './reduser-user/user';
-import {reviews} from './reduser-reviews/reviews';
+import {offersScope} from './reduser-offers/offersScope';
+import {appScope} from './reduser-app/appScope';
+import {userScope} from './reduser-user/userScope';
+import {reviewsScope} from './reduser-reviews/reviewsScope';
 
 
-const NameSpace = {
-  OFFERS: 'offers',
-  APP: 'app',
-  USER: 'user',
-  COMMENT: 'comment',
+export const NameSpace = {
+  OFFERS: 'offersSpace',
+  APP: 'appSpace',
+  USER: 'userSpace',
+  COMMENT: 'commentSpace',
 };
 
 
 export default combineReducers({
-  [NameSpace.OFFERS]: offers,
-  [NameSpace.APP]: app,
-  [NameSpace.USER]: user,
-  [NameSpace.COMMENT]: reviews,
+  [NameSpace.OFFERS]: offersScope,
+  [NameSpace.APP]: appScope,
+  [NameSpace.USER]: userScope,
+  [NameSpace.COMMENT]: reviewsScope,
 });

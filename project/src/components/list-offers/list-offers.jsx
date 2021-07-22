@@ -31,12 +31,13 @@ ListOffers.propTypes = {
   isLoading: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = (state) => {
+// const mapStateToProps = (state) => {
+const mapStateToProps = ({appSpace, offersSpace}) => {
 
-  const allOffers = state.offers;
-  const currentCity = state.currentCity;
-  const currentSortType = state.currentSortType;
-  const isLoading = state.loadOffersStatus.isLoading;
+  const allOffers = offersSpace.offers;
+  const currentCity = appSpace.currentCity;
+  const currentSortType = appSpace.currentSortType;
+  const isLoading = offersSpace.loadOffersStatus.isLoading;
 
   const filterdOffers = allOffers.filter((item) => item.city.name === currentCity);
 

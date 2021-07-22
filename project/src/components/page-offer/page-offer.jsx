@@ -12,9 +12,10 @@ import LoadingScreen from '../loading-screen/loading-screen';
 import Gallery from './gallery';
 import {getStarsWidth} from '../../utils/utils';
 import Host from './host';
+import {getOfferDetails, getOfferIsLoading, getOfferNearby} from '../../store/redusers/reduser-offers/selectors-offers';
 
 function PageOffer(props) {
-  const {offersNearby, offerDetails, getOfferDetails, getOffersNearby, isOfferDetailsLoading} = props;
+  const {offersNearby, offerDetails, getOfferInfo, getOffersNearby, isOfferDetailsLoading} = props;
 
   const {id} = useParams();
 
@@ -29,8 +30,8 @@ function PageOffer(props) {
 
   useEffect(() => {
     getOffersNearby(id);
-    getOfferDetails(id);
-  }, [id, getOffersNearby, getOfferDetails]);
+    getOfferInfo(id);
+  }, [id, getOffersNearby, getOfferInfo]);
 
   if (isOfferDetailsLoading) {
     return (
@@ -146,7 +147,7 @@ PageOffer.propTypes = {
     }),
   }),
   offerDetails: placeCardProp,
-  getOfferDetails: PropTypes.func.isRequired,
+  getOfferInfo: PropTypes.func.isRequired,
   getOffersNearby: PropTypes.func.isRequired,
   isOfferDetailsLoading: PropTypes.bool.isRequired,
 };
@@ -156,16 +157,16 @@ PageOffer.defaultProps = {
 };
 
 const mapStateToProps = () => (state) => ({
-  offerDetails: state.offer,
-  isOfferDetailsLoading: state.loadOfferStatus.isLoading,
-  offersNearby: state.offersNearby.data,
+  offerDetails: getOfferDetails(state),
+  isOfferDetailsLoading: getOfferIsLoading(state),
+  offersNearby: getOfferNearby(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   getOffersNearby(id) {
     dispatch(fetchNearbyOffers(id));
   },
-  getOfferDetails(id) {
+  getOfferInfo(id) {
     dispatch(fetchOfferDetails(id));
   },
 });

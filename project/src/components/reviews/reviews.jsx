@@ -38,8 +38,9 @@ Reviews.propTypes = {
   getReviews: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  comments: state.reviews,
+// const mapStateToProps = (state) => ({
+const mapStateToProps = ({commentSpace}) => ({
+  comments: commentSpace.reviews,
 });
 
 const mapDispatchToProps = (dispatch) => ({
