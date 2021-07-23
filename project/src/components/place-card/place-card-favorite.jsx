@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import placeCardProp from './place-card.prop';
 import {getStarsWidth} from '../../utils/utils';
+import AddFavoritesButton from "./add-to-favorite-button";
 
 function PlaceCardFavorite(props) {
   const {offer} = props;
-  const {price, title, type, rating, previewImage} = offer;
+  const {price, title, type, rating, previewImage, isFavorite, id} = offer;
   const starsWidth = getStarsWidth(rating);
 
   return (
@@ -21,12 +22,7 @@ function PlaceCardFavorite(props) {
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
-            <svg className="place-card__bookmark-icon" width="18" height="19">
-              <use xlinkHref="#icon-bookmark"> </use>
-            </svg>
-            <span className="visually-hidden">In bookmarks</span>
-          </button>
+          <AddFavoritesButton id={id} isFavorite={isFavorite} />
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">

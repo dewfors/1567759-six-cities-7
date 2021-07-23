@@ -8,7 +8,7 @@ export const formReviewKeyType = {
 
 export const AppRoute = {
   ROOT: '/',
-  FAVORITES: '/favorites',
+  FAVORITES: '/favorite',
   OFFER: '/offer/:id',
   HOTELS: '/hotels',
   LOGIN: '/login',

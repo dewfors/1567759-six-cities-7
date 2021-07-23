@@ -13,6 +13,7 @@ import Gallery from './gallery';
 import {getStarsWidth} from '../../utils/utils';
 import Host from './host';
 import {getOfferDetails, getOfferIsLoading, getOfferNearby} from '../../store/redusers/reduser-offers/selectors-offers';
+import AddFavoritesButton from "../place-card/add-to-favorite-button";
 
 function PageOffer(props) {
   const {offersNearby, offerDetails, getOfferInfo, getOffersNearby, isOfferDetailsLoading} = props;
@@ -20,7 +21,7 @@ function PageOffer(props) {
   const {id} = useParams();
 
   const {images, isPrime, title, rating, type, bedrooms, maxAdults,
-    price, goods, host, description, city} = offerDetails;
+    price, goods, host, description, city, isFavorite} = offerDetails;
 
   const [activeOfferCardId, setActiveOfferCardId] = useState(0);
 
@@ -69,12 +70,7 @@ function PageOffer(props) {
                 <h1 className="property__name">
                   {title}
                 </h1>
-                <button className="property__bookmark-button button" type="button">
-                  <svg className="property__bookmark-icon" width="31" height="33">
-                    <use xlinkHref="#icon-bookmark" />
-                  </svg>
-                  <span className="visually-hidden">To bookmarks</span>
-                </button>
+                <AddFavoritesButton isFavorite={isFavorite} id={id} />
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">

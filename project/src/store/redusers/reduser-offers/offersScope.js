@@ -7,7 +7,7 @@ import {
   loadOfferError,
   loadOfferNearbyRequest,
   loadOfferNearbySuccess,
-  loadOfferNearbyError
+  loadOfferNearbyError, changeOffersFavorite, changeOfferFavorite
 } from '../../action';
 import {createReducer} from '@reduxjs/toolkit';
 
@@ -46,6 +46,16 @@ const offersScope = createReducer(initialState, ((builder) => {
     .addCase(loadOffersError, (state) => {
       state.loadOffersStatus.isLoading = false;
       state.loadOffersStatus.isLoadSuccess = false;
+    })
+    .addCase(changeOffersFavorite, (state, action) => {
+      state.offers.forEach((item, i, arr) => {
+        if (item.id === action.payload.id) {
+          item.isFavorite = action.payload.isFavorite;
+        }
+      })
+    })
+    .addCase(changeOfferFavorite, (state, action) => {
+        state.offer.isFavorite = action.payload.isFavorite;
     })
     .addCase(loadOfferRequest, (state) => {
       state.loadOfferStatus.isLoading = true;

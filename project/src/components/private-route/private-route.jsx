@@ -7,7 +7,6 @@ import {AppRoute, AuthorizationStatus} from '../../utils/const';
 import {getAuthorizationStatus} from '../../store/redusers/reduser-user/selectors-user';
 
 function PrivateRoute({exact, path, render, authorizationStatus}) {
-
   return (
     <Route
       exact={exact}
@@ -34,3 +33,7 @@ const mapStateToProps = (state) => ({
 
 export {PrivateRoute};
 export default connect(mapStateToProps)(PrivateRoute);
+
+
+
+

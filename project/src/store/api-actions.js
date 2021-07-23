@@ -1,4 +1,8 @@
 import {
+  changeFavoritesError, changeFavoritesList,
+  changeFavoritesRequest, changeFavoritesSuccess, changeOfferFavorite, changeOffersFavorite,
+  loadFavoritesError,
+  loadFavoritesRequest, loadFavoritesSuccess,
   loadOfferError,
   loadOfferNearbyError,
   loadOfferNearbyRequest,
@@ -53,7 +57,7 @@ export const fetchLogin = (fetchLoginData) => (dispatch, store, api) => {
       dispatch(loginSuccess());
       dispatch(redirectToBack());
     })
-    .catch((e) => {
+    .catch(() => {
       dispatch(loginError());
     });
 };
@@ -112,4 +116,37 @@ export const sendNewReview = (id, newComment) => (dispatch, _store, api) => {
     })
     .catch(() => dispatch(sendNewReviewError()));
 };
+
+export const fetchFavorites = () => (dispatch, store, api) => {
+  dispatch(loadFavoritesRequest());
+  api.get(AppRoute.FAVORITES)
+    .then(({ data }) => {
+      const favoritesOffers = data.map(getAdaptedToClientObject);
+      dispatch(loadFavoritesSuccess(favoritesOffers));
+    })
+    .catch(() => {
+      dispatch(loadFavoritesError());
+    });
+};
+
+export const fetchChangeFavoriteStatus = ({id, status, path}) => (dispatch, store, api) => {
+  dispatch(changeFavoritesRequest());
+  api.post(`${AppRoute.FAVORITES}/${id}/${status}`)
+    .then(({ data }) => {
+      const offer = getAdaptedToClientObject(data);
+      dispatch(changeFavoritesSuccess(offer));
+
+      dispatch(changeOffersFavorite(offer));
+      if (path === AppRoute.OFFER) {
+        dispatch(changeOfferFavorite(offer));
+      }
+      if (path === AppRoute.FAVORITES) {
+        dispatch(changeFavoritesList(offer));
+      }
+    })
+    .catch(() => {
+      dispatch(changeFavoritesError());
+    });
+};
+
 
