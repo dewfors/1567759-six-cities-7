@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import placeCardProp from './place-card.prop.js';
 import {getStarsWidth} from '../../utils/utils';
 import {Link} from 'react-router-dom';
-import AddFavoritesButton from "./add-to-favorite-button";
+import AddFavoritesButton from './add-to-favorite-button';
 
 function Premium(props) {
   if (props.isPremium) {

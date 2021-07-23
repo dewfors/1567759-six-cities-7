@@ -1,10 +1,10 @@
-import {createReducer} from "@reduxjs/toolkit";
+import {createReducer} from '@reduxjs/toolkit';
 import {
   changeFavoritesError, changeFavoritesList,
   changeFavoritesRequest, changeFavoritesSuccess,
   loadFavoritesError,
-  loadFavoritesRequest, loadFavoritesSuccess,
-} from "../../action";
+  loadFavoritesRequest, loadFavoritesSuccess
+} from '../../action';
 
 const initialState = {
   favorites: [],

@@ -84,7 +84,6 @@ export const changeOfferFavorite = createAction(ActionType.CHANGE_OFFER_FAVORITE
 }));
 
 
-
 export const loadOfferRequest = createAction(ActionType.LOAD_OFFER_REQUEST);
 export const loadOfferSuccess = createAction(ActionType.LOAD_OFFER_SUCCESS, (offer) => ({
   payload: offer,

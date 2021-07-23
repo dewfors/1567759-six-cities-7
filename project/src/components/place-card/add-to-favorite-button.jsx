@@ -1,10 +1,11 @@
 import React from 'react';
 import {useRouteMatch} from 'react-router';
-import {useDispatch, useSelector} from "react-redux";
-import {getAuthorizationStatus} from "../../store/redusers/reduser-user/selectors-user";
-import {AppRoute, AuthorizationStatus} from "../../utils/const";
-import browserHistory from "../../utils/browser-history";
-import {fetchChangeFavoriteStatus} from "../../store/api-actions";
+import {useDispatch, useSelector} from 'react-redux';
+import PropTypes from 'prop-types';
+import {getAuthorizationStatus} from '../../store/redusers/reduser-user/selectors-user';
+import {AppRoute, AuthorizationStatus} from '../../utils/const';
+import browserHistory from '../../utils/browser-history';
+import {fetchChangeFavoriteStatus} from '../../store/api-actions';
 
 
 function AddFavoritesButton({ isFavorite, id }) {
@@ -12,8 +13,6 @@ function AddFavoritesButton({ isFavorite, id }) {
   const isAuth = authorizationStatus === AuthorizationStatus.AUTH;
   const dispatch = useDispatch();
   const {path} = useRouteMatch();
-
-  console.log();
 
   const width = path === AppRoute.OFFER ? 31 : 18;
   const height = path === AppRoute.OFFER ? 33 : 19;
@@ -24,13 +23,12 @@ function AddFavoritesButton({ isFavorite, id }) {
   const addToFavoritesActiveClassName = isFavorite ? 'place-card__bookmark-button--active' : '';
 
   const handleAddToFavorites = () => {
-    console.log(isAuth);
     if (!isAuth) {
       browserHistory.push(AppRoute.LOGIN);
       return;
     }
     dispatch(fetchChangeFavoriteStatus({id, status: Number(!isFavorite), path}));
-  }
+  };
 
 
   return (
@@ -44,9 +42,14 @@ function AddFavoritesButton({ isFavorite, id }) {
       </svg>
       <span className="visually-hidden">To bookmarks</span>
     </button>
-  )
+  );
 
 }
+
+AddFavoritesButton.propTypes = {
+  isFavorite: PropTypes.bool.isRequired,
+  id: PropTypes.number.isRequired,
+};
 
 export default AddFavoritesButton;
 

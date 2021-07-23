@@ -1,14 +1,12 @@
 import React, {useState} from 'react';
-import PropTypes from 'prop-types';
-import {connect, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import ListOffers from '../list-offers/list-offers';
 import Map from '../map/map';
-import placeCardProp from '../place-card/place-card.prop';
 import SortOffers from '../sort-offers/sort-offers';
 import LoadingScreen from '../loading-screen/loading-screen';
 import ListOffersEmpty from '../list-offers/list-offers-empty';
 import {getOffers, getOffersIsError, getOffersIsLoading} from '../../store/redusers/reduser-offers/selectors-offers';
-import {getCurrentCity} from "../../store/redusers/reduser-app/selectors-app";
+import {getCurrentCity} from '../../store/redusers/reduser-app/selectors-app';
 
 
 function HomeContent(props) {

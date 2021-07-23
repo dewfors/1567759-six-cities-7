@@ -33,7 +33,3 @@ const mapStateToProps = (state) => ({
 
 export {PrivateRoute};
 export default connect(mapStateToProps)(PrivateRoute);
-
-
-
-

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Switch, Route, BrowserRouter, Redirect, Router} from 'react-router-dom';
+import {Switch, Route, Redirect, Router} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {AppRoute, AuthorizationStatus} from '../../utils/const';
 import PageHome from '../page-home/page-home';
@@ -13,7 +13,7 @@ import placeCardProp from '../place-card/place-card.prop';
 import reviewProp from '../reviews/review.prop';
 import {getOffers} from '../../store/redusers/reduser-offers/selectors-offers';
 import {getAuthorizationStatus} from '../../store/redusers/reduser-user/selectors-user';
-import browserHistory from "../../utils/browser-history";
+import browserHistory from '../../utils/browser-history';
 
 
 function App(props) {

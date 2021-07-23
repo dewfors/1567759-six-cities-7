@@ -13,7 +13,7 @@ import Gallery from './gallery';
 import {getStarsWidth} from '../../utils/utils';
 import Host from './host';
 import {getOfferDetails, getOfferIsLoading, getOfferNearby} from '../../store/redusers/reduser-offers/selectors-offers';
-import AddFavoritesButton from "../place-card/add-to-favorite-button";
+import AddFavoritesButton from '../place-card/add-to-favorite-button';
 
 function PageOffer(props) {
   const {offersNearby, offerDetails, getOfferInfo, getOffersNearby, isOfferDetailsLoading} = props;

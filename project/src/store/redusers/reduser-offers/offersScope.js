@@ -52,10 +52,10 @@ const offersScope = createReducer(initialState, ((builder) => {
         if (item.id === action.payload.id) {
           item.isFavorite = action.payload.isFavorite;
         }
-      })
+      });
     })
     .addCase(changeOfferFavorite, (state, action) => {
-        state.offer.isFavorite = action.payload.isFavorite;
+      state.offer.isFavorite = action.payload.isFavorite;
     })
     .addCase(loadOfferRequest, (state) => {
       state.loadOfferStatus.isLoading = true;
