@@ -18,6 +18,8 @@ import {getAuthorizationStatus} from '../../store/redusers/reduser-user/selector
 function App(props) {
   const {comments, city, cityList, offers, authorizationStatus} = props;
 
+  console.log(offers);
+
   return (
     <BrowserRouter>
       <Switch>

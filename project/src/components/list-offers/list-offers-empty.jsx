@@ -23,7 +23,6 @@ function ListOffersEmpty(props) {
           </div>
         </section>
         {isError || <div className="cities__right-section" />}
-        <div className="cities__right-section"></div>
       </div>
     </div>
   );

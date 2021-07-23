@@ -1,17 +1,24 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import {connect, useSelector} from 'react-redux';
 import ListOffers from '../list-offers/list-offers';
 import Map from '../map/map';
 import placeCardProp from '../place-card/place-card.prop';
 import SortOffers from '../sort-offers/sort-offers';
 import LoadingScreen from '../loading-screen/loading-screen';
 import ListOffersEmpty from '../list-offers/list-offers-empty';
-import {getOffersIsError, getOffersIsLoading} from '../../store/redusers/reduser-offers/selectors-offers';
+import {getOffers, getOffersIsError, getOffersIsLoading} from '../../store/redusers/reduser-offers/selectors-offers';
+import {getCurrentCity} from "../../store/redusers/reduser-app/selectors-app";
 
 
 function HomeContent(props) {
-  const {placesToStay, offers, currentCity, isLoading, isError} = props;
+
+  const offers = useSelector(getOffers);
+  const currentCity = useSelector(getCurrentCity);
+  const isLoading = useSelector(getOffersIsLoading);
+  const isError = useSelector(getOffersIsError);
+
+  const placesToStay = offers.filter((offer) => (offer.city.name === currentCity)).length;
 
   const [activeOfferCardId, setActiveOfferCardId] = useState(0);
 
@@ -24,9 +31,12 @@ function HomeContent(props) {
   }
 
   if (isError) {
-    return <ListOffersEmpty currentCity={currentCity} isError={isError}/>;
+    return <ListOffersEmpty currentCity={currentCity} isError={isError} />;
   }
 
+  if (!offers.length) {
+    return <ListOffersEmpty currentCity={currentCity} isError={isError} />;
+  }
 
   return (
     <div className="cities">
@@ -49,23 +59,4 @@ function HomeContent(props) {
   );
 }
 
-HomeContent.propTypes = {
-  placesToStay: PropTypes.number.isRequired,
-  offers: PropTypes.arrayOf(
-    PropTypes.oneOfType([placeCardProp]).isRequired,
-  ).isRequired,
-  currentCity: PropTypes.string.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  isError: PropTypes.bool.isRequired,
-};
-
-const mapStateToProps = (state) => {
-  const isLoading = getOffersIsLoading(state);
-  const isError = getOffersIsError(state);
-  return {isLoading, isError};
-};
-
-
-export {HomeContent};
-
-export default connect(mapStateToProps)(HomeContent);
+export default HomeContent;

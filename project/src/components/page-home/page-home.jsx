@@ -24,7 +24,8 @@ function PageHome(props) {
       <Main className={`page__main--index ${pageMainIndexEmptyClassName}`}>
         <h1 className="visually-hidden">Cities</h1>
         <CityList onChangeCity={onChangeCity} cityList={cityList} currentCity={currentCity} />
-        <HomeContent placesToStay={placesToStay} offers={offersList} currentCity={currentCity}/>
+        {/*<HomeContent placesToStay={placesToStay} offers={offersList} currentCity={currentCity}/>*/}
+        <HomeContent />
       </Main>
     </Page>
   );
