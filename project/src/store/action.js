@@ -8,9 +8,13 @@ export const ActionType = {
   LOAD_OFFERS_SUCCESS: 'offers/loadSuccess',
   LOAD_OFFERS_ERROR: 'offers/loadError',
 
+  CHANGE_OFFERS_FAVORITES: 'offers/changeOffer',
+
   LOAD_OFFER_REQUEST: 'offer/loadRequest',
   LOAD_OFFER_SUCCESS: 'offer/loadSuccess',
   LOAD_OFFER_ERROR: 'offer/loadError',
+
+  CHANGE_OFFER_FAVORITE: 'offer/changeOffer',
 
   LOAD_OFFER_NEARBY_REQUEST: 'offer-nearby/request',
   LOAD_OFFER_NEARBY_SUCCESS: 'offer-nearby/success',
@@ -25,6 +29,17 @@ export const ActionType = {
   SEND_NEW_REVIEW_REQUEST: 'review/new-review-request',
   SEND_NEW_REVIEW_ERROR: 'review/new-review-error',
   SEND_NEW_REVIEW_SUCCESS: 'review/new-review-success',
+
+
+  LOAD_FAVORITES_REQUEST: 'favorites/loadRequest',
+  LOAD_FAVORITES_SUCCESS: 'favorites/loadSuccess',
+  LOAD_FAVORITES_ERROR: 'favorites/loadError',
+
+
+  CHANGE_FAVORITES_REQUEST: 'favorites/changeRequest',
+  CHANGE_FAVORITES_SUCCESS: 'favorites/changeSuccess',
+  CHANGE_FAVORITES_ERROR: 'favorites/changeError',
+  CHANGE_FAVORITES_LIST: 'favorites/changeList',
 
 
   LOGIN_REQUEST: 'login/request',
@@ -61,13 +76,19 @@ export const loadOffersSuccess = createAction(ActionType.LOAD_OFFERS_SUCCESS, (o
 }));
 export const loadOffersError = createAction(ActionType.LOAD_OFFERS_ERROR);
 
+export const changeOffersFavorite = createAction(ActionType.CHANGE_OFFERS_FAVORITES, (offer) => ({
+  payload: offer,
+}));
+export const changeOfferFavorite = createAction(ActionType.CHANGE_OFFER_FAVORITE, (offer) => ({
+  payload: offer,
+}));
+
 
 export const loadOfferRequest = createAction(ActionType.LOAD_OFFER_REQUEST);
 export const loadOfferSuccess = createAction(ActionType.LOAD_OFFER_SUCCESS, (offer) => ({
   payload: offer,
 }));
 export const loadOfferError = createAction(ActionType.LOAD_OFFER_ERROR);
-
 
 export const loadOfferNearbyRequest = createAction(ActionType.LOAD_OFFER_NEARBY_REQUEST);
 export const loadOfferNearbySuccess = createAction(ActionType.LOAD_OFFER_NEARBY_SUCCESS, (offers) => ({
@@ -113,3 +134,22 @@ export const redirectToBack = createAction(ActionType.REDIRECT_TO_BACK);
 export const redirectToUrl = createAction(ActionType.REDIRECT_TO_URL, (url) => ({
   payload: url,
 }));
+
+
+export const loadFavoritesRequest = createAction(ActionType.LOAD_FAVORITES_REQUEST);
+export const loadFavoritesSuccess = createAction(ActionType.LOAD_FAVORITES_SUCCESS, (favoritesOffers) => ({
+  payload: favoritesOffers,
+}));
+export const loadFavoritesError = createAction(ActionType.LOAD_FAVORITES_ERROR);
+
+
+export const changeFavoritesRequest = createAction(ActionType.CHANGE_FAVORITES_REQUEST);
+export const changeFavoritesSuccess = createAction(ActionType.CHANGE_FAVORITES_SUCCESS, (favoriteOffer) => ({
+  payload: favoriteOffer,
+}));
+export const changeFavoritesError = createAction(ActionType.CHANGE_FAVORITES_ERROR);
+export const changeFavoritesList = createAction(ActionType.CHANGE_FAVORITES_LIST, (favoriteOffer) => ({
+  payload: favoriteOffer,
+}));
+
+

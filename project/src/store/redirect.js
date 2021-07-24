@@ -1,7 +1,5 @@
-import {createBrowserHistory} from 'history';
+import browserHistory from '../utils/browser-history';
 import {ActionType} from './action';
-
-const browserHistory = createBrowserHistory();
 
 const Redirect = () => (next) => (action) => {
   if (action.type === ActionType.REDIRECT_TO_URL) {

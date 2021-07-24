@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Switch, Route, BrowserRouter, Redirect} from 'react-router-dom';
+import {Switch, Route, Redirect, Router} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {AppRoute, AuthorizationStatus} from '../../utils/const';
 import PageHome from '../page-home/page-home';
@@ -13,16 +13,17 @@ import placeCardProp from '../place-card/place-card.prop';
 import reviewProp from '../reviews/review.prop';
 import {getOffers} from '../../store/redusers/reduser-offers/selectors-offers';
 import {getAuthorizationStatus} from '../../store/redusers/reduser-user/selectors-user';
+import browserHistory from '../../utils/browser-history';
 
 
 function App(props) {
   const {comments, city, cityList, offers, authorizationStatus} = props;
 
   return (
-    <BrowserRouter>
+    <Router history={browserHistory}>
       <Switch>
         <Route exact path = {AppRoute.ROOT} render={((routerProps) => <PageHome {...routerProps} cityList={cityList} />)} />
-        <PrivateRoute exact path = {AppRoute.FAVORITES} render={((routerProps) => <PageFavorites {...routerProps} offers={offers} />)} />
+        <PrivateRoute exact path = {AppRoute.FAVORITES} render={((routerProps) => <PageFavorites {...routerProps} />)} />
         <Route exact path={AppRoute.LOGIN}>
           {authorizationStatus === AuthorizationStatus.AUTH
             ? <Redirect to={AppRoute.ROOT} />
@@ -30,11 +31,10 @@ function App(props) {
         </Route>
         <Route exact path = {AppRoute.OFFER} render={((routerProps) => <PageOffer {...routerProps} offers={offers} city={city} comments={comments} />)} />
 
-        {/*<Route exact path = {AppRoute.NOT_FOUND} render={((routerProps) => <PageNotFound {...routerProps} />)} />*/}
-
+        <Route exact path = {AppRoute.NOT_FOUND} render={((routerProps) => <PageNotFound {...routerProps} />)} />
         <Route component={PageNotFound} />
       </Switch>
-    </BrowserRouter>
+    </Router>
 
   );
 }

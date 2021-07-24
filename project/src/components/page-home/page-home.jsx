@@ -14,7 +14,6 @@ import {getOffers} from '../../store/redusers/reduser-offers/selectors-offers';
 function PageHome(props) {
   const {offers, cityList, currentCity, onChangeCity} = props;
   const offersList = offers.filter((offer) => (offer.city.name === currentCity));
-  const placesToStay = offersList.length;
 
   const isOffersEmpty = offersList.length === 0;
   const pageMainIndexEmptyClassName = isOffersEmpty ? 'page__main--index-empty' : '';
@@ -24,7 +23,7 @@ function PageHome(props) {
       <Main className={`page__main--index ${pageMainIndexEmptyClassName}`}>
         <h1 className="visually-hidden">Cities</h1>
         <CityList onChangeCity={onChangeCity} cityList={cityList} currentCity={currentCity} />
-        <HomeContent placesToStay={placesToStay} offers={offersList} currentCity={currentCity}/>
+        <HomeContent />
       </Main>
     </Page>
   );
