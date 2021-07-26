@@ -26,17 +26,19 @@ import {getAdaptedToClientObject} from '../utils/utils';
 
 export const fetchHotels = () => (dispatch, store, api) => {
   dispatch(loadOffersRequest());
-  api.get(AppRoute.HOTELS)
-    .then(({ data }) => {
+  return api.get(AppRoute.HOTELS)
+    .then(({data}) => {
       const offers = data.map(getAdaptedToClientObject);
       dispatch(loadOffersSuccess(offers));
     })
-    .catch(() => { dispatch(loadOffersError()); });
+    .catch(() => {
+      dispatch(loadOffersError());
+    });
 };
 
-export const checkAuth = () => (dispatch, store, api) => {
+export const checkAuth = () => (dispatch, store, api) =>
   api.get(AppRoute.LOGIN)
-    .then(({ data }) => {
+    .then(({data}) => {
       dispatch(requireAuthorization(AuthorizationStatus.AUTH));
       const userData = getAdaptedToClientObject(data);
       dispatch(setAuthUserData(userData));
@@ -44,11 +46,11 @@ export const checkAuth = () => (dispatch, store, api) => {
     .catch(() => {
       dispatch(setAuthUserData({}));
     });
-};
+
 
 export const fetchLogin = (fetchLoginData) => (dispatch, store, api) => {
   dispatch(loginRequest());
-  api.post(AppRoute.LOGIN, fetchLoginData)
+  return api.post(AppRoute.LOGIN, fetchLoginData)
     .then(({data}) => {
       localStorage.setItem('token', data.token);
       dispatch(requireAuthorization(AuthorizationStatus.AUTH));
@@ -64,19 +66,21 @@ export const fetchLogin = (fetchLoginData) => (dispatch, store, api) => {
 
 export const fetchLogout = () => (dispatch, _store, api) => {
   dispatch(logoutRequest());
-  api.delete(AppRoute.LOGOUT)
+  return api.delete(AppRoute.LOGOUT)
     .then(() => {
       dispatch(logoutSuccess());
       dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
     })
-    .then(() => { dispatch(redirectToUrl(AppRoute.ROOT)); })
+    .then(() => {
+      dispatch(redirectToUrl(AppRoute.ROOT));
+    })
     .catch(() => dispatch(logoutError()));
 };
 
 export const fetchOfferDetails = (id) => (dispatch, _store, api) => {
   dispatch(loadOfferRequest());
-  api.get(`${AppRoute.HOTELS}/${id}`)
-    .then(({ data }) => {
+  return api.get(`${AppRoute.HOTELS}/${id}`)
+    .then(({data}) => {
       const offer = getAdaptedToClientObject(data);
       dispatch(loadOfferSuccess(offer));
     })
@@ -90,7 +94,7 @@ export const fetchOfferDetails = (id) => (dispatch, _store, api) => {
 export const fetchNearbyOffers = (id) => (dispatch, _store, api) => {
   dispatch(loadOfferNearbyRequest());
   api.get(`${AppRoute.HOTELS}/${id}${AppRoute.NEARBY}`)
-    .then(({ data }) => {
+    .then(({data}) => {
       const offers = data.map(getAdaptedToClientObject);
       dispatch(loadOfferNearbySuccess(offers));
     })
@@ -100,7 +104,7 @@ export const fetchNearbyOffers = (id) => (dispatch, _store, api) => {
 export const fetchReviews = (id) => (dispatch, _store, api) => {
   dispatch(loadReviewRequest());
   api.get(`${AppRoute.COMMENTS}/${id}`)
-    .then(({ data }) => {
+    .then(({data}) => {
       const reviews = data.map(getAdaptedToClientObject);
       dispatch(loadReviewSuccess(reviews));
     })
@@ -110,7 +114,7 @@ export const fetchReviews = (id) => (dispatch, _store, api) => {
 export const sendNewReview = (id, newComment) => (dispatch, _store, api) => {
   dispatch(sendNewReviewRequest());
   api.post(`${AppRoute.COMMENTS}/${id}`, newComment)
-    .then(({ data }) => {
+    .then(({data}) => {
       const reviews = data.map(getAdaptedToClientObject);
       dispatch(sendNewReviewSuccess(reviews));
     })
@@ -120,7 +124,7 @@ export const sendNewReview = (id, newComment) => (dispatch, _store, api) => {
 export const fetchFavorites = () => (dispatch, store, api) => {
   dispatch(loadFavoritesRequest());
   api.get(AppRoute.FAVORITES)
-    .then(({ data }) => {
+    .then(({data}) => {
       const favoritesOffers = data.map(getAdaptedToClientObject);
       dispatch(loadFavoritesSuccess(favoritesOffers));
     })
@@ -132,7 +136,7 @@ export const fetchFavorites = () => (dispatch, store, api) => {
 export const fetchChangeFavoriteStatus = ({id, status, path}) => (dispatch, store, api) => {
   dispatch(changeFavoritesRequest());
   api.post(`${AppRoute.FAVORITES}/${id}/${status}`)
-    .then(({ data }) => {
+    .then(({data}) => {
       const offer = getAdaptedToClientObject(data);
       dispatch(changeFavoritesSuccess(offer));
 

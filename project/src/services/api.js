@@ -8,6 +8,7 @@ const HttpCode = {
 };
 
 const token = localStorage.getItem('token') ?? '';
+const getToken = () => localStorage.getItem('token') ?? '';
 
 export function createAPI(onUnauthorized) {
   const api = axios.create({
@@ -29,6 +30,13 @@ export function createAPI(onUnauthorized) {
 
     throw err;
   };
+
+
+  api.interceptors.request.use((config) => {
+    const currentToken = getToken();
+    config.headers['x-token'] = currentToken;
+    return config;
+  });
 
   api.interceptors.response.use(onSuccess, onFail);
   return api;
