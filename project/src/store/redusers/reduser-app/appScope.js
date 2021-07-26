@@ -19,4 +19,4 @@ const appScope = createReducer(initialState, ((builder) => {
     });
 }));
 
-export {appScope};
+export {appScope, SORT_TYPE_DEFAULT};
