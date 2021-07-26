@@ -5,7 +5,6 @@ import {createMemoryHistory} from 'history';
 import PageNotFound from './page-not-found';
 
 describe('Component: PageNotFound', () => {
-
   it('should render correctly', () => {
     const history = createMemoryHistory();
     const {getByText} = render(
