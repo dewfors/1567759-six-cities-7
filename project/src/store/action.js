@@ -90,6 +90,7 @@ export const loadOfferSuccess = createAction(ActionType.LOAD_OFFER_SUCCESS, (off
 }));
 export const loadOfferError = createAction(ActionType.LOAD_OFFER_ERROR);
 
+
 export const loadOfferNearbyRequest = createAction(ActionType.LOAD_OFFER_NEARBY_REQUEST);
 export const loadOfferNearbySuccess = createAction(ActionType.LOAD_OFFER_NEARBY_SUCCESS, (offers) => ({
   payload: offers,
@@ -148,6 +149,7 @@ export const changeFavoritesSuccess = createAction(ActionType.CHANGE_FAVORITES_S
   payload: favoriteOffer,
 }));
 export const changeFavoritesError = createAction(ActionType.CHANGE_FAVORITES_ERROR);
+
 export const changeFavoritesList = createAction(ActionType.CHANGE_FAVORITES_LIST, (favoriteOffer) => ({
   payload: favoriteOffer,
 }));
