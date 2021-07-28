@@ -12,8 +12,6 @@ function Map(props) {
   const cityInfo = Settings.CITIES_INFO.filter((cityItem) => city === cityItem.name)[0] || Settings.CITIES_INFO[0];
   const map = useMap(mapRef, cityInfo);
 
-
-
   const icon = leaflet.icon({
     iconUrl: 'img/pin.svg',
     iconSize: [30, 30],
@@ -28,7 +26,6 @@ function Map(props) {
 
   useEffect(() => {
     if (map) {
-      console.log(map);
 
       offers.forEach((offer) => {
         leaflet

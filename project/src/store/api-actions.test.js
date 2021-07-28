@@ -250,4 +250,29 @@ describe('Async operations', () => {
       });
   });
 
+  it('should make a correct API call to DELETE /logout', () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const fetchLogoutLoader = fetchLogout();
+
+    apiMock
+      .onDelete(AppRoute.LOGOUT)
+      .reply(200);
+
+    return fetchLogoutLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(4);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOGOUT_REQUEST,
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: ActionType.LOGOUT_SUCCESS,
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(3, {
+          type: ActionType.REQUIRED_AUTHORIZATION,
+          payload: AuthorizationStatus.NO_AUTH,
+        });
+      });
+  });
+
 });

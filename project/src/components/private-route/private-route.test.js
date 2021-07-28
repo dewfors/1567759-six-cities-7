@@ -6,7 +6,7 @@ import configureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
 import {AuthorizationStatus} from '../../utils/const';
 import PrivateRoute from './private-route';
-import {NameSpace} from "../../store/redusers/root-ruduser";
+import {NameSpace} from '../../store/redusers/root-ruduser';
 
 const mockStore = configureStore({});
 let history;
@@ -57,7 +57,7 @@ describe('Component: PrivateRoute', () => {
         </Router>
       </Provider>,
     );
-    
+
     expect(screen.getByText(/Private Route/i)).toBeInTheDocument();
     expect(screen.queryByText(/Public Route/i)).not.toBeInTheDocument();
   });
