@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import {connect, useSelector} from 'react-redux';
 import {Switch, Route, Redirect, Router} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {AppRoute, AuthorizationStatus} from '../../utils/const';
@@ -17,19 +17,25 @@ import browserHistory from '../../utils/browser-history';
 
 
 function App(props) {
-  const {comments, city, cityList, offers, authorizationStatus} = props;
+  // const {comments, city, cityList} = props;
+
+  // const offers = useSelector(getOffers);
+  const authorizationStatus = useSelector(getAuthorizationStatus);
+
 
   return (
     <Router history={browserHistory}>
       <Switch>
-        <Route exact path = {AppRoute.ROOT} render={((routerProps) => <PageHome {...routerProps} cityList={cityList} />)} />
+        {/*<Route exact path = {AppRoute.ROOT} render={((routerProps) => <PageHome {...routerProps} cityList={cityList} />)} />*/}
+        <Route exact path = {AppRoute.ROOT} render={((routerProps) => <PageHome {...routerProps} />)} />
         <PrivateRoute exact path = {AppRoute.FAVORITES} render={((routerProps) => <PageFavorites {...routerProps} />)} />
         <Route exact path={AppRoute.LOGIN}>
           {authorizationStatus === AuthorizationStatus.AUTH
             ? <Redirect to={AppRoute.ROOT} />
             : <PageLogin />}
         </Route>
-        <Route exact path = {AppRoute.OFFER} render={((routerProps) => <PageOffer {...routerProps} offers={offers} city={city} comments={comments} />)} />
+        {/*<Route exact path = {AppRoute.OFFER} render={((routerProps) => <PageOffer {...routerProps} offers={offers} city={city} comments={comments} />)} />*/}
+        <Route exact path = {AppRoute.OFFER} render={((routerProps) => <PageOffer {...routerProps} />)} />
 
         <Route exact path = {AppRoute.NOT_FOUND} render={((routerProps) => <PageNotFound {...routerProps} />)} />
         <Route component={PageNotFound} />
@@ -39,29 +45,23 @@ function App(props) {
   );
 }
 
-App.propTypes = {
-  offers: PropTypes.arrayOf(
-    PropTypes.oneOfType([placeCardProp]).isRequired,
-  ).isRequired,
-  city: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    lat: PropTypes.number.isRequired,
-    lng: PropTypes.number.isRequired,
-    zoom: PropTypes.number.isRequired,
-  }).isRequired,
-  comments: PropTypes.arrayOf(
-    PropTypes.oneOfType([reviewProp]).isRequired,
-  ).isRequired,
-  cityList: PropTypes.arrayOf(
-    PropTypes.string.isRequired,
-  ).isRequired,
-  authorizationStatus: PropTypes.string.isRequired,
-};
+// App.propTypes = {
+//   // offers: PropTypes.arrayOf(
+//   //   PropTypes.oneOfType([placeCardProp]).isRequired,
+//   // ).isRequired,
+//   // city: PropTypes.shape({
+//   //   title: PropTypes.string.isRequired,
+//   //   lat: PropTypes.number.isRequired,
+//   //   lng: PropTypes.number.isRequired,
+//   //   zoom: PropTypes.number.isRequired,
+//   // }).isRequired,
+//   // comments: PropTypes.arrayOf(
+//   //   PropTypes.oneOfType([reviewProp]).isRequired,
+//   // ).isRequired,
+//   // cityList: PropTypes.arrayOf(
+//   //   PropTypes.string.isRequired,
+//   // ).isRequired,
+//   // authorizationStatus: PropTypes.string.isRequired,
+// };
 
-const mapStateToProps = (state) => ({
-  offers: getOffers(state),
-  authorizationStatus: getAuthorizationStatus(state),
-});
-
-export {App};
-export default connect(mapStateToProps)(App);
+export default App;

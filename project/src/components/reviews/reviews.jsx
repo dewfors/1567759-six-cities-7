@@ -1,18 +1,27 @@
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import {connect, useDispatch, useSelector} from 'react-redux';
 import ReviewsForm from '../reviews-form/reviews-form';
 import ReviewsItem from './reviews-item';
 import {getReviewsSorted} from '../../utils/utils';
 import reviewProp from './review.prop';
 import {fetchReviews} from '../../store/api-actions';
+import {getAuthorizationStatus} from "../../store/redusers/reduser-user/selectors-user";
+import {getComments} from "../../store/redusers/reduser-reviews/selectors-revievs";
 
 function Reviews(props) {
-  const {id, comments, getReviews} = props;
+  const {id} = props;
+
+  const dispatch = useDispatch();
+  const comments = useSelector(getComments);
+  const getReviews = (id) => {
+    dispatch(fetchReviews(id));
+  }
 
   useEffect(() => {
     getReviews(id);
   }, [id, getReviews]);
+
 
 
   const reviewsCount = comments.length;
@@ -32,22 +41,10 @@ function Reviews(props) {
 
 Reviews.propTypes = {
   id: PropTypes.string.isRequired,
-  comments: PropTypes.arrayOf(
-    PropTypes.oneOfType([reviewProp]).isRequired,
-  ).isRequired,
-  getReviews: PropTypes.func.isRequired,
+  // comments: PropTypes.arrayOf(
+  //   PropTypes.oneOfType([reviewProp]).isRequired,
+  // ).isRequired,
+  // getReviews: PropTypes.func.isRequired,
 };
 
-// const mapStateToProps = (state) => ({
-const mapStateToProps = ({commentSpace}) => ({
-  comments: commentSpace.reviews,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  getReviews(id) {
-    dispatch(fetchReviews(id));
-  },
-});
-
-export {Reviews};
-export default connect(mapStateToProps, mapDispatchToProps)(Reviews);
+export default Reviews;

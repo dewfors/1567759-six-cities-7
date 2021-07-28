@@ -9,6 +9,7 @@ import {fetchChangeFavoriteStatus} from '../../store/api-actions';
 
 
 function AddFavoritesButton({ isFavorite, id }) {
+
   const authorizationStatus = useSelector(getAuthorizationStatus);
   const isAuth = authorizationStatus === AuthorizationStatus.AUTH;
   const dispatch = useDispatch();
@@ -47,7 +48,7 @@ function AddFavoritesButton({ isFavorite, id }) {
 }
 
 AddFavoritesButton.propTypes = {
-  isFavorite: PropTypes.bool.isRequired,
+  isFavorite: PropTypes.bool,
   id: PropTypes.number.isRequired,
 };
 

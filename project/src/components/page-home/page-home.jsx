@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import {connect, useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import placeCardProp from '../place-card/place-card.prop';
 import Page from '../app/page';
@@ -9,14 +9,25 @@ import HomeContent from './home-content';
 import {changeCity} from '../../store/action';
 import {getCurrentCity} from '../../store/redusers/reduser-app/selectors-app';
 import {getOffers} from '../../store/redusers/reduser-offers/selectors-offers';
+import {Settings} from "../../utils/const";
 
 
 function PageHome(props) {
-  const {offers, cityList, currentCity, onChangeCity} = props;
+  // const {cityList} = props;
+
+  const cityList = Settings.CITYES;
+
+  const dispatch = useDispatch();
+  const offers = useSelector(getOffers);
+  const currentCity = useSelector(getCurrentCity);
   const offersList = offers.filter((offer) => (offer.city.name === currentCity));
 
   const isOffersEmpty = offersList.length === 0;
   const pageMainIndexEmptyClassName = isOffersEmpty ? 'page__main--index-empty' : '';
+
+  const onChangeCity = (city) => {
+    dispatch(changeCity(city));
+  }
 
   return (
     <Page className="page--gray page--main" {...props}>
@@ -29,27 +40,10 @@ function PageHome(props) {
   );
 }
 
-PageHome.propTypes = {
-  offers: PropTypes.arrayOf(
-    PropTypes.oneOfType([placeCardProp]).isRequired,
-  ).isRequired,
-  cityList: PropTypes.arrayOf(
-    PropTypes.string.isRequired,
-  ).isRequired,
-  currentCity: PropTypes.string.isRequired,
-  onChangeCity: PropTypes.func.isRequired,
-};
+// PageHome.propTypes = {
+//   cityList: PropTypes.arrayOf(
+//     PropTypes.string.isRequired,
+//   ).isRequired,
+// };
 
-const mapStateToProps = (state) => ({
-  currentCity: getCurrentCity(state),
-  offers: getOffers(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onChangeCity(city) {
-    dispatch(changeCity(city));
-  },
-});
-
-export {PageHome};
-export default connect(mapStateToProps, mapDispatchToProps)(PageHome);
+export default PageHome;

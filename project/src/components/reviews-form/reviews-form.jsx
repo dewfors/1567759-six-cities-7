@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import {connect, useDispatch, useSelector} from 'react-redux';
 import {getStarsList} from '../../utils/utils';
 import {AuthorizationStatus, formReviewKeyType} from '../../utils/const';
 import {sendNewReview} from '../../store/api-actions';
+import {getAuthorizationStatus} from "../../store/redusers/reduser-user/selectors-user";
 
 
 const MIN_LENGTH_COMMENT = 50;
@@ -28,11 +29,18 @@ function Stars(props) {
 }
 
 function ReviewsForm(props) {
-  const {id, authorizationStatus, sendReview} = props;
+  const {id} = props;
   const starsList = getStarsList();
   const [userData, setUserData] = useState({ comment: '', rating: 0 });
   const isValid = userData.rating && userData.comment.length > MIN_LENGTH_COMMENT;
 
+
+  const dispatch = useDispatch();
+  const authorizationStatus = useSelector(getAuthorizationStatus);
+
+  const sendReview = (id, review) => {
+    dispatch(sendNewReview(id, review));
+  }
 
   if (authorizationStatus !== AuthorizationStatus.AUTH) {
     return null;
@@ -89,23 +97,9 @@ function ReviewsForm(props) {
 }
 
 ReviewsForm.propTypes = {
-  sendReview: PropTypes.func.isRequired,
+  // sendReview: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
-  authorizationStatus: PropTypes.string.isRequired,
+  // authorizationStatus: PropTypes.string.isRequired,
 };
 
-
-// const mapStateToProps = (state) => ({
-const mapStateToProps = ({userSpace}) => ({
-  authorizationStatus: userSpace.authorizationStatus,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  sendReview(id, review) {
-    dispatch(sendNewReview(id, review));
-  },
-});
-
-
-export {ReviewsForm};
-export default connect(mapStateToProps, mapDispatchToProps)(ReviewsForm);
+export default ReviewsForm;

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {useParams} from 'react-router';
-import {connect} from 'react-redux';
+import {connect, useDispatch, useSelector} from 'react-redux';
 import Reviews from '../reviews/reviews';
 import Map from '../map/map';
 import ListNearOffers from '../list-near-offers/list-near-offers';
@@ -14,25 +14,46 @@ import {getStarsWidth} from '../../utils/utils';
 import Host from './host';
 import {getOfferDetails, getOfferIsLoading, getOfferNearby} from '../../store/redusers/reduser-offers/selectors-offers';
 import AddFavoritesButton from '../place-card/add-to-favorite-button';
+import {getComments} from "../../store/redusers/reduser-reviews/selectors-revievs";
 
 function PageOffer(props) {
-  const {offersNearby, offerDetails, getOfferInfo, getOffersNearby, isOfferDetailsLoading} = props;
+  // const {getOfferInfo, getOffersNearby} = props;
 
   const {id} = useParams();
 
+  const [activeOfferCardId, setActiveOfferCardId] = useState(0);
+
+  const dispatch = useDispatch();
+  const getOffersNearby = (id) => {
+    dispatch(fetchNearbyOffers(id));
+  };
+  const getOfferInfo = (id) => {
+    dispatch(fetchOfferDetails(id));
+  };
+  useEffect(() => {
+    getOffersNearby(id);
+    getOfferInfo(id);
+  }, [id]);
+
+
+
+  const offerDetails = useSelector(getOfferDetails);
+  const isOfferDetailsLoading = useSelector(getOfferIsLoading);
+  const offersNearby = useSelector(getOfferNearby);
+
+
+
   const {images, isPrime, title, rating, type, bedrooms, maxAdults,
     price, goods, host, description, city, isFavorite} = offerDetails;
-
-  const [activeOfferCardId, setActiveOfferCardId] = useState(0);
 
   const handleActiveOfferCard = (offerCard) => {
     setActiveOfferCardId(offerCard.id);
   };
 
-  useEffect(() => {
-    getOffersNearby(id);
-    getOfferInfo(id);
-  }, [id, getOffersNearby, getOfferInfo]);
+  // useEffect(() => {
+  //   getOffersNearby(id);
+  //   getOfferInfo(id);
+  // }, [id]);
 
   if (isOfferDetailsLoading) {
     return (
@@ -70,7 +91,7 @@ function PageOffer(props) {
                 <h1 className="property__name">
                   {title}
                 </h1>
-                <AddFavoritesButton isFavorite={isFavorite} id={id} />
+                <AddFavoritesButton isFavorite={isFavorite} id={Number(id)} />
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
@@ -131,9 +152,9 @@ function PageOffer(props) {
 }
 
 PageOffer.propTypes = {
-  offersNearby: PropTypes.arrayOf(
-    PropTypes.oneOfType([placeCardProp]).isRequired,
-  ).isRequired,
+  // offersNearby: PropTypes.arrayOf(
+  //   PropTypes.oneOfType([placeCardProp]).isRequired,
+  // ).isRequired,
   city: PropTypes.shape({
     name: PropTypes.string,
     location: PropTypes.shape({
@@ -142,30 +163,14 @@ PageOffer.propTypes = {
       zoom: PropTypes.number.isRequired,
     }),
   }),
-  offerDetails: placeCardProp,
-  getOfferInfo: PropTypes.func.isRequired,
-  getOffersNearby: PropTypes.func.isRequired,
-  isOfferDetailsLoading: PropTypes.bool.isRequired,
+  // offerDetails: placeCardProp,
+  // getOfferInfo: PropTypes.func.isRequired,
+  // getOffersNearby: PropTypes.func.isRequired,
+  // isOfferDetailsLoading: PropTypes.bool.isRequired,
 };
 
 PageOffer.defaultProps = {
   offerDetails: {},
 };
 
-const mapStateToProps = () => (state) => ({
-  offerDetails: getOfferDetails(state),
-  isOfferDetailsLoading: getOfferIsLoading(state),
-  offersNearby: getOfferNearby(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  getOffersNearby(id) {
-    dispatch(fetchNearbyOffers(id));
-  },
-  getOfferInfo(id) {
-    dispatch(fetchOfferDetails(id));
-  },
-});
-
-export {PageOffer};
-export default connect(mapStateToProps, mapDispatchToProps)(PageOffer);
+export default PageOffer;
