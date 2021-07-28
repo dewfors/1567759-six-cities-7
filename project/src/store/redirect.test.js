@@ -29,4 +29,21 @@ describe('Middleware: redirect', () => {
     invoke(action);
     expect(next).toHaveBeenCalledWith(action);
   });
+
+  it('route should be added to fakeHistory', () => {
+    const {invoke} = mockRedux();
+    invoke(redirectToUrl(AppRoute.LOGIN));
+    expect(fakeHistory.location.pathname).toBe(AppRoute.LOGIN);
+
+    invoke(redirectToUrl(AppRoute.NOT_FOUND));
+    expect(fakeHistory.location.pathname).toBe(AppRoute.NOT_FOUND);
+  });
+
+  it('should not redirect because bad action', () => {
+    const url = '/test-url';
+    const {invoke} = mockRedux();
+    invoke({type: 'TEST_ACTION', payload: url});
+    expect(fakeHistory.location.pathname).not.toBe(url);
+  });
+
 });
