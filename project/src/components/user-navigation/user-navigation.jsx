@@ -1,15 +1,21 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {AppRoute, AuthorizationStatus} from '../../utils/const';
 import {Link} from 'react-router-dom';
 import {fetchLogout} from '../../store/api-actions';
+import {getAuthorizationStatus, getUserInfoStatus} from '../../store/redusers/reduser-user/selectors-user';
 
 function UserNavigation(props) {
 
-  const {authorizationStatus, logout, userInfo} = props;
+  const dispatch = useDispatch();
+  const authorizationStatus = useSelector(getAuthorizationStatus);
+  const userInfo = useSelector(getUserInfoStatus);
 
   const isAuth = authorizationStatus === AuthorizationStatus.AUTH;
+
+  const logout = () => {
+    dispatch(fetchLogout());
+  };
 
   const userNameClass = isAuth
     ? 'header__user-name user__name'
@@ -59,34 +65,4 @@ function UserNavigation(props) {
   );
 }
 
-UserNavigation.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
-  userInfo: PropTypes.shape({
-    id: PropTypes.number,
-    email: PropTypes.string,
-    name: PropTypes.string,
-    avatarUrl: PropTypes.string,
-    isPro: PropTypes.bool,
-    token: PropTypes.string,
-  }),
-  logout: PropTypes.func.isRequired,
-};
-
-
-// const mapStateToProps = (state) => ({
-const mapStateToProps = ({userSpace}) => ({
-  authorizationStatus: userSpace.authorizationStatus,
-  userInfo: userSpace.userInfo,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  logout() {
-    dispatch(fetchLogout());
-  },
-});
-
-
-export {UserNavigation};
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserNavigation);
-
+export default UserNavigation;

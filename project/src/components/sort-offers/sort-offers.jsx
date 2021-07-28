@@ -1,12 +1,17 @@
 import React, {useState} from 'react';
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {changeSortType} from '../../store/action';
 import {SortingTypes} from '../../utils/const';
+import {getCurrentSortType} from '../../store/redusers/reduser-app/selectors-app';
 
-function SortOffers(props) {
+function SortOffers() {
 
-  const {currentSort, setCurrentSort} = props;
+  const dispatch = useDispatch();
+  const currentSort = useSelector(getCurrentSortType);
+
+  const setCurrentSort = (value) => {
+    dispatch(changeSortType(value));
+  };
 
   const [isVisibleSortMenu, setVisibleSortMenu] = useState(false);
 
@@ -53,20 +58,4 @@ function SortOffers(props) {
   );
 }
 
-SortOffers.propTypes = {
-  currentSort: PropTypes.string.isRequired,
-  setCurrentSort: PropTypes.func.isRequired,
-};
-
-const stateToProps = ({appSpace}) => ({
-  currentSort: appSpace.currentSortType,
-});
-
-const dispatchToProps = (dispatch) => ({
-  setCurrentSort(value) {
-    dispatch(changeSortType(value));
-  },
-});
-
-export {SortOffers};
-export default connect(stateToProps, dispatchToProps)(SortOffers);
+export default SortOffers;

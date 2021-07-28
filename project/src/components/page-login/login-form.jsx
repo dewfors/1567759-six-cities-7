@@ -1,11 +1,13 @@
 import React, {useRef} from 'react';
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {fetchLogin} from '../../store/api-actions';
 
-function LoginForm(props) {
+function LoginForm() {
 
-  const {sendLoginData} = props;
+  const dispatch = useDispatch();
+  const sendLoginData = (value) => {
+    dispatch(fetchLogin(value));
+  };
 
   const loginRef = useRef();
   const passwordRef = useRef();
@@ -17,7 +19,6 @@ function LoginForm(props) {
       password: passwordRef.current.value,
     });
   };
-
 
   return (
     <section className="login">
@@ -56,20 +57,4 @@ function LoginForm(props) {
   );
 }
 
-LoginForm.propTypes = {
-  sendLoginData: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  loginStatus: state.loginStatus,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  sendLoginData(value) {
-    dispatch(fetchLogin(value));
-  },
-});
-
-export {LoginForm};
-
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+export default LoginForm;
