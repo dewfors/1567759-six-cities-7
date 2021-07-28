@@ -1,18 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import {connect, useDispatch, useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {AppRoute, AuthorizationStatus} from '../../utils/const';
 import {Link} from 'react-router-dom';
 import {fetchLogout} from '../../store/api-actions';
-import {getAuthorizationStatus, getUserInfoStatus} from "../../store/redusers/reduser-user/selectors-user";
+import {getAuthorizationStatus, getUserInfoStatus} from '../../store/redusers/reduser-user/selectors-user';
 
 function UserNavigation(props) {
 
   const dispatch = useDispatch();
   const authorizationStatus = useSelector(getAuthorizationStatus);
   const userInfo = useSelector(getUserInfoStatus);
-
-  // const {authorizationStatus, userInfo} = props;
 
   const isAuth = authorizationStatus === AuthorizationStatus.AUTH;
 

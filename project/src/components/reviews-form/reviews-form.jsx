@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import {connect, useDispatch, useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {getStarsList} from '../../utils/utils';
 import {AuthorizationStatus, formReviewKeyType} from '../../utils/const';
 import {sendNewReview} from '../../store/api-actions';
-import {getAuthorizationStatus} from "../../store/redusers/reduser-user/selectors-user";
+import {getAuthorizationStatus} from '../../store/redusers/reduser-user/selectors-user';
 
 
 const MIN_LENGTH_COMMENT = 50;
@@ -38,9 +38,9 @@ function ReviewsForm(props) {
   const dispatch = useDispatch();
   const authorizationStatus = useSelector(getAuthorizationStatus);
 
-  const sendReview = (id, review) => {
-    dispatch(sendNewReview(id, review));
-  }
+  const sendReview = (idOffer, review) => {
+    dispatch(sendNewReview(idOffer, review));
+  };
 
   if (authorizationStatus !== AuthorizationStatus.AUTH) {
     return null;

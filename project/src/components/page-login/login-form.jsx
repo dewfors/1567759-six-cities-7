@@ -1,16 +1,13 @@
 import React, {useRef} from 'react';
-import PropTypes from 'prop-types';
-import {connect, useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {fetchLogin} from '../../store/api-actions';
 
-function LoginForm(props) {
-
-  // const {sendLoginData} = props;
+function LoginForm() {
 
   const dispatch = useDispatch();
   const sendLoginData = (value) => {
     dispatch(fetchLogin(value));
-  }
+  };
 
   const loginRef = useRef();
   const passwordRef = useRef();
@@ -22,7 +19,6 @@ function LoginForm(props) {
       password: passwordRef.current.value,
     });
   };
-
 
   return (
     <section className="login">

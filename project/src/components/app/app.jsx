@@ -1,7 +1,6 @@
 import React from 'react';
-import {connect, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {Switch, Route, Redirect, Router} from 'react-router-dom';
-import PropTypes from 'prop-types';
 import {AppRoute, AuthorizationStatus} from '../../utils/const';
 import PageHome from '../page-home/page-home';
 import PageFavorites from '../page-favorites/page-favorites';
@@ -9,19 +8,13 @@ import PageNotFound from '../page-not-found/page-not-found';
 import PageOffer from '../page-offer/page-offer';
 import PageLogin from '../page-login/page-login';
 import PrivateRoute from '../private-route/private-route';
-import placeCardProp from '../place-card/place-card.prop';
-import reviewProp from '../reviews/review.prop';
-import {getOffers} from '../../store/redusers/reduser-offers/selectors-offers';
 import {getAuthorizationStatus} from '../../store/redusers/reduser-user/selectors-user';
 import browserHistory from '../../utils/browser-history';
 
 
-function App(props) {
-  // const {comments, city, cityList} = props;
+function App() {
 
-  // const offers = useSelector(getOffers);
   const authorizationStatus = useSelector(getAuthorizationStatus);
-
 
   return (
     <Router history={browserHistory}>
@@ -44,24 +37,5 @@ function App(props) {
 
   );
 }
-
-// App.propTypes = {
-//   // offers: PropTypes.arrayOf(
-//   //   PropTypes.oneOfType([placeCardProp]).isRequired,
-//   // ).isRequired,
-//   // city: PropTypes.shape({
-//   //   title: PropTypes.string.isRequired,
-//   //   lat: PropTypes.number.isRequired,
-//   //   lng: PropTypes.number.isRequired,
-//   //   zoom: PropTypes.number.isRequired,
-//   // }).isRequired,
-//   // comments: PropTypes.arrayOf(
-//   //   PropTypes.oneOfType([reviewProp]).isRequired,
-//   // ).isRequired,
-//   // cityList: PropTypes.arrayOf(
-//   //   PropTypes.string.isRequired,
-//   // ).isRequired,
-//   // authorizationStatus: PropTypes.string.isRequired,
-// };
 
 export default App;

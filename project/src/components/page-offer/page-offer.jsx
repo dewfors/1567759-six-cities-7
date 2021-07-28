@@ -1,11 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {useParams} from 'react-router';
-import {connect, useDispatch, useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import Reviews from '../reviews/reviews';
 import Map from '../map/map';
 import ListNearOffers from '../list-near-offers/list-near-offers';
-import placeCardProp from '../place-card/place-card.prop';
 import Header from '../page-home/header';
 import {fetchNearbyOffers, fetchOfferDetails} from '../../store/api-actions';
 import LoadingScreen from '../loading-screen/loading-screen';
@@ -14,34 +13,31 @@ import {getStarsWidth} from '../../utils/utils';
 import Host from './host';
 import {getOfferDetails, getOfferIsLoading, getOfferNearby} from '../../store/redusers/reduser-offers/selectors-offers';
 import AddFavoritesButton from '../place-card/add-to-favorite-button';
-import {getComments} from "../../store/redusers/reduser-reviews/selectors-revievs";
 
-function PageOffer(props) {
-  // const {getOfferInfo, getOffersNearby} = props;
+function PageOffer() {
 
   const {id} = useParams();
 
   const [activeOfferCardId, setActiveOfferCardId] = useState(0);
 
   const dispatch = useDispatch();
-  const getOffersNearby = (id) => {
-    dispatch(fetchNearbyOffers(id));
-  };
-  const getOfferInfo = (id) => {
-    dispatch(fetchOfferDetails(id));
-  };
+
+  const getOffersNearby = useCallback((idOffer) => {
+    dispatch(fetchNearbyOffers(idOffer));
+  }, [dispatch]);
+
+  const getOfferInfo = useCallback((idOffer) => {
+    dispatch(fetchOfferDetails(idOffer));
+  }, [dispatch]);
+
   useEffect(() => {
     getOffersNearby(id);
     getOfferInfo(id);
-  }, [id]);
-
-
+  }, [id, getOffersNearby, getOfferInfo]);
 
   const offerDetails = useSelector(getOfferDetails);
   const isOfferDetailsLoading = useSelector(getOfferIsLoading);
   const offersNearby = useSelector(getOfferNearby);
-
-
 
   const {images, isPrime, title, rating, type, bedrooms, maxAdults,
     price, goods, host, description, city, isFavorite} = offerDetails;
@@ -49,11 +45,6 @@ function PageOffer(props) {
   const handleActiveOfferCard = (offerCard) => {
     setActiveOfferCardId(offerCard.id);
   };
-
-  // useEffect(() => {
-  //   getOffersNearby(id);
-  //   getOfferInfo(id);
-  // }, [id]);
 
   if (isOfferDetailsLoading) {
     return (
@@ -152,9 +143,6 @@ function PageOffer(props) {
 }
 
 PageOffer.propTypes = {
-  // offersNearby: PropTypes.arrayOf(
-  //   PropTypes.oneOfType([placeCardProp]).isRequired,
-  // ).isRequired,
   city: PropTypes.shape({
     name: PropTypes.string,
     location: PropTypes.shape({
@@ -163,10 +151,6 @@ PageOffer.propTypes = {
       zoom: PropTypes.number.isRequired,
     }),
   }),
-  // offerDetails: placeCardProp,
-  // getOfferInfo: PropTypes.func.isRequired,
-  // getOffersNearby: PropTypes.func.isRequired,
-  // isOfferDetailsLoading: PropTypes.bool.isRequired,
 };
 
 PageOffer.defaultProps = {

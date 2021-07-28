@@ -1,7 +1,5 @@
 import React from 'react';
-import {connect, useDispatch, useSelector} from 'react-redux';
-import PropTypes from 'prop-types';
-import placeCardProp from '../place-card/place-card.prop';
+import {useDispatch, useSelector} from 'react-redux';
 import Page from '../app/page';
 import Main from '../app/main';
 import CityList from './city-list';
@@ -9,11 +7,10 @@ import HomeContent from './home-content';
 import {changeCity} from '../../store/action';
 import {getCurrentCity} from '../../store/redusers/reduser-app/selectors-app';
 import {getOffers} from '../../store/redusers/reduser-offers/selectors-offers';
-import {Settings} from "../../utils/const";
+import {Settings} from '../../utils/const';
 
 
 function PageHome(props) {
-  // const {cityList} = props;
 
   const cityList = Settings.CITYES;
 
@@ -27,7 +24,7 @@ function PageHome(props) {
 
   const onChangeCity = (city) => {
     dispatch(changeCity(city));
-  }
+  };
 
   return (
     <Page className="page--gray page--main" {...props}>
@@ -39,11 +36,5 @@ function PageHome(props) {
     </Page>
   );
 }
-
-// PageHome.propTypes = {
-//   cityList: PropTypes.arrayOf(
-//     PropTypes.string.isRequired,
-//   ).isRequired,
-// };
 
 export default PageHome;
