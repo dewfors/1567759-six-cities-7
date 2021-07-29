@@ -1,8 +1,14 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import {useDispatch, useSelector} from 'react-redux';
+import {
+  useDispatch,
+  useSelector
+} from 'react-redux';
 import {getStarsList} from '../../utils/utils';
-import {AuthorizationStatus, formReviewKeyType} from '../../utils/const';
+import {
+  AuthorizationStatus,
+  FormReviewKeyType
+} from '../../utils/const';
 import {sendNewReview} from '../../store/api-actions';
 import {getAuthorizationStatus} from '../../store/redusers/reduser-user/selectors-user';
 
@@ -16,7 +22,7 @@ function Stars(props) {
     starsList.map((item) => (
       <React.Fragment key={item.id}>
         <input  className="form__rating-input visually-hidden" name="rating" value={`${item.id}`} id={`${item.id}-stars`} type="radio"
-          onChange={() => onChangeData(formReviewKeyType.STARS, item.id)}
+          onChange={() => onChangeData(FormReviewKeyType.STARS, item.id)}
         />
         <label htmlFor={`${item.id}-stars`} className="reviews__rating-label form__rating-label" title="perfect">
           <svg className="form__star-image" width="37" height="33">
@@ -54,10 +60,10 @@ function ReviewsForm(props) {
 
   const onChangeData = (key, value) => {
     switch (key) {
-      case formReviewKeyType.REVIEW:
+      case FormReviewKeyType.REVIEW:
         setUserData({...userData, comment: value});
         break;
-      case formReviewKeyType.STARS:
+      case FormReviewKeyType.STARS:
         setUserData({...userData, rating: value});
         break;
       default:
@@ -77,7 +83,7 @@ function ReviewsForm(props) {
         <Stars starsList={starsList} onChangeData={onChangeData} currentValue={userData.rating} />
       </div>
       <textarea
-        onChange={({target}) => onChangeData(formReviewKeyType.REVIEW, target.value)}
+        onChange={({target}) => onChangeData(FormReviewKeyType.REVIEW, target.value)}
         className="reviews__textarea form__textarea"
         id="review"
         name="review"

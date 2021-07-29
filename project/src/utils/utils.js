@@ -1,4 +1,7 @@
-import {MAX_PERSENT, MAX_STARS} from './const';
+import {
+  MAX_PERSENT,
+  MAX_STARS
+} from './const';
 import {offersJSON} from '../mocks/offers';
 import {commentsJSON} from '../mocks/comments';
 

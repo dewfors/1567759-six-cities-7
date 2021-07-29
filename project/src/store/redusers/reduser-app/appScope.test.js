@@ -1,4 +1,7 @@
-import {appScope, SORT_TYPE_DEFAULT} from './appScope';
+import {
+  appScope,
+  SORT_TYPE_DEFAULT
+} from './appScope';
 import {Settings} from '../../../utils/const';
 import {ActionType} from '../../action';
 

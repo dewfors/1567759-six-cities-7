@@ -1,7 +1,15 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
-import {Switch, Route, Redirect, Router} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus} from '../../utils/const';
+import {
+  Switch,
+  Route,
+  Redirect,
+  Router
+} from 'react-router-dom';
+import {
+  AppRoute,
+  AuthorizationStatus
+} from '../../utils/const';
 import PageHome from '../page-home/page-home';
 import PageFavorites from '../page-favorites/page-favorites';
 import PageNotFound from '../page-not-found/page-not-found';

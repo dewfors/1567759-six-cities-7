@@ -1,6 +1,9 @@
 import React from 'react';
 import {useRouteMatch} from 'react-router';
-import {useDispatch, useSelector} from 'react-redux';
+import {
+  useDispatch,
+  useSelector
+} from 'react-redux';
 import PropTypes from 'prop-types';
 import {getIsAuth} from '../../store/redusers/reduser-user/selectors-user';
 import {AppRoute} from '../../utils/const';

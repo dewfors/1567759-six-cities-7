@@ -1,6 +1,9 @@
 import configureStore from 'redux-mock-store';
 import {NameSpace} from '../store/redusers/root-ruduser';
-import {AuthorizationStatus, Settings} from '../utils/const';
+import {
+  AuthorizationStatus,
+  Settings
+} from '../utils/const';
 import {SORT_TYPE_DEFAULT} from '../store/redusers/reduser-app/appScope';
 
 

@@ -1,7 +1,7 @@
 export const MAX_PERSENT = 100;
 export const MAX_STARS = 5;
 
-export const formReviewKeyType = {
+export const FormReviewKeyType = {
   STARS: 'stars',
   REVIEW: 'review',
 };

@@ -1,17 +1,27 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {useParams} from 'react-router';
-import {useDispatch, useSelector} from 'react-redux';
+import {
+  useDispatch,
+  useSelector
+} from 'react-redux';
 import Reviews from '../reviews/reviews';
 import Map from '../map/map';
 import ListNearOffers from '../list-near-offers/list-near-offers';
 import Header from '../page-home/header';
-import {fetchNearbyOffers, fetchOfferDetails} from '../../store/api-actions';
+import {
+  fetchNearbyOffers,
+  fetchOfferDetails
+} from '../../store/api-actions';
 import LoadingScreen from '../loading-screen/loading-screen';
 import Gallery from './gallery';
 import {getStarsWidth} from '../../utils/utils';
 import Host from './host';
-import {getOfferDetails, getOfferIsLoading, getOfferNearby} from '../../store/redusers/reduser-offers/selectors-offers';
+import {
+  getOfferDetails,
+  getOfferIsLoading,
+  getOfferNearby
+} from '../../store/redusers/reduser-offers/selectors-offers';
 import AddFavoritesButton from '../place-card/add-to-favorite-button';
 
 function PageOffer() {

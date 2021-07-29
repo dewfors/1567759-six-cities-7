@@ -1,6 +1,11 @@
 import MockAdapter from 'axios-mock-adapter';
 import {createAPI} from '../services/api';
-import {checkAuth, fetchHotels, fetchLogin, fetchLogout} from './api-actions';
+import {
+  checkAuth,
+  fetchHotels,
+  fetchLogin,
+  fetchLogout
+} from './api-actions';
 import {AppRoute, AuthorizationStatus} from '../utils/const';
 import {ActionType} from './action';
 

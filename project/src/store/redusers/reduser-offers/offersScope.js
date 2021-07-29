@@ -7,7 +7,9 @@ import {
   loadOfferError,
   loadOfferNearbyRequest,
   loadOfferNearbySuccess,
-  loadOfferNearbyError, changeOffersFavorite, changeOfferFavorite
+  loadOfferNearbyError,
+  changeOffersFavorite,
+  changeOfferFavorite
 } from '../../action';
 import {createReducer} from '@reduxjs/toolkit';
 

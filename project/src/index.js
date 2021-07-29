@@ -8,7 +8,10 @@ import App from './components/app/app';
 import rootReducer from './store/redusers/root-ruduser';
 import {AuthorizationStatus} from './utils/const';
 import {requireAuthorization} from './store/action';
-import {checkAuth, fetchHotels} from './store/api-actions';
+import {
+  checkAuth,
+  fetchHotels
+} from './store/api-actions';
 import Redirect from './store/redirect';
 import browserHistory from './utils/browser-history';
 

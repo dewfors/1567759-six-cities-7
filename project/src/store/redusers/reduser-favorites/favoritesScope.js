@@ -1,9 +1,12 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {
-  changeFavoritesError, changeFavoritesList,
-  changeFavoritesRequest, changeFavoritesSuccess,
+  changeFavoritesError,
+  changeFavoritesList,
+  changeFavoritesRequest,
+  changeFavoritesSuccess,
   loadFavoritesError,
-  loadFavoritesRequest, loadFavoritesSuccess
+  loadFavoritesRequest,
+  loadFavoritesSuccess
 } from '../../action';
 
 const initialState = {

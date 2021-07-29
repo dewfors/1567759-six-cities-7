@@ -1,6 +1,9 @@
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
-import {useDispatch, useSelector} from 'react-redux';
+import {
+  useDispatch,
+  useSelector
+} from 'react-redux';
 import ReviewsForm from '../reviews-form/reviews-form';
 import ReviewsItem from './reviews-item';
 import {getReviewsSorted} from '../../utils/utils';
@@ -18,7 +21,7 @@ function Reviews(props) {
 
   useEffect(() => {
     getReviews(id);
-  });
+  }, [id]);
 
   const reviewsCount = comments.length;
 

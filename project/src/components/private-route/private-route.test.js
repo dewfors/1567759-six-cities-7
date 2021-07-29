@@ -1,7 +1,13 @@
 import React from 'react';
-import {Router, Route} from 'react-router-dom';
+import {
+  Router,
+  Route
+} from 'react-router-dom';
 import {createMemoryHistory} from 'history';
-import {render, screen} from '@testing-library/react';
+import {
+  render,
+  screen
+} from '@testing-library/react';
 import configureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
 import {AuthorizationStatus} from '../../utils/const';

@@ -5,8 +5,14 @@ import PlaceCard from '../place-card/place-card';
 import {SortingTypes} from '../../utils/const';
 import {sortByKey} from '../../utils/utils';
 import LoadingScreen from '../loading-screen/loading-screen';
-import {getOfferIsLoading, getOffers} from '../../store/redusers/reduser-offers/selectors-offers';
-import {getCurrentCity, getCurrentSortType} from '../../store/redusers/reduser-app/selectors-app';
+import {
+  getOfferIsLoading,
+  getOffers
+} from '../../store/redusers/reduser-offers/selectors-offers';
+import {
+  getCurrentCity,
+  getCurrentSortType
+} from '../../store/redusers/reduser-app/selectors-app';
 
 function ListOffers(props) {
   const {handleActiveOfferCard} = props;

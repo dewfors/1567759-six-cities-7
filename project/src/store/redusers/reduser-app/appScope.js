@@ -1,4 +1,7 @@
-import {changeCity, changeSortType} from '../../action';
+import {
+  changeCity,
+  changeSortType
+} from '../../action';
 import {Settings} from '../../../utils/const';
 import {createReducer} from '@reduxjs/toolkit';
 

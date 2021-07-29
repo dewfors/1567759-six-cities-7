@@ -1,6 +1,12 @@
 import React from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {AppRoute, AuthorizationStatus} from '../../utils/const';
+import {
+  useDispatch,
+  useSelector
+} from 'react-redux';
+import {
+  AppRoute,
+  AuthorizationStatus
+} from '../../utils/const';
 import {Link} from 'react-router-dom';
 import {fetchLogout} from '../../store/api-actions';
 import {getAuthorizationStatus, getUserInfoStatus} from '../../store/redusers/reduser-user/selectors-user';

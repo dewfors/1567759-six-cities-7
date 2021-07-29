@@ -1,5 +1,8 @@
 import React from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {
+  useDispatch,
+  useSelector
+} from 'react-redux';
 import Page from '../app/page';
 import Main from '../app/main';
 import CityList from './city-list';

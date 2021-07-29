@@ -5,7 +5,11 @@ import Map from '../map/map';
 import SortOffers from '../sort-offers/sort-offers';
 import LoadingScreen from '../loading-screen/loading-screen';
 import ListOffersEmpty from '../list-offers/list-offers-empty';
-import {getOffers, getOffersIsError, getOffersIsLoading} from '../../store/redusers/reduser-offers/selectors-offers';
+import {
+  getOffers,
+  getOffersIsError,
+  getOffersIsLoading
+} from '../../store/redusers/reduser-offers/selectors-offers';
 import {getCurrentCity} from '../../store/redusers/reduser-app/selectors-app';
 
 

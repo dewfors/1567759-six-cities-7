@@ -1,5 +1,8 @@
 import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {
+  useDispatch,
+  useSelector
+} from 'react-redux';
 import {changeSortType} from '../../store/action';
 import {SortingTypes} from '../../utils/const';
 import {getCurrentSortType} from '../../store/redusers/reduser-app/selectors-app';

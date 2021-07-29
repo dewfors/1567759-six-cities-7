@@ -1,9 +1,15 @@
 import React from 'react';
-import {render, screen} from '@testing-library/react';
+import {
+  render,
+  screen
+} from '@testing-library/react';
 import {Router} from 'react-router-dom';
 import {createMemoryHistory} from 'history';
 import {Provider} from 'react-redux';
-import {AppRoute, Settings} from '../../utils/const';
+import {
+  AppRoute,
+  Settings
+} from '../../utils/const';
 import App from './app';
 import {CITY} from '../../mocks/city';
 import {getAdaptedToClientComments} from '../../utils/utils';
