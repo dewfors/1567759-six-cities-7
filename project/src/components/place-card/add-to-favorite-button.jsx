@@ -2,16 +2,17 @@ import React from 'react';
 import {useRouteMatch} from 'react-router';
 import {useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
-import {getAuthorizationStatus} from '../../store/redusers/reduser-user/selectors-user';
-import {AppRoute, AuthorizationStatus} from '../../utils/const';
+import {getIsAuth} from '../../store/redusers/reduser-user/selectors-user';
+import {AppRoute} from '../../utils/const';
 import browserHistory from '../../utils/browser-history';
 import {fetchChangeFavoriteStatus} from '../../store/api-actions';
 
 
 function AddFavoritesButton({ isFavorite, id }) {
 
-  const authorizationStatus = useSelector(getAuthorizationStatus);
-  const isAuth = authorizationStatus === AuthorizationStatus.AUTH;
+  // const authorizationStatus = useSelector(getAuthorizationStatus);
+  // const isAuth = authorizationStatus === AuthorizationStatus.AUTH;
+  const isAuth = useSelector(getIsAuth);
   const dispatch = useDispatch();
   const {path} = useRouteMatch();
 
