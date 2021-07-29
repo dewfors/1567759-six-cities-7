@@ -8,11 +8,11 @@ import LoadingScreen from '../loading-screen/loading-screen';
 import {
   getOfferIsLoading,
   getOffers
-} from '../../store/redusers/reduser-offers/selectors-offers';
+} from '../../store/reducers/reducer-offers/selectors-offers';
 import {
   getCurrentCity,
   getCurrentSortType
-} from '../../store/redusers/reduser-app/selectors-app';
+} from '../../store/reducers/reducer-app/selectors-app';
 
 function ListOffers(props) {
   const {handleActiveOfferCard} = props;

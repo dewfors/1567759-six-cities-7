@@ -3,18 +3,8 @@ import PropTypes from 'prop-types';
 import placeCardProp from './place-card.prop.js';
 import {getStarsWidth} from '../../utils/utils';
 import {Link} from 'react-router-dom';
-import AddFavoritesButton from './add-to-favorite-button';
-
-function Premium(props) {
-  if (props.isPremium) {
-    return (
-      <div className="place-card__mark">
-        <span>Premium</span>
-      </div>
-    );
-  }
-  return null;
-}
+import AddFavoritesButton from './add-favorites-button';
+import Premium from '../premium/premium';
 
 function PlaceCard(props) {
   const {offer, handleActiveOfferCard} = props;
@@ -61,10 +51,5 @@ PlaceCard.propTypes = {
   offer: PropTypes.oneOfType([placeCardProp]).isRequired,
   handleActiveOfferCard: PropTypes.func,
 };
-
-Premium.propTypes = {
-  isPremium: PropTypes.bool.isRequired,
-};
-
 
 export default PlaceCard;

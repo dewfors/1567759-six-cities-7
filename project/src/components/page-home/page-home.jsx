@@ -8,8 +8,8 @@ import Main from '../app/main';
 import CityList from './city-list';
 import HomeContent from './home-content';
 import {changeCity} from '../../store/action';
-import {getCurrentCity} from '../../store/redusers/reduser-app/selectors-app';
-import {getOffers} from '../../store/redusers/reduser-offers/selectors-offers';
+import {getCurrentCity} from '../../store/reducers/reducer-app/selectors-app';
+import {getOffers} from '../../store/reducers/reducer-offers/selectors-offers';
 import {Settings} from '../../utils/const';
 
 

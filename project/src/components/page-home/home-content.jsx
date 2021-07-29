@@ -9,8 +9,8 @@ import {
   getOffers,
   getOffersIsError,
   getOffersIsLoading
-} from '../../store/redusers/reduser-offers/selectors-offers';
-import {getCurrentCity} from '../../store/redusers/reduser-app/selectors-app';
+} from '../../store/reducers/reducer-offers/selectors-offers';
+import {getCurrentCity} from '../../store/reducers/reducer-app/selectors-app';
 
 
 function HomeContent(props) {

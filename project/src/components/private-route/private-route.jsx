@@ -7,7 +7,7 @@ import {
   AppRoute,
   AuthorizationStatus
 } from '../../utils/const';
-import {getAuthorizationStatus} from '../../store/redusers/reduser-user/selectors-user';
+import {getAuthorizationStatus} from '../../store/reducers/reducer-user/selectors-user';
 
 function PrivateRoute({exact, path, render}) {
 

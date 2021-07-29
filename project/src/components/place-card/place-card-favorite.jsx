@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import placeCardProp from './place-card.prop';
 import {getStarsWidth} from '../../utils/utils';
-import AddFavoritesButton from './add-to-favorite-button';
+import AddFavoritesButton from './add-favorites-button';
+import {Link} from "react-router-dom";
 
 function PlaceCardFavorite(props) {
   const {offer} = props;
@@ -12,9 +13,9 @@ function PlaceCardFavorite(props) {
   return (
     <article className="favorites__card place-card">
       <div className="favorites__image-wrapper place-card__image-wrapper">
-        <a href="/">
+        <Link to={`/offer/${offer.id}`}>
           <img className="place-card__image" src={previewImage} width="150" height="110" alt="Place" />
-        </a>
+        </Link>
       </div>
       <div className="favorites__card-info place-card__info">
         <div className="place-card__price-wrapper">
@@ -31,7 +32,7 @@ function PlaceCardFavorite(props) {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="/">{title}</a>
+          <Link to={`/offer/${offer.id}`}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

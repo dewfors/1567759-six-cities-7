@@ -6,7 +6,7 @@ import {Settings} from '../../../utils/const';
 import {ActionType} from '../../action';
 
 
-describe('Reduser: appScope', () => {
+describe('Reducer: appScope', () => {
 
   it('без входящих параметров должен вернуться начальный стейт', () => {
     expect(appScope(undefined, {}))

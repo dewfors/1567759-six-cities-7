@@ -1,10 +1,10 @@
 import configureStore from 'redux-mock-store';
-import {NameSpace} from '../store/redusers/root-ruduser';
+import {NameSpace} from '../store/reducers/root-reducer';
 import {
   AuthorizationStatus,
   Settings
 } from '../utils/const';
-import {SORT_TYPE_DEFAULT} from '../store/redusers/reduser-app/appScope';
+import {SORT_TYPE_DEFAULT} from '../store/reducers/reducer-app/appScope';
 
 
 const offers = [

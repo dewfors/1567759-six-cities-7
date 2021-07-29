@@ -8,7 +8,7 @@ import ReviewsForm from '../reviews-form/reviews-form';
 import ReviewsItem from './reviews-item';
 import {getReviewsSorted} from '../../utils/utils';
 import {fetchReviews} from '../../store/api-actions';
-import {getComments} from '../../store/redusers/reduser-reviews/selectors-revievs';
+import {getComments} from '../../store/reducers/reducer-reviews/selectors-reviews';
 
 function Reviews(props) {
   const {id} = props;

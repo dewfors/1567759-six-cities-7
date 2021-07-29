@@ -1,4 +1,4 @@
-import {NameSpace} from '../root-ruduser';
+import {NameSpace} from '../root-reducer';
 import {createSelector} from 'reselect';
 import {AuthorizationStatus} from '../../../utils/const';
 

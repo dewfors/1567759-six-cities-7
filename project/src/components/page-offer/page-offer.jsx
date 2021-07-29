@@ -21,8 +21,8 @@ import {
   getOfferDetails,
   getOfferIsLoading,
   getOfferNearby
-} from '../../store/redusers/reduser-offers/selectors-offers';
-import AddFavoritesButton from '../place-card/add-to-favorite-button';
+} from '../../store/reducers/reducer-offers/selectors-offers';
+import AddFavoritesButton from '../place-card/add-favorites-button';
 
 function PageOffer() {
 

@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux';
-import {offersScope} from './reduser-offers/offersScope';
-import {appScope} from './reduser-app/appScope';
-import {userScope} from './reduser-user/userScope';
-import {reviewsScope} from './reduser-reviews/reviewsScope';
-import {favoritesScope} from './reduser-favorites/favoritesScope';
+import {offersScope} from './reducer-offers/offersScope';
+import {appScope} from './reducer-app/appScope';
+import {userScope} from './reducer-user/userScope';
+import {reviewsScope} from './reducer-reviews/reviewsScope';
+import {favoritesScope} from './reducer-favorites/favoritesScope';
 
 
 export const NameSpace = {

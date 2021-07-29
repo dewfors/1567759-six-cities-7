@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../page-home/header';
 import LoginForm from './login-form';
+import {Link} from 'react-router-dom';
 
 function PageLogin() {
   return (
@@ -12,9 +13,9 @@ function PageLogin() {
           <LoginForm />
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="/">
+              <Link className="locations__item-link" to={`/#Amsterdam`}>
                 <span>Amsterdam</span>
-              </a>
+              </Link>
             </div>
           </section>
         </div>

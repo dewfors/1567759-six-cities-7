@@ -1,4 +1,4 @@
-import {NameSpace} from '../root-ruduser';
+import {NameSpace} from '../root-reducer';
 
 const getOffers = (state) => state[NameSpace.OFFERS].offers;
 const getOffersIsLoading = (state) => state[NameSpace.OFFERS].loadOffersStatus.isLoading;

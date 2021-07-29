@@ -16,7 +16,7 @@ import PageNotFound from '../page-not-found/page-not-found';
 import PageOffer from '../page-offer/page-offer';
 import PageLogin from '../page-login/page-login';
 import PrivateRoute from '../private-route/private-route';
-import {getAuthorizationStatus} from '../../store/redusers/reduser-user/selectors-user';
+import {getAuthorizationStatus} from '../../store/reducers/reducer-user/selectors-user';
 import browserHistory from '../../utils/browser-history';
 
 
@@ -27,7 +27,6 @@ function App() {
   return (
     <Router history={browserHistory}>
       <Switch>
-        {/*<Route exact path = {AppRoute.ROOT} render={((routerProps) => <PageHome {...routerProps} cityList={cityList} />)} />*/}
         <Route exact path = {AppRoute.ROOT} render={((routerProps) => <PageHome {...routerProps} />)} />
         <PrivateRoute exact path = {AppRoute.FAVORITES} render={((routerProps) => <PageFavorites {...routerProps} />)} />
         <Route exact path={AppRoute.LOGIN}>
@@ -35,7 +34,6 @@ function App() {
             ? <Redirect to={AppRoute.ROOT} />
             : <PageLogin />}
         </Route>
-        {/*<Route exact path = {AppRoute.OFFER} render={((routerProps) => <PageOffer {...routerProps} offers={offers} city={city} comments={comments} />)} />*/}
         <Route exact path = {AppRoute.OFFER} render={((routerProps) => <PageOffer {...routerProps} />)} />
 
         <Route exact path = {AppRoute.NOT_FOUND} render={((routerProps) => <PageNotFound {...routerProps} />)} />

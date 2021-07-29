@@ -10,29 +10,30 @@ import {
   FormReviewKeyType
 } from '../../utils/const';
 import {sendNewReview} from '../../store/api-actions';
-import {getAuthorizationStatus} from '../../store/redusers/reduser-user/selectors-user';
+import {getAuthorizationStatus} from '../../store/reducers/reducer-user/selectors-user';
+import Stars from './stars';
 
 
 const MIN_LENGTH_COMMENT = 50;
 
-function Stars(props) {
-  const {starsList, onChangeData} = props;
-
-  return (
-    starsList.map((item) => (
-      <React.Fragment key={item.id}>
-        <input  className="form__rating-input visually-hidden" name="rating" value={`${item.id}`} id={`${item.id}-stars`} type="radio"
-          onChange={() => onChangeData(FormReviewKeyType.STARS, item.id)}
-        />
-        <label htmlFor={`${item.id}-stars`} className="reviews__rating-label form__rating-label" title="perfect">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"> </use>
-          </svg>
-        </label>
-      </React.Fragment>
-    ))
-  );
-}
+// function Stars(props) {
+//   const {starsList, onChangeData} = props;
+//
+//   return (
+//     starsList.map((item) => (
+//       <React.Fragment key={item.id}>
+//         <input  className="form__rating-input visually-hidden" name="rating" value={`${item.id}`} id={`${item.id}-stars`} type="radio"
+//           onChange={() => onChangeData(FormReviewKeyType.STARS, item.id)}
+//         />
+//         <label htmlFor={`${item.id}-stars`} className="reviews__rating-label form__rating-label" title="perfect">
+//           <svg className="form__star-image" width="37" height="33">
+//             <use xlinkHref="#icon-star"> </use>
+//           </svg>
+//         </label>
+//       </React.Fragment>
+//     ))
+//   );
+// }
 
 function ReviewsForm(props) {
   const {id} = props;

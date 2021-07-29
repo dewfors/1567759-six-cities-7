@@ -5,7 +5,7 @@ import {
 } from 'react-redux';
 import {changeSortType} from '../../store/action';
 import {SortingTypes} from '../../utils/const';
-import {getCurrentSortType} from '../../store/redusers/reduser-app/selectors-app';
+import {getCurrentSortType} from '../../store/reducers/reducer-app/selectors-app';
 
 function SortOffers() {
 

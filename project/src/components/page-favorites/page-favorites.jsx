@@ -9,7 +9,7 @@ import {
 import {
   getFavorites,
   getFavoritesIsLoading
-} from '../../store/redusers/reduser-favorites/selectors-favorites';
+} from '../../store/reducers/reducer-favorites/selectors-favorites';
 import LoadingScreen from '../loading-screen/loading-screen';
 import {fetchFavorites} from '../../store/api-actions';
 

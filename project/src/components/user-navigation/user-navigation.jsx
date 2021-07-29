@@ -9,7 +9,7 @@ import {
 } from '../../utils/const';
 import {Link} from 'react-router-dom';
 import {fetchLogout} from '../../store/api-actions';
-import {getAuthorizationStatus, getUserInfoStatus} from '../../store/redusers/reduser-user/selectors-user';
+import {getAuthorizationStatus, getUserInfoStatus} from '../../store/reducers/reducer-user/selectors-user';
 
 function UserNavigation(props) {
 
@@ -42,7 +42,6 @@ function UserNavigation(props) {
           <Link
             to={isAuth ? AppRoute.FAVORITES : AppRoute.LOGIN}
             className="header__nav-link header__nav-link--profile"
-            href="/#"
           >
             <div className="header__avatar-wrapper user__avatar-wrapper" style={avatarStyle}>
             </div>
@@ -59,7 +58,6 @@ function UserNavigation(props) {
             <Link
               to={isAuth ? AppRoute.FAVORITES : AppRoute.LOGIN}
               className="header__nav-link"
-              href="/#"
               onClick={handleLogoutClick}
             >
               <span className="header__signout">Sign out</span>

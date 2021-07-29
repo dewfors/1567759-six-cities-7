@@ -5,7 +5,7 @@ import {configureStore} from '@reduxjs/toolkit';
 import {createAPI} from './services/api';
 import {Provider} from 'react-redux';
 import App from './components/app/app';
-import rootReducer from './store/redusers/root-ruduser';
+import rootReducer from './store/reducers/root-reducer';
 import {AuthorizationStatus} from './utils/const';
 import {requireAuthorization} from './store/action';
 import {

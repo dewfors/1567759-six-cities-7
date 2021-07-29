@@ -1,4 +1,5 @@
 import {
+  MAX_COMMENTS_LENGTH,
   MAX_PERSENT,
   MAX_STARS
 } from './const';
@@ -33,7 +34,7 @@ export const getReviewsSorted = (comments) => {
   const reviews = comments.map((item) => ({...item, date: new Date(item.date)}));
 
   reviews.sort((obj1, obj2) => obj2.date - obj1.date);
-  reviews.slice(0,10);
+  reviews.slice(0,MAX_COMMENTS_LENGTH);
 
   return reviews;
 };
