@@ -11,7 +11,7 @@ import {
   Settings
 } from '../../utils/const';
 import App from './app';
-import {CITY} from '../../mocks/city';
+import {CITY} from '../../tests/test-utils';
 import {getAdaptedToClientComments} from '../../utils/utils';
 import {store as fakeStore} from '../../tests/test-utils';
 
