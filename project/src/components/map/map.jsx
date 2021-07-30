@@ -1,12 +1,18 @@
 import React, {useEffect, useRef} from 'react';
+import {useRouteMatch} from 'react-router';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import PropTypes from 'prop-types';
 import useMap from './useMap';
 import placeCardProp from '../place-card/place-card.prop';
-import {Settings} from '../../utils/const';
+import {AppRoute, Settings} from '../../utils/const';
+import {useSelector} from "react-redux";
+import {getOfferDetails} from "../../store/reducers/reducer-offers/selectors-offers";
 
 function Map(props) {
+  const {path} = useRouteMatch();
+  const offerCurrent = useSelector(getOfferDetails);
+
   const {city, offers, activeOfferCardId} = props;
   const mapRef = useRef(null);
   const cityInfo = Settings.CITIES_INFO.filter((cityItem) => city === cityItem.name)[0] || Settings.CITIES_INFO[0];
@@ -26,6 +32,16 @@ function Map(props) {
 
   useEffect(() => {
     if (map) {
+      if (path === AppRoute.OFFER) {
+        leaflet
+          .marker({
+            lat: offerCurrent.location.latitude,
+            lng: offerCurrent.location.longitude,
+          }, {
+            icon: iconCurrent,
+          })
+          .addTo(map);
+      }
 
       offers.forEach((offer) => {
         leaflet
