@@ -1,8 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import PlaceCardFavorite from '../place-card/place-card-favorite';
-import PropTypes from "prop-types";
-import placeCardProp from "../place-card/place-card.prop";
+import PropTypes from 'prop-types';
+import placeCardProp from '../place-card/place-card.prop';
 
 function ListItem(props) {
   const {cityListOffers} = props;

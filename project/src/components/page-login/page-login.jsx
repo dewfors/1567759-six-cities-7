@@ -13,7 +13,7 @@ function PageLogin() {
           <LoginForm />
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <Link className="locations__item-link" to={`/#Amsterdam`}>
+              <Link className="locations__item-link" to={'/#Amsterdam'}>
                 <span>Amsterdam</span>
               </Link>
             </div>

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {
   useDispatch,
@@ -15,13 +15,15 @@ function Reviews(props) {
 
   const dispatch = useDispatch();
   const comments = useSelector(getComments);
-  const getReviews = (idOffer) => {
+
+  const getReviews = useCallback((idOffer) => {
     dispatch(fetchReviews(idOffer));
-  };
+  }, [dispatch]);
+
 
   useEffect(() => {
     getReviews(id);
-  }, [id]);
+  }, [id, getReviews]);
 
   const reviewsCount = comments.length;
 

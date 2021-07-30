@@ -1,12 +1,11 @@
 import React, {useRef} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchLogin} from '../../store/api-actions';
-import Error from "../error/error";
-import {getLoginStatus} from "../../store/reducers/reducer-user/selectors-user";
+import Error from '../error/error';
+import {getLoginStatus} from '../../store/reducers/reducer-user/selectors-user';
 
-const isValidEmail = (email) => {
-  return /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(email);
-}
+const isValidEmail = (email) => /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(email);
+
 
 function LoginForm() {
   const {isError} = useSelector(getLoginStatus);

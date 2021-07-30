@@ -53,7 +53,6 @@ function PageOffer() {
     price, goods, host, description, city, isFavorite} = offerDetails;
 
   const handleActiveOfferCard = (offerCard) => {
-    // console.log(offerCard);
     setActiveOfferCardId(offerCard.id);
   };
 

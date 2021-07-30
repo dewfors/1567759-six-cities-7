@@ -29,48 +29,6 @@ describe('Application Routing', () => {
 
     history = createMemoryHistory();
     store = fakeStore;
-    // const createFakeStore = configureStore({});
-    // store = createFakeStore({
-    //   [NameSpace.OFFERS]: {
-    //     offers: offers,
-    //     loadOffersStatus: {
-    //       isLoadError: false,
-    //       isLoading: false,
-    //       isLoadSuccess: false,
-    //     },
-    //     offer: {},
-    //     loadOfferStatus: {
-    //       isLoadError: false,
-    //       isLoading: false,
-    //       isLoadSuccess: false,
-    //     },
-    //     offersNearby: {
-    //       data: [],
-    //       isError: false,
-    //       isLoading: false,
-    //       isSuccess: false,
-    //     },
-    //   },
-    //   [NameSpace.USER]: {
-    //     authorizationStatus: AuthorizationStatus.UNKNOWN,
-    //     userInfo: {},
-    //     loginStatus: {
-    //       isError: false,
-    //       isLoading: false,
-    //       isSuccess: false,
-    //     },
-    //     logoutStatus: {
-    //       isError: false,
-    //       isLoading: false,
-    //       isSuccess: false,
-    //     },
-    //   },
-    //   [NameSpace.APP]: {
-    //     currentCity: Settings.DEFAULT_CITY,
-    //     currentSortType: SORT_TYPE_DEFAULT,
-    //   },
-    //
-    // });
 
     fakeApp = (
       <Provider store={store}>

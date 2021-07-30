@@ -6,12 +6,14 @@ import PropTypes from 'prop-types';
 import useMap from './useMap';
 import placeCardProp from '../place-card/place-card.prop';
 import {AppRoute, Settings} from '../../utils/const';
-import {useSelector} from "react-redux";
-import {getOfferDetails} from "../../store/reducers/reducer-offers/selectors-offers";
+import {useSelector} from 'react-redux';
+import {getOfferDetails} from '../../store/reducers/reducer-offers/selectors-offers';
 
 function Map(props) {
   const {path} = useRouteMatch();
   const offerCurrent = useSelector(getOfferDetails);
+  const offerCurrentLatitude = 1 || offerCurrent.location.latitude;
+  const offerCurrentLongitude = 1 || offerCurrent.location.longitude;
 
   const {city, offers, activeOfferCardId} = props;
   const mapRef = useRef(null);
@@ -35,8 +37,8 @@ function Map(props) {
       if (path === AppRoute.OFFER) {
         leaflet
           .marker({
-            lat: offerCurrent.location.latitude,
-            lng: offerCurrent.location.longitude,
+            lat: offerCurrentLatitude,
+            lng: offerCurrentLongitude,
           }, {
             icon: iconCurrent,
           })
@@ -56,7 +58,7 @@ function Map(props) {
           .addTo(map);
       });
     }
-  }, [map, offers, icon, iconCurrent, activeOfferCardId]);
+  }, [map, offers, icon, iconCurrent, activeOfferCardId, path, offerCurrentLatitude, offerCurrentLongitude]);
 
   return (
     <div

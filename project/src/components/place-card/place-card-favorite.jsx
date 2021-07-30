@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import placeCardProp from './place-card.prop';
 import {getStarsWidth} from '../../utils/utils';
 import AddFavoritesButton from './add-favorites-button';
-import {Link} from "react-router-dom";
+import {Link} from 'react-router-dom';
 
 function PlaceCardFavorite(props) {
   const {offer} = props;

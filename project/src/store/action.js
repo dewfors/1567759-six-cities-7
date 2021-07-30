@@ -22,7 +22,6 @@ export const ActionType = {
   CHANGE_OFFER_NEARBY_FAVORITE: 'offer-nearby/changeOffer',
 
 
-
   LOAD_REVIEWS_REQUEST: 'review/request',
   LOAD_REVIEWS_ERROR: 'review/error',
   LOAD_REVIEWS_SUCCESS: 'review/success',

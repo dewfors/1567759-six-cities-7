@@ -3,9 +3,7 @@ import {
   MAX_PERSENT,
   MAX_STARS
 } from './const';
-// import {offersJSON} from '../mocks/offers';
 import {offersJSON} from '../tests/test-utils';
-// import {commentsJSON} from '../mocks/comments';
 import {commentsJSON} from '../tests/test-utils';
 
 export const getStarsWidth = (rating) => rating * MAX_PERSENT / MAX_STARS;
