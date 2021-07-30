@@ -1,9 +1,15 @@
 import React, {useRef} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {fetchLogin} from '../../store/api-actions';
+import Error from "../error/error";
+import {getLoginStatus} from "../../store/reducers/reducer-user/selectors-user";
+
+const isValidEmail = (email) => {
+  return /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(email);
+}
 
 function LoginForm() {
-
+  const {isLoading, isError} = useSelector(getLoginStatus);
   const dispatch = useDispatch();
   const sendLoginData = (value) => {
     dispatch(fetchLogin(value));
@@ -14,14 +20,22 @@ function LoginForm() {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    sendLoginData({
-      email: loginRef.current.value,
-      password: passwordRef.current.value,
-    });
+
+    const passwordValid = passwordRef.current.value.trim() !== '';
+    const emailValid = isValidEmail(loginRef.current.value);
+
+    if (passwordValid && emailValid) {
+      sendLoginData({
+        email: loginRef.current.value,
+        password: passwordRef.current.value,
+      });
+    }
+
   };
 
   return (
     <section className="login">
+      {isError && <Error />}
       <h1 className="login__title">Sign in</h1>
       <form
         className="login__form form"
