@@ -22,7 +22,9 @@ function Stars(props) {
 }
 
 Stars.propTypes = {
-  starsList: PropTypes.arrayOf(PropTypes.number.isRequired),
+  starsList: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+  })),
   onChangeData: PropTypes.func.isRequired,
 };
 

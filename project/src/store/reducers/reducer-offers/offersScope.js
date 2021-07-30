@@ -9,7 +9,8 @@ import {
   loadOfferNearbySuccess,
   loadOfferNearbyError,
   changeOffersFavorite,
-  changeOfferFavorite
+  changeOfferFavorite,
+  changeOffersNearbyFavorite
 } from '../../action';
 import {createReducer} from '@reduxjs/toolkit';
 
@@ -51,6 +52,13 @@ const offersScope = createReducer(initialState, ((builder) => {
     })
     .addCase(changeOffersFavorite, (state, action) => {
       state.offers.forEach((item, i, arr) => {
+        if (item.id === action.payload.id) {
+          item.isFavorite = action.payload.isFavorite;
+        }
+      });
+    })
+    .addCase(changeOffersNearbyFavorite, (state, action) => {
+      state.offersNearby.data.forEach((item, i, arr) => {
         if (item.id === action.payload.id) {
           item.isFavorite = action.payload.isFavorite;
         }

@@ -4,7 +4,7 @@ import {
   changeFavoritesRequest,
   changeFavoritesSuccess,
   changeOfferFavorite,
-  changeOffersFavorite,
+  changeOffersFavorite, changeOffersNearbyFavorite,
   loadFavoritesError,
   loadFavoritesRequest,
   loadFavoritesSuccess,
@@ -156,6 +156,7 @@ export const fetchChangeFavoriteStatus = ({id, status, path}) => (dispatch, stor
       dispatch(changeOffersFavorite(offer));
       if (path === AppRoute.OFFER) {
         dispatch(changeOfferFavorite(offer));
+        dispatch(changeOffersNearbyFavorite(offer));
       }
       if (path === AppRoute.FAVORITES) {
         dispatch(changeFavoritesList(offer));

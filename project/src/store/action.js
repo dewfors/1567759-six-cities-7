@@ -19,6 +19,8 @@ export const ActionType = {
   LOAD_OFFER_NEARBY_REQUEST: 'offer-nearby/request',
   LOAD_OFFER_NEARBY_SUCCESS: 'offer-nearby/success',
   LOAD_OFFER_NEARBY_ERROR: 'offer-nearby/error',
+  CHANGE_OFFER_NEARBY_FAVORITE: 'offer-nearby/changeOffer',
+
 
 
   LOAD_REVIEWS_REQUEST: 'review/request',
@@ -77,6 +79,9 @@ export const loadOffersSuccess = createAction(ActionType.LOAD_OFFERS_SUCCESS, (o
 export const loadOffersError = createAction(ActionType.LOAD_OFFERS_ERROR);
 
 export const changeOffersFavorite = createAction(ActionType.CHANGE_OFFERS_FAVORITES, (offer) => ({
+  payload: offer,
+}));
+export const changeOffersNearbyFavorite = createAction(ActionType.CHANGE_OFFER_NEARBY_FAVORITE, (offer) => ({
   payload: offer,
 }));
 export const changeOfferFavorite = createAction(ActionType.CHANGE_OFFER_FAVORITE, (offer) => ({

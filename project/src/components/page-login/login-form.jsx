@@ -9,7 +9,7 @@ const isValidEmail = (email) => {
 }
 
 function LoginForm() {
-  const {isLoading, isError} = useSelector(getLoginStatus);
+  const {isError} = useSelector(getLoginStatus);
   const dispatch = useDispatch();
   const sendLoginData = (value) => {
     dispatch(fetchLogin(value));

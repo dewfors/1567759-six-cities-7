@@ -1,5 +1,5 @@
 import React from 'react';
-import {useRouteMatch} from 'react-router';
+import {useRouteMatch, useParams} from 'react-router';
 import {
   useDispatch,
   useSelector
@@ -16,11 +16,12 @@ function AddFavoritesButton({ isFavorite, id }) {
   const isAuth = useSelector(getIsAuth);
   const dispatch = useDispatch();
   const {path} = useRouteMatch();
+  const params = useParams();
 
-  const width = path === AppRoute.OFFER ? 31 : 18;
-  const height = path === AppRoute.OFFER ? 33 : 19;
+  const width = (path === AppRoute.OFFER && id === Number(params.id)) ? 31 : 18;
+  const height = (path === AppRoute.OFFER && id === Number(params.id)) ? 33 : 19;
 
-  const addToFavoritesClassName = path === AppRoute.OFFER
+  const addToFavoritesClassName = (path === AppRoute.OFFER && id === Number(params.id))
     ? 'property__bookmark-button button'
     : 'place-card__bookmark-button button';
   const addToFavoritesActiveClassName = isFavorite ? 'place-card__bookmark-button--active' : '';

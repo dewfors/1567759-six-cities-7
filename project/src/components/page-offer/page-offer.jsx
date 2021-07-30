@@ -53,6 +53,7 @@ function PageOffer() {
     price, goods, host, description, city, isFavorite} = offerDetails;
 
   const handleActiveOfferCard = (offerCard) => {
+    // console.log(offerCard);
     setActiveOfferCardId(offerCard.id);
   };
 
@@ -99,7 +100,8 @@ function PageOffer() {
                   <span style={{width: `${getStarsWidth(rating)}%`}} />
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="property__rating-value rating__value">4.8</span>
+                {/*<span className="property__rating-value rating__value">4.8</span>*/}
+                <span className="property__rating-value rating__value">{rating}</span>
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
