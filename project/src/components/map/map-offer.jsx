@@ -5,8 +5,14 @@ import PropTypes from 'prop-types';
 import useMap from './useMap';
 import placeCardProp from '../place-card/place-card.prop';
 import {Settings} from '../../utils/const';
+import {useSelector} from 'react-redux';
+import {getOfferDetails} from '../../store/reducers/reducer-offers/selectors-offers';
 
-function Map(props) {
+function MapOffer(props) {
+  const offerCurrent = useSelector(getOfferDetails);
+
+  const offerCurrentLatitude = offerCurrent ? offerCurrent.location.latitude : 1;
+  const offerCurrentLongitude = offerCurrent ? offerCurrent.location.longitude : 1;
 
   const {city, offers, activeOfferCardId} = props;
   const mapRef = useRef(null);
@@ -27,6 +33,15 @@ function Map(props) {
 
   useEffect(() => {
     if (map) {
+      leaflet
+        .marker({
+          lat: offerCurrentLatitude,
+          lng: offerCurrentLongitude,
+        }, {
+          icon: iconCurrent,
+        })
+        .addTo(map);
+
       offers.forEach((offer) => {
         leaflet
           .marker({
@@ -40,7 +55,7 @@ function Map(props) {
           .addTo(map);
       });
     }
-  }, [map, offers, icon, iconCurrent, activeOfferCardId]);
+  }, [map, offers, icon, iconCurrent, activeOfferCardId, offerCurrentLatitude, offerCurrentLongitude]);
 
   return (
     <div
@@ -52,7 +67,7 @@ function Map(props) {
   );
 }
 
-Map.propTypes = {
+MapOffer.propTypes = {
   offers: PropTypes.arrayOf(
     PropTypes.oneOfType([placeCardProp]).isRequired,
   ).isRequired,
@@ -60,4 +75,4 @@ Map.propTypes = {
   activeOfferCardId: PropTypes.number,
 };
 
-export default Map;
+export default MapOffer;

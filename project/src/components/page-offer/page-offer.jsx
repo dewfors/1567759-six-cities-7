@@ -6,7 +6,6 @@ import {
   useSelector
 } from 'react-redux';
 import Reviews from '../reviews/reviews';
-import Map from '../map/map';
 import ListNearOffers from '../list-near-offers/list-near-offers';
 import Header from '../page-home/header';
 import {
@@ -23,6 +22,7 @@ import {
   getOfferNearby
 } from '../../store/reducers/reducer-offers/selectors-offers';
 import AddFavoritesButton from '../place-card/add-favorites-button';
+import MapOffer from '../map/map-offer';
 
 function PageOffer() {
 
@@ -99,7 +99,6 @@ function PageOffer() {
                   <span style={{width: `${getStarsWidth(rating)}%`}} />
                   <span className="visually-hidden">Rating</span>
                 </div>
-                {/*<span className="property__rating-value rating__value">4.8</span>*/}
                 <span className="property__rating-value rating__value">{rating}</span>
               </div>
               <ul className="property__features">
@@ -140,7 +139,7 @@ function PageOffer() {
           </div>
           <section className="property__map map">
             {offerDetails && offersNearby && city?.name && (
-              <Map city={city.name} offers={offersNearby} activeOfferCardId={activeOfferCardId}/>
+              <MapOffer city={city.name} offers={offersNearby} activeOfferCardId={activeOfferCardId}/>
             )}
 
           </section>

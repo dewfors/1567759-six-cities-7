@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchLogin} from '../../store/api-actions';
 import Error from '../error/error';
@@ -6,8 +6,11 @@ import {getLoginStatus} from '../../store/reducers/reducer-user/selectors-user';
 
 const isValidEmail = (email) => /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(email);
 
+const textErrorDataLoginNotValid = 'Enter the correct username and password';
+const textErrorFailedRequest = 'Failed request. Try-again';
 
 function LoginForm() {
+  const [isDataToLoginValid, setIsDataToLoginValid] = useState(true);
   const {isError} = useSelector(getLoginStatus);
   const dispatch = useDispatch();
   const sendLoginData = (value) => {
@@ -23,18 +26,22 @@ function LoginForm() {
     const passwordValid = passwordRef.current.value.trim() !== '';
     const emailValid = isValidEmail(loginRef.current.value);
 
-    if (passwordValid && emailValid) {
-      sendLoginData({
-        email: loginRef.current.value,
-        password: passwordRef.current.value,
-      });
+    if (!(passwordValid && emailValid)) {
+      setIsDataToLoginValid(false);
+      return;
     }
+
+    sendLoginData({
+      email: loginRef.current.value,
+      password: passwordRef.current.value,
+    });
 
   };
 
   return (
     <section className="login">
-      {isError && <Error />}
+      {!isDataToLoginValid && <Error textError={textErrorDataLoginNotValid} />}
+      {isError && <Error textError={textErrorFailedRequest} />}
       <h1 className="login__title">Sign in</h1>
       <form
         className="login__form form"
